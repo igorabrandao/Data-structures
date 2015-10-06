@@ -2,18 +2,16 @@
 	<PRE>
 	SOURCE FILE : Stack.h
 	DESCRIPTION.: Stack class - with implementation.
-	AUTHOR......: Selan R. dos Santos
-	CONTRIBUTORS: Igor A. Brandão and Leandro F. Silva
-	LOCATION....: DIMAp/UFRN.
-	SATARTED ON.: August/2005
+	AUTHOR......: Igor A. Brandão and Leandro F. Silva
+	LOCATION....: IMD/UFRN.
+	SATARTED ON.: September/2005
 	CHANGES.....: Functions implemented.
 
 	TO COMPILE..: Use makefile.
-	OBS.........: Part of the LP1 Project.
+	OBS.........: Part of the LP1/EDB Project.
 
-	LAST UPDATE.: March 8th, 2007.
-	LAST UPDATE.: April tth, 2015.
 	LAST UPDATE.: September 29th, 2015.
+	LAST UPDATE.: October 6th, 2015.
 	</pre>
 */
 
@@ -23,11 +21,11 @@
 // ******************PUBLIC OPERATIONS*********************
 // void push( x )     	--> Insert x
 // T pop( )          	--> Remove and return most recently inserted item
-// T top( )          	--> Return most recently inserted item
 // bool isEmpty( )    	--> Return true if empty; else false
 // bool isFull( )    	--> Return true if full; else false
 // void makeEmpty( )  	--> Remove all items
-// ******************ERRORS********************************
+// void print( )  		--> Print the stack elements
+// ***********************ERRORS****************************
 // std::underflow_error thrown if needed.
 
 /*! LifeScreen template class */
@@ -47,7 +45,6 @@ class Stack
 		/*! Basic members */
 		void push( const T & _x );
 		const T & pop( );
-		//const T & top( ) const = 0;
 
 		bool isEmpty( ) { return (iTop == -1); }
 		bool isFull( ) { return (iTop + 1 == iSz); }

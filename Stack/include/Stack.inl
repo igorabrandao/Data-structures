@@ -79,17 +79,6 @@ Stack<T>::pop()
 }
 
 /********************************************//**
-* Returns a reference to the top element 
-* in the stack.
-***********************************************/
-/*template <typename T>
-const T &
-Stack<T>::top() const
-{
-
-}*/
-
-/********************************************//**
 * Check if the stack is empty.
 * Returns true to empty or false if not.
 ***********************************************/
@@ -112,12 +101,15 @@ template <typename T>
 void
 Stack<T>::print()
 {
-	std::cout << "<< [ " << std::endl;
+	std::cout << "<< [ ";
 
 	/*! Check while stack is empty */
-	for ( int i = 0; i < iSz; ++i )
+	for ( int i = 0; i < iTop; ++i )
 	{
-		items[i];
+		if ( i == (iTop - 1) )
+			std::cout << items[i];
+		else
+			std::cout << items[i] << ", ";
 	}
 
 	std::cout << " ] >> " << std::endl;

@@ -19,10 +19,24 @@ int main()
 	for ( int i = 65; i < 75; i++ )
 		st.push(i);
 
+	// Print the elements
+	st.print();
+
+	// Remove 1 element
+	st.pop();
+	st.print();
+
+	// Remove another element
+	st.pop();
+	st.print();
+
+	// Remove another element
+	st.pop();
 	st.print();
 
     // Remove all the data
 	st.makeEmpty();
+	st.print();
 
 	/* ========================================================================= */
 
