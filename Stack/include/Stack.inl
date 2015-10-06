@@ -49,8 +49,8 @@ Stack<T>::push( const T & x_ )
 	/*! Check if the stack is full */
 	if ( isFull() )
 	{
-		/*! Erro message */
-		std::cout << "<< Stack is Full! >>" << std::endl;
+		/*! Error message */
+		throw std::overflow_error("<< Stack is Full! >>");
 		exit(1);
 	}
 
@@ -69,8 +69,8 @@ Stack<T>::pop()
 	/*! Check if the stack is empty */
 	if ( isEmpty() )
 	{
-		/*! Erro message */
-		std::cout << "<< Stack is Empty! >>" << std::endl;
+		/*! Error message */
+		throw std::underflow_error("<< Stack is Empty! >>");
 		exit(1);
 	}
 
@@ -88,8 +88,8 @@ Stack<T>::top()
 	/*! Check if the stack is empty */
 	if ( isEmpty() )
 	{
-		/*! Erro message */
-		std::cout << "<< Stack is Empty! >>" << std::endl;
+		/*! Error message */
+		throw std::underflow_error("<< Stack is Empty! >>");
 		exit(1);
 	}
 
