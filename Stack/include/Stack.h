@@ -21,6 +21,7 @@
 // ******************PUBLIC OPERATIONS*********************
 // void push( x )     	--> Insert x
 // T pop( )          	--> Remove and return most recently inserted item
+// T top( )          	--> Return most recently inserted item
 // bool isEmpty( )    	--> Return true if empty; else false
 // bool isFull( )    	--> Return true if full; else false
 // void makeEmpty( )  	--> Remove all items
@@ -45,6 +46,7 @@ class Stack
 		/*! Basic members */
 		void push( const T & _x );
 		const T & pop( );
+		const T & top();
 
 		bool isEmpty( ) { return (iTop == -1); }
 		bool isFull( ) { return (iTop + 1 == iSz); }

@@ -79,6 +79,28 @@ Stack<T>::pop()
 }
 
 /********************************************//**
+* Return most recently inserted item.
+***********************************************/
+template <typename T>
+const T &
+Stack<T>::top()
+{
+	/*! Check if the stack is empty */
+	if ( isEmpty() )
+	{
+		/*! Erro message */
+		std::cout << "<< Stack is Empty! >>" << std::endl;
+		exit(1);
+	}
+
+	//std::cout << "<< " << items[iTop] << " >>" << std::endl;
+
+	/*! Return the element */
+	return items[iTop];
+}
+
+
+/********************************************//**
 * Check if the stack is empty.
 * Returns true to empty or false if not.
 ***********************************************/
@@ -104,9 +126,9 @@ Stack<T>::print()
 	std::cout << "<< [ ";
 
 	/*! Check while stack is empty */
-	for ( int i = 0; i < iTop; ++i )
+	for ( int i = 0; i <= iTop; ++i )
 	{
-		if ( i == (iTop - 1) )
+		if ( i == (iTop) )
 			std::cout << items[i];
 		else
 			std::cout << items[i] << ", ";
