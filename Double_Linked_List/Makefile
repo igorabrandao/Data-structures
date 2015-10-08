@@ -1,14 +1,22 @@
-all:
+SOURCE = $(wildcards src=*.cpp)
+
+AVISA = -Wall
+DEBUG = -g
+LANGUAGE_VERSION = -std=c++11
+BIN_DIR = ./bin/
+CFLAGS = $(AVISA) $(LANGUAGE_VERSION) $(DEBUG)
+
+all: 
 	@echo "Compilando direto..."
-	g++ -Wall -std=c++11 src/drive_list.cpp -I include -o bin/app
+	g++ $(CFLAGS) src/drive_list.cpp -I include -o bin/app
 
 exe:
-	./bin/app
+	$(BIN_DIR)app
 
 val:
-	valgrind ./bin/app
+	valgrind $(BIN_DIR)app
 
 .PHONY: clean
 clean:
 	@echo "Limpando apenas executavel por enquanto"
-	rm bin/app
+	rm $(BIN_DIR)app
