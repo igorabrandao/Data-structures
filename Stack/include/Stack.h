@@ -18,15 +18,20 @@
 #ifndef Stack_H_
 #define Stack_H_
 
+#include <stdexcept>
+
 // ******************PUBLIC OPERATIONS*********************
 // void push( x )     	--> Insert x
 // T pop( )          	--> Remove and return most recently inserted item
+// T top( )          	--> Return most recently inserted item
 // bool isEmpty( )    	--> Return true if empty; else false
 // bool isFull( )    	--> Return true if full; else false
 // void makeEmpty( )  	--> Remove all items
 // void print( )  		--> Print the stack elements
+
 // ***********************ERRORS****************************
 // std::underflow_error thrown if needed.
+// std::overflow_error thrown if needed.
 
 /*! LifeScreen template class */
 template <class T>
@@ -45,6 +50,7 @@ class Stack
 		/*! Basic members */
 		void push( const T & _x );
 		const T & pop( );
+		const T & top();
 
 		bool isEmpty( ) { return (iTop == -1); }
 		bool isFull( ) { return (iTop + 1 == iSz); }

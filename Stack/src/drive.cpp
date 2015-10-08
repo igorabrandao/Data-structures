@@ -21,22 +21,27 @@ int main()
 
 	// Print the elements
 	st.print();
+	st.top();
 
 	// Remove 1 element
 	st.pop();
 	st.print();
+	st.top();
 
 	// Remove another element
 	st.pop();
 	st.print();
+	st.top();
 
 	// Remove another element
 	st.pop();
 	st.print();
+	st.top();
 
-    // Remove all the data
+    // Remove all data
 	st.makeEmpty();
 	st.print();
+	st.top();
 
 	/* ========================================================================= */
 

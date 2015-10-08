@@ -49,8 +49,8 @@ Stack<T>::push( const T & x_ )
 	/*! Check if the stack is full */
 	if ( isFull() )
 	{
-		/*! Erro message */
-		std::cout << "<< Stack is Full! >>" << std::endl;
+		/*! Error message */
+		throw std::overflow_error("<< Stack is Full! >>");
 		exit(1);
 	}
 
@@ -69,14 +69,36 @@ Stack<T>::pop()
 	/*! Check if the stack is empty */
 	if ( isEmpty() )
 	{
-		/*! Erro message */
-		std::cout << "<< Stack is Empty! >>" << std::endl;
+		/*! Error message */
+		throw std::underflow_error("<< Stack is Empty! >>");
 		exit(1);
 	}
 
 	/*! Remove the element */
 	return items[iTop--];
 }
+
+/********************************************//**
+* Return most recently inserted item.
+***********************************************/
+template <typename T>
+const T &
+Stack<T>::top()
+{
+	/*! Check if the stack is empty */
+	if ( isEmpty() )
+	{
+		/*! Error message */
+		throw std::underflow_error("<< Stack is Empty! >>");
+		exit(1);
+	}
+
+	//std::cout << "<< " << items[iTop] << " >>" << std::endl;
+
+	/*! Return the element */
+	return items[iTop];
+}
+
 
 /********************************************//**
 * Check if the stack is empty.
@@ -104,9 +126,9 @@ Stack<T>::print()
 	std::cout << "<< [ ";
 
 	/*! Check while stack is empty */
-	for ( int i = 0; i < iTop; ++i )
+	for ( int i = 0; i <= iTop; ++i )
 	{
-		if ( i == (iTop - 1) )
+		if ( i == (iTop) )
 			std::cout << items[i];
 		else
 			std::cout << items[i] << ", ";
