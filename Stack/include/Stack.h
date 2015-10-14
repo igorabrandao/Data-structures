@@ -33,7 +33,7 @@
 // std::underflow_error thrown if needed.
 // std::overflow_error thrown if needed.
 
-/*! LifeScreen template class */
+/*! Stack template class */
 template <class T>
 class Stack
 {
@@ -49,13 +49,13 @@ class Stack
 
 		/*! Basic members */
 		void push( const T & _x );
-		const T & pop( );
+		const T & pop();
 		const T & top();
 
-		bool isEmpty( ) { return (iTop == -1); }
-		bool isFull( ) { return (iTop + 1 == iSz); }
-		void makeEmpty( );
-		void print( );
+		bool isEmpty() { return (iTop == -1); }
+		bool isFull() { return (iTop + 1 == iSz); }
+		void makeEmpty();
+		void print();
 
 	/*!
      * Private section
