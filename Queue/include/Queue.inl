@@ -22,9 +22,7 @@ Queue<T>::Queue()
 template <typename T>
 Queue<T>::~Queue()
 {
-	/*! Desalocates the pointers */
-	delete [] head;
-	delete [] tail;
+	/*! Empty */
 }
 
 /********************************************//**
@@ -138,9 +136,9 @@ Queue<T>::print()
 	/*! Check while queue is empty */
 	while ( !empty() )
 	{
-		std::cout << front() << ", ";
+		std::cout << front() << " ";
 		pop();
 	}
 
-	std::cout << " ] >> " << std::endl;
+	std::cout << "] >> " << std::endl;
 }

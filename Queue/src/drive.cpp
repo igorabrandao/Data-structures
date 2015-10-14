@@ -13,14 +13,13 @@ int main()
 	/* --------------------- [ Test Queue class with chars ] ------------------- */
 
 	/*! Queue class instance with int */
-    Queue<int> q;
+    Queue<char> q;
 
-    q.push(1);
-    q.push(2);
-    q.push(3);
+    q.push('a');
+    q.push('b');
+    q.push('c');
     q.print();
-    //std::cout << " << " << q.front() << " >> " << std::endl;
-    std::cout << " << " << q.back() << " >> " << std::endl;
+
     /*
     q.push(3);
     q.push(4);
