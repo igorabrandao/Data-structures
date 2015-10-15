@@ -22,7 +22,12 @@ Queue<T>::Queue()
 template <typename T>
 Queue<T>::~Queue()
 {
-	/*! Empty */
+	/*! If it is already empty don't do anything. */
+    if ( empty() )
+        return;
+
+    /*! Clear de queue */
+    makeEmpty();
 }
 
 /********************************************//**
@@ -122,6 +127,24 @@ Queue<T>::empty()
 {
 	/*! Check if the queue is empty */
 	return (iSz == 0);
+}
+
+/********************************************//**
+* Print the queue
+***********************************************/
+template <typename T>
+void
+Queue<T>::makeEmpty()
+{
+	Node<T> *tmp;
+
+    /*! Delete all elements until its empty */
+    while ( !empty() )
+    {
+        tmp = head;
+        head = head->next;
+        delete tmp;
+    }
 }
 
 /********************************************//**

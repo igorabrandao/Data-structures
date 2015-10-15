@@ -79,7 +79,6 @@ class Queue
         bool empty();
 		void makeEmpty();
 		void print();
-        int size();
 };
 
 #include "Queue.inl"
