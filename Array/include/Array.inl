@@ -13,8 +13,11 @@
 template <typename T>
 Array<T>::Array(int size_)
 {
+	// Define the Array initial attributes
 	this->mSize = size_;
 	this->nrOfEl = 0;
+
+	// Allocate the necessary memory to it
 	this->arr = new T[this->mSize];
 }
 
@@ -29,15 +32,15 @@ Array<T>::~Array()
 }
 
 /**
- * Copy constructor
+ * Copy constructor (deep copy)
  */
 template <typename T>
 Array<T>::Array(const Array &obj_)
 {
-	// Get the origin array size
+	// Get the original array size
 	int size = obj_.size();
 
-	// Allocate the necessary memory into the new array
+	// Allocate the necessary memory to the new array
 	this->arr = new T[size];
 
 	for (int i = 0; i < size; i++)
@@ -46,7 +49,7 @@ Array<T>::Array(const Array &obj_)
 		this->arr[i] = obj_.arr[i];
 	}
 
-	// Increment the number of elements
+	// Update the number of elements
 	this->nrOfEl = size;
 }
 
@@ -86,3 +89,26 @@ T &Array<T>::get(int index)
 // ***************************************************
 // ** Overload operators
 // ***************************************************
+
+/**
+ * Overload of the operator =
+ */
+template <typename T>
+void Array<T>::operator=(const Array &rhs)
+{
+	// Free the memory of the current Array
+	delete[] arr;
+
+	// Perform the deep copy of the rhs
+	int size = rhs.size();
+	this->arr = new T[size];
+
+	for (int i = 0; i < size; i++)
+	{
+		// Copy each element from the origin array
+		this->arr[i] = rhs.arr[i];
+	}
+
+	// Update the number of elements
+	this->nrOfEl = size;
+}

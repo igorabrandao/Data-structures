@@ -1,3 +1,17 @@
+/*!
+	<PRE>
+	SOURCE FILE : Array.h
+	DESCRIPTION.: Array class - with implementation.
+	AUTHOR......: Igor A. Brandão
+	LOCATION....: NATAL/RN.
+	SATARTED ON.: July/2021
+
+	TO COMPILE..: Use makefile.
+	OBS.........: Part of Data Structures Project.
+
+	tail UPDATE.: Octuber 16th, 2015.
+	</pre>
+*/
 #ifndef Array_H_
 #define Array_H_
 
@@ -52,6 +66,7 @@ public:
     // ***************************************************
     // ** Overload operators
     // ***************************************************
+    void operator=(const Array& rhs);
 };
 
 #include "Array.inl"

@@ -21,20 +21,34 @@ int main()
     // Array class instance with string
     Array<std::string> stringArray;
 
-    cout << "Initial values:" << endl;
+    cout << "<<< Testing the Array initialization:" << endl;
 
+    // Add some values
     for (size_t i = 0; i < 5; i++)
     {
-        // Add some values
-        intArray.add(10);
+        intArray.add(i);
         stringArray.add("Hello!");
-
-        // Print the values
-        cout << intArray.get(i) << endl;
-        cout << stringArray.get(i) << endl;
     }
 
-    cout << endl;
+    // Print the values
+    cout << "intArray: [ ";
+
+    for (auto i = 0; i < intArray.size(); i++)
+    {
+        cout << intArray.get(i) << " ";
+    }
+
+    cout << "]" << endl;
+
+    cout << "stringArray: [ ";
+
+    for (auto i = 0; i < stringArray.size(); i++)
+    {
+        cout << stringArray.get(i) << " ";
+    }
+
+    cout << "]" << endl
+         << endl;
 
     /* ============================================================================== */
 
@@ -46,7 +60,9 @@ int main()
      */
     Array<int> intArray2 = intArray;
 
-    cout << "New array with copied values:" << endl;
+    cout << "<<< Testing the copy constructor:" << endl;
+
+    cout << "intArray2: [ ";
 
     // Print the new int array values
     for (int i = 0; i < intArray2.size(); i++)
@@ -54,7 +70,33 @@ int main()
         cout << intArray2.get(i) << " ";
     }
 
-    cout << endl;
+    cout << "]" << endl
+         << endl;
+
+    /* ============================================================================== */
+
+    /* ============================================================================== */
+
+    /* ------------------------ [ Test the Array operator = ] ----------------------- */
+
+    // Create one more Array
+    Array<int> intArray3;
+    
+    // Assign the original Array to the new one
+    intArray3 = intArray;
+
+    cout << "<<< Testing the operator=:" << endl;
+
+    cout << "intArray3: [ ";
+
+    // Print the new int array values
+    for (int i = 0; i < intArray3.size(); i++)
+    {
+        cout << intArray3.get(i) << " ";
+    }
+
+    cout << "]" << endl
+         << endl;
 
     /* ============================================================================== */
 
