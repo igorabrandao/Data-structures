@@ -13,42 +13,30 @@ using namespace std;
  */
 int main()
 {
+    // Array initial size
+    int iSize = 10;
+
     /* ---------------------------- [ Test Array class ] ---------------------------- */
 
     // Array class instance with int
-    Array<int> intArray;
+    Array<int> intArray(iSize);
 
     // Array class instance with string
-    Array<std::string> stringArray;
+    Array<std::string> stringArray(iSize);
 
     cout << "<<< Testing the Array initialization:" << endl;
 
     // Add some values
-    for (size_t i = 0; i < 5; i++)
+    for (auto i = 0; i < iSize; i++)
     {
         intArray.add(i);
         stringArray.add("Hello!");
     }
 
     // Print the values
-    cout << "intArray: [ ";
-
-    for (auto i = 0; i < intArray.size(); i++)
-    {
-        cout << intArray.get(i) << " ";
-    }
-
-    cout << "]" << endl;
-
-    cout << "stringArray: [ ";
-
-    for (auto i = 0; i < stringArray.size(); i++)
-    {
-        cout << stringArray.get(i) << " ";
-    }
-
-    cout << "]" << endl
-         << endl;
+    intArray.print("intArray");
+    stringArray.print("stringArray");
+    cout << endl;
 
     /* ============================================================================== */
 
@@ -61,17 +49,8 @@ int main()
     Array<int> intArray2 = intArray;
 
     cout << "<<< Testing the copy constructor:" << endl;
-
-    cout << "intArray2: [ ";
-
-    // Print the new int array values
-    for (int i = 0; i < intArray2.size(); i++)
-    {
-        cout << intArray2.get(i) << " ";
-    }
-
-    cout << "]" << endl
-         << endl;
+    intArray2.print("intArray2");
+    cout << endl;
 
     /* ============================================================================== */
 
@@ -86,43 +65,29 @@ int main()
     intArray3 = intArray;
 
     cout << "<<< Testing the operator=:" << endl;
-
-    cout << "intArray3: [ ";
-
-    // Print the new int array values
-    for (int i = 0; i < intArray3.size(); i++)
-    {
-        cout << intArray3.get(i) << " ";
-    }
-
-    cout << "]" << endl
-         << endl;
+    intArray3.print("intArray3");
+    cout << endl;
 
     // Assign the original Array to multiple ones
     intArray4 = intArray5 = intArray;
 
     cout << "<<< Testing the operator= with cascading:" << endl;
+    intArray4.print("intArray4");
 
-    cout << "intArray4: [ ";
+    intArray5.print("intArray5");
+    cout << endl;
 
-    // Print the new int array values
-    for (int i = 0; i < intArray4.size(); i++)
-    {
-        cout << intArray4.get(i) << " ";
-    }
+    /* ============================================================================== */
 
-    cout << "]" << endl;
+    /* ------------------------ [ Test the Array operator [] ] ---------------------- */
 
-    cout << "intArray5: [ ";
-
-    // Print the new int array values
-    for (int i = 0; i < intArray5.size(); i++)
-    {
-        cout << intArray5.get(i) << " ";
-    }
-
-    cout << "]" << endl
-         << endl;
+    cout << "<<< Testing the operator[]:" << endl;
+    cout << "intArray[0]: " << intArray[0] << endl;
+    cout << "intArray[5]: " << intArray[5] << endl;
+    cout << "intArray[9]: " << intArray[9] << endl;
+    cout << "intArray[10]: " << intArray[10] << endl;
+    cout << "intArray[-1]: " << intArray[-1] << endl;
+    cout << endl;
 
     /* ============================================================================== */
 

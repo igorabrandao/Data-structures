@@ -78,12 +78,32 @@ void Array<T>::add(const T &obj_)
  * Function to get an element by its position
  */
 template <typename T>
-T &Array<T>::get(int index)
+T &Array<T>::getAt(int index_) const
 {
-	if (index < 0 || index >= this->nrOfEl)
-		throw "Bad index!";
+	if (index_ < 0 || index_ >= this->nrOfEl)
+		throw std::out_of_range("<< Index out of range exception! >>");
 
-	return this->arr[index];
+	return this->arr[index_];
+}
+
+/**
+ * Function to print the array
+ */
+template <typename T>
+void Array<T>::print(string arrayName_)
+{
+	if (arrayName_.compare("") != 0)
+		cout << arrayName_ << ": [ ";
+	else
+		cout << "[ ";
+
+	// Print the new int array values
+	for (int i = 0; i < this->size(); i++)
+	{
+		cout << this->getAt(i) << " ";
+	}
+
+	cout << "]" << endl;
 }
 
 // ***************************************************
@@ -91,7 +111,7 @@ T &Array<T>::get(int index)
 // ***************************************************
 
 /**
- * Overload of the operator =
+ * Overload of the operator=
  * 
  * Implemented to support the following:
  * 
@@ -124,4 +144,19 @@ Array<T> &Array<T>::operator=(const Array &rhs)
 
 	// Return a reference for Array for cascading assignment
 	return (*this);
+}
+
+/**
+ * Overload of the operator[]
+ */
+template <typename T>
+T &Array<T>::operator[](int index_)
+{
+	return this->getAt(index_);
+}
+
+template <typename T>
+const T &Array<T>::operator[](int index_) const
+{
+	return this->getAt(index_);
 }

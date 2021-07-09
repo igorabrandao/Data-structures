@@ -61,12 +61,17 @@ public:
     void add(const T &obj_);
 
     // Function to get an element by its position
-    T &get(int index);
+    T &getAt(int index_) const;
+
+    // Function to print the array
+    void print(string arrayName_ = "");
 
     // ***************************************************
     // ** Overload operators
     // ***************************************************
-    Array& operator=(const Array& rhs);
+    Array &operator=(const Array &rhs);
+    T &operator[](int index_);
+    const T &operator[](int index_) const;
 };
 
 #include "Array.inl"
