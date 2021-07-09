@@ -24,7 +24,30 @@ Array<T>::Array(int size_)
 template <typename T>
 Array<T>::~Array()
 {
+	// Delete the Array pointer
 	delete[] this->arr;
+}
+
+/**
+ * Copy constructor
+ */
+template <typename T>
+Array<T>::Array(const Array &obj_)
+{
+	// Get the origin array size
+	int size = obj_.size();
+
+	// Allocate the necessary memory into the new array
+	this->arr = new T[size];
+
+	for (int i = 0; i < size; i++)
+	{
+		// Copy each element from the origin array
+		this->arr[i] = obj_.arr[i];
+	}
+
+	// Increment the number of elements
+	this->nrOfEl = size;
 }
 
 /**

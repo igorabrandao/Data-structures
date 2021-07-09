@@ -18,10 +18,10 @@ private:
     // ***************************************************
 
     // Max size
-    int mSize;
+    int mSize = 0;
 
     // Current size
-    int nrOfEl;
+    int nrOfEl = 0;
 
     // The actual array
     T *arr;
@@ -36,6 +36,9 @@ public:
 
     // Class Destructor
     ~Array();
+
+    // Copy constructor
+    Array(const Array &obj_);
 
     // Function to return the array size
     int size() const;
