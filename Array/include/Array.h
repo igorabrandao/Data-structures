@@ -66,7 +66,7 @@ public:
     // ***************************************************
     // ** Overload operators
     // ***************************************************
-    void operator=(const Array& rhs);
+    Array& operator=(const Array& rhs);
 };
 
 #include "Array.inl"

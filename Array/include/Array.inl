@@ -92,23 +92,36 @@ T &Array<T>::get(int index)
 
 /**
  * Overload of the operator =
+ * 
+ * Implemented to support the following:
+ * 
+ * array1 = array2 = array3; cascading assignment
+ * array1 = array1; self-assignment
+ * (array1 = array2) = array3; odd but valid
  */
 template <typename T>
-void Array<T>::operator=(const Array &rhs)
+Array<T> &Array<T>::operator=(const Array &rhs)
 {
-	// Free the memory of the current Array
-	delete[] arr;
-
-	// Perform the deep copy of the rhs
-	int size = rhs.size();
-	this->arr = new T[size];
-
-	for (int i = 0; i < size; i++)
+	// Verify if it's a self-assignment
+	if (this != &rhs)
 	{
-		// Copy each element from the origin array
-		this->arr[i] = rhs.arr[i];
+		// Free the memory of the current Array
+		delete[] arr;
+
+		// Perform the deep copy of the rhs
+		int size = rhs.size();
+		this->arr = new T[size];
+
+		for (int i = 0; i < size; i++)
+		{
+			// Copy each element from the origin array
+			this->arr[i] = rhs.arr[i];
+		}
+
+		// Update the number of elements
+		this->nrOfEl = size;
 	}
 
-	// Update the number of elements
-	this->nrOfEl = size;
+	// Return a reference for Array for cascading assignment
+	return (*this);
 }

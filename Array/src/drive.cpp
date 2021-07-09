@@ -75,13 +75,13 @@ int main()
 
     /* ============================================================================== */
 
-    /* ============================================================================== */
-
     /* ------------------------ [ Test the Array operator = ] ----------------------- */
 
-    // Create one more Array
+    // Create more Arrays
     Array<int> intArray3;
-    
+    Array<int> intArray4;
+    Array<int> intArray5;
+
     // Assign the original Array to the new one
     intArray3 = intArray;
 
@@ -93,6 +93,32 @@ int main()
     for (int i = 0; i < intArray3.size(); i++)
     {
         cout << intArray3.get(i) << " ";
+    }
+
+    cout << "]" << endl
+         << endl;
+
+    // Assign the original Array to multiple ones
+    intArray4 = intArray5 = intArray;
+
+    cout << "<<< Testing the operator= with cascading:" << endl;
+
+    cout << "intArray4: [ ";
+
+    // Print the new int array values
+    for (int i = 0; i < intArray4.size(); i++)
+    {
+        cout << intArray4.get(i) << " ";
+    }
+
+    cout << "]" << endl;
+
+    cout << "intArray5: [ ";
+
+    // Print the new int array values
+    for (int i = 0; i < intArray5.size(); i++)
+    {
+        cout << intArray5.get(i) << " ";
     }
 
     cout << "]" << endl
