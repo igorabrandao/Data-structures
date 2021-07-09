@@ -1,9 +1,12 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
-#include <cstring>
 
 #include "vetor.h"
+
+
+#define EPSILON 0.00001
+
 
 // Descomente os defines abaixo se optar por implementar sobrecarga de operador.
 //#define OPERATOR_EQUAL      // sobrecarga operator==(),  a == b
@@ -11,6 +14,58 @@
 //#define OPERATOR_ASSIGN_AT  // sobrecarda operator[](),  a[0] = 3
 
 using namespace MeuVetor;
+
+float euclideanDist( const Vetor& a, const Vetor& b )
+{
+    //float fDist;
+    long lAcum(0l);
+
+    if ( a.size() != b.size() )
+        throw std::length_error( "[euclideanDist()] vectors do not match in size." );
+
+    for( int i(0) ; i<a.size() ; ++i )
+    {
+        lAcum += (b[i]-a[i])*(b[i]-a[i]);
+    }
+
+    return sqrt( lAcum );
+}
+
+float manhattanDist( const Vetor& a, const Vetor& b )
+{
+    int iAcum(0);
+
+    if ( a.size() != b.size() )
+        throw std::length_error( "[euclideanDist()] vectors do not match in size." );
+
+    for( int i(0) ; i<a.size() ; ++i )
+    {
+        iAcum += std::abs( a[i] - b[i] );
+    }
+
+    return static_cast<float>( iAcum );
+}
+
+// Standard linear search.
+template < typename Obj >
+int searchSmallestDistance( Obj V[], int iSz, const Obj &Target, float (* distFunc)( const Obj& o1, const Obj& o2 ) )
+{
+    float fDist = distFunc( V[0], Target ); // Assume first distance found is the (temporary) smallest.
+    int iIdxMin(0); // Index of the element with smallest distance to target.
+
+    // Run through the array looking for the element in collection with smallest distance to target.
+    for ( int i(1); i < iSz; ++i ) // Start from 2nd.
+    { 
+        float fTempDist = distFunc( V[ i ], Target );
+        if ( fTempDist < fDist  ) // Is this smaller than the minimum found so far?
+        {
+            iIdxMin = i; // Update index of this object.
+            fDist = fTempDist; // Update smallest distance found so far.
+        }
+    }
+    return iIdxMin;
+}
+
 
 int main()
 {
@@ -173,9 +228,9 @@ int main()
 
         // Report results
         if ( vbSuccess )
-            cout << "\n>>>> [T03] status: bem sucedido!\n";
+            cout << "\n>>>> [T02] status: bem sucedido!\n";
         else
-            cout << "\n>>>> [T03] status: FALHOU!\n";
+            cout << "\n>>>> [T02] status: FALHOU!\n";
 
         cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
         // Prepare for next test.
@@ -227,14 +282,82 @@ int main()
         vbSuccess = true;
     }
 
-
-
     // ============================================================================
-    // T05: testando swap().
+    // T05: testando operator de atribuicao, front()/back()
     // ------------------------------------------------------------------------
     {
         cout << "=======================================================\n";
-        cout << ">>>> [T05] Testando: metodo swap(). \n";
+        cout << ">>>> [T05] Testando: metodos front() e back(). \n";
+        Vetor v1; // Vetor de 10 elementos, todos com valor 0.
+        v1.fillN(); // Agora vetor tem 10 elementos, preenchidos de 1 a 10.
+        cout << ">> v1: " << v1 << endl;
+
+        //%
+        cout << ">> v1.front() = 1? ";
+        if ( v1.front() != 1 )
+            vbSuccess = false;
+        cout << (v1.front() == 1) << endl;
+
+        cout << ">> v1.back() = 10? ";
+        if ( v1.back() != 10 )
+            vbSuccess = false;
+        cout << (v1.back() == 10) << endl;
+        //%
+        //
+        fTotalScore +=  ( vbSuccess ) ? 5.f : 0.f;
+
+        // Report results
+        if ( vbSuccess )
+            cout << "\n>>>> [T05] status: bem sucedido!\n";
+        else
+            cout << "\n>>>> [T05] status: FALHOU!\n";
+
+        cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
+        // Prepare for next test.
+        vbSuccess = true;
+    }
+
+    // ============================================================================
+    // T06: testando metodos min()/max()
+    // ------------------------------------------------------------------------
+    {
+        cout << "=======================================================\n";
+        cout << ">>>> [T06] Testando: metodos min() e max(). \n";
+        Vetor v1( 20, 0 ); // Vetor de 20 elementos, todos com valor 0.
+        v1.fillNShuffle(); // Agora vetor tem 20 elementos, preenchidos de 1 a 20.
+        cout << ">> v1: " << v1 << endl;
+
+        //%
+        cout << ">> v1.min() = 1? ";
+        if ( v1.min() != 1 )
+            vbSuccess = false;
+        cout << (v1.min() == 1) << endl;
+
+        cout << ">> v1.max() = 20? ";
+        if ( v1.max() != 20 )
+            vbSuccess = false;
+        cout << (v1.max() == 20) << endl;
+        //%
+        //
+        fTotalScore +=  ( vbSuccess ) ? 5.f : 0.f;
+
+        // Report results
+        if ( vbSuccess )
+            cout << "\n>>>> [T06] status: bem sucedido!\n";
+        else
+            cout << "\n>>>> [T06] status: FALHOU!\n";
+
+        cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
+        // Prepare for next test.
+        vbSuccess = true;
+    }
+
+    // ============================================================================
+    // T07: testando swap().
+    // ------------------------------------------------------------------------
+    {
+        cout << "=======================================================\n";
+        cout << ">>>> [T07] Testando: metodo swap(). \n";
         Vetor v1( 5 , 1 ); // Vetor de 5 elementos, todos com valor 1.
         Vetor v2( 10, 2 ); // Vetor de 10 elementos, todos com valor 2.
         Vetor v3( 10, 3 ); // Vetor de 10 elementos, todos com valor 3.
@@ -256,7 +379,7 @@ int main()
             }
         }
         // Reduce score.
-        fTotalScore +=  ( vbSuccess ) ? 5.f : 0.f;
+        fTotalScore -=  ( vbSuccess ) ? 0.f : 5.f;
 
         cout << ">> v3: " << v3 << endl;
         cout << ">> v4: " << v4 << endl;
@@ -274,14 +397,14 @@ int main()
             }
         }
         // Reduce score.
-        fTotalScore +=  ( vbSuccess ) ? 5.f : 0.f;
+        fTotalScore +=  ( vbSuccess ) ? 10.f : 0.f;
         //%
 
         // Report results
         if ( vbSuccess )
-            cout << "\n>>>> [T05] status: bem sucedido!\n";
+            cout << "\n>>>> [T07] status: bem sucedido!\n";
         else
-            cout << "\n>>>> [T05] status: FALHOU!\n";
+            cout << "\n>>>> [T07] status: FALHOU!\n";
 
         cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
         // Prepare for next test.
@@ -289,11 +412,11 @@ int main()
     }
 
     // ============================================================================
-    // T06: testando average().
+    // T08: testando average().
     // ------------------------------------------------------------------------
     {
         cout << "=======================================================\n";
-        cout << ">>>> [T06] Testando: metodo average(). \n";
+        cout << ">>>> [T08] Testando: metodo average(). \n";
         int n(10);
         Vetor v1( n, 1 ); // Vetor de 10 elementos, todos com valor 1.
         v1.fillN(); // Agora vetor tem 10 elementos, preenchidos de 1 a 10.
@@ -314,9 +437,9 @@ int main()
 
         // Report results
         if ( vbSuccess )
-            cout << "\n>>>> [T06] status: bem sucedido!\n";
+            cout << "\n>>>> [T08] status: bem sucedido!\n";
         else
-            cout << "\n>>>> [T06] status: FALHOU!\n";
+            cout << "\n>>>> [T08] status: FALHOU!\n";
 
         cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
         // Prepare for next test.
@@ -324,11 +447,11 @@ int main()
     }
 
     // ============================================================================
-    // T07: testando reverse().
+    // T09: testando reverse().
     // ------------------------------------------------------------------------
     {
         cout << "=======================================================\n";
-        cout << ">>>> [T07] Testando: metodo reverse(). \n";
+        cout << ">>>> [T09] Testando: metodo reverse(). \n";
         
         //%
         int n(11);
@@ -361,9 +484,9 @@ int main()
 
         // Report results
         if ( vbSuccess )
-            cout << "\n>>>> [T07] status: bem sucedido!\n";
+            cout << "\n>>>> [T09] status: bem sucedido!\n";
         else
-            cout << "\n>>>> [T07] status: FALHOU!\n";
+            cout << "\n>>>> [T09] status: FALHOU!\n";
 
         cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
         // Prepare for next test.
@@ -371,11 +494,11 @@ int main()
     }
 
     // ============================================================================
-    // T08: testando resize().
+    // T10: testando resize().
     // ------------------------------------------------------------------------
     {
         cout << "=======================================================\n";
-        cout << ">>>> [T08] Testando: metodo resize(). \n";
+        cout << ">>>> [T10] Testando: metodo resize(). \n";
         
         //%
         int n(5);
@@ -418,9 +541,9 @@ int main()
 
         // Report results
         if ( vbSuccess )
-            cout << "\n>>>> [T08] status: bem sucedido!\n";
+            cout << "\n>>>> [T10] status: bem sucedido!\n";
         else
-            cout << "\n>>>> [T08] status: FALHOU!\n";
+            cout << "\n>>>> [T10] status: FALHOU!\n";
 
         cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
         // Prepare for next test.
@@ -428,11 +551,11 @@ int main()
     }
 
     // ============================================================================
-    // T09: testando fill(size, vetor[]).
+    // T11: testando fill(size, vetor[]).
     // ------------------------------------------------------------------------
     {
         cout << "=======================================================\n";
-        cout << ">>>> [T09] Testando: metodo fill( size, vetor[] ). \n";
+        cout << ">>>> [T11] Testando: metodo fill( size, vetor[] ). \n";
         
         //%
         int n(5);
@@ -476,9 +599,9 @@ int main()
 
         // Report results
         if ( vbSuccess )
-            cout << "\n>>>> [T09] status: bem sucedido!\n";
+            cout << "\n>>>> [T11] status: bem sucedido!\n";
         else
-            cout << "\n>>>> [T09] status: FALHOU!\n";
+            cout << "\n>>>> [T11] status: FALHOU!\n";
 
         cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
         // Prepare for next test.
@@ -486,11 +609,11 @@ int main()
     }
 
     // ============================================================================
-    // T10: testando unique().
+    // T12: testando unique().
     // ------------------------------------------------------------------------
     {
         cout << "=======================================================\n";
-        cout << ">>>> [T10] Testando: metodo unique(). \n";
+        cout << ">>>> [T12] Testando: metodo unique(). \n";
         
         //%
         int aiDummyArr[] = { 2, 1, 1, 1, 1, 2, 3, 3, 2, 2, 3 };
@@ -517,9 +640,9 @@ int main()
 
         // Report results
         if ( vbSuccess )
-            cout << "\n>>>> [T10] status: bem sucedido!\n";
+            cout << "\n>>>> [T12] status: bem sucedido!\n";
         else
-            cout << "\n>>>> [T10] status: FALHOU!\n";
+            cout << "\n>>>> [T12] status: FALHOU!\n";
 
         cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
         // Prepare for next test.
@@ -527,11 +650,11 @@ int main()
     }
 
     // ============================================================================
-    // T11: testando sort().
+    // T13: testando sort().
     // ------------------------------------------------------------------------
     {
         cout << "=======================================================\n";
-        cout << ">>>> [T11] Testando: metodo sort(). \n";
+        cout << ">>>> [T13] Testando: metodo sort(). \n";
         
         //%
         Vetor v1( 20 ); // Vetor de 20 elementos, todos com valor 0.
@@ -556,13 +679,80 @@ int main()
 
         // Report results
         if ( vbSuccess )
-            cout << "\n>>>> [T11] status: bem sucedido!\n";
+            cout << "\n>>>> [T13] status: bem sucedido!\n";
         else
-            cout << "\n>>>> [T11] status: FALHOU!\n";
+            cout << "\n>>>> [T12] status: FALHOU!\n";
 
         cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
         // Prepare for next test.
         vbSuccess = true;
+    }
+
+    {
+        // ===============================================================================
+        // Preparing bag of vetors.
+        Vetor aoBag[ ] = { Vetor(5, 2), Vetor(5, 6), Vetor(5, -2), Vetor(5, 12), Vetor(5, 10), Vetor(5, -7), Vetor(5, 0) };
+        int iBagSz ( sizeof( aoBag ) / sizeof( Vetor ) );
+        cout << ">>>> Bag elements are: \n";
+        for( int i(0) ; i<iBagSz ; ++i )
+            cout << "Bag[" << i << "]: " << aoBag[i] << endl;
+        cout << ">>>> Size of bag is: " << iBagSz << endl << endl;
+
+        // This is our target (try the others).
+        //Vetor oTarget( 5, 7 );
+        Vetor oTarget( 5, 1 );
+        //Vetor oTarget( 5, 100 );
+        //Vetor oTarget( 5, -3 );
+        cout << ">>>> Target element is: " << oTarget << endl << endl;
+
+
+
+        // ===============================================================================
+        // Loking for smallest Euclidean distance 
+        int iIdxTargetE = searchSmallestDistance( aoBag, iBagSz, oTarget, euclideanDist );
+
+        // Determine Euclidean distance found.
+        float fDist = euclideanDist( oTarget, aoBag[ iIdxTargetE ] );
+
+        cout << ">>>> [Euclidean] Closest element to Target" << oTarget << " is Bag[" << iIdxTargetE << "]: " << aoBag[ iIdxTargetE ] << endl;
+        cout << ">>>> The distance is " << fDist << endl << endl;
+
+        // Reduce score.
+        const float fExpectedDistE = 2.23607f; // Distancia correta. 
+        vbSuccess = ( std::fabs( fDist - fExpectedDistE ) < EPSILON );
+        fTotalScore +=  ( vbSuccess ) ? 10.f : 0.f;
+
+        // Report results
+        if ( vbSuccess )
+            cout << "\n>>>> [T14] status: bem sucedido!\n";
+        else
+            cout << "\n>>>> [T14] status: FALHOU!\n";
+
+        cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
+
+
+
+        // ===============================================================================
+        // Loking for smallest Manhattan distance 
+        int iIdxTargetM = searchSmallestDistance( aoBag, iBagSz, oTarget, manhattanDist );
+
+        fDist = manhattanDist( oTarget, aoBag[ iIdxTargetE ] );
+
+        cout << ">>>> [Manhattan] Closest element to Target" << oTarget << " is Bag[" << iIdxTargetM << "]: " << aoBag[ iIdxTargetM ] << endl;
+        cout << ">>>> The distance is " << fDist << endl << endl;
+
+        // Adjust score.
+        const float fExpectedDistM = 5.f; // Distancia correta. 
+        vbSuccess = ( std::fabs( fDist - fExpectedDistM ) < EPSILON );
+        fTotalScore +=  ( vbSuccess ) ? 10.f : 0.f;
+
+        // Report results
+        if ( vbSuccess )
+            cout << "\n>>>> [T15] status: bem sucedido!\n";
+        else
+            cout << "\n>>>> [T15] status: FALHOU!\n";
+
+        cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
     }
 
     cout << "\n >>>> Normal existing!\n";

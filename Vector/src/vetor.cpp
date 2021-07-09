@@ -1,10 +1,8 @@
 #include "vetor.h"
 
-using namespace std;
-
 namespace MeuVetor {
 
-    Vetor::Vetor( int _iSz, int _iFillVal ) : 
+    Vetor::Vetor( int _iSz, int _iFillVal ) :
         miSize( _iSz ),
         mpiData( new int[ miSize ] )
     {
@@ -13,7 +11,7 @@ namespace MeuVetor {
 
         // Initialize with filling value provided.
         for ( int i(0) ; i<miSize ; i++ )
-            mpiData[ i ] = _iFillVal; // 
+            mpiData[ i ] = _iFillVal; //
     }
 
     Vetor::~Vetor()
@@ -23,7 +21,7 @@ namespace MeuVetor {
 
     // Copy constructor
     Vetor::Vetor( const Vetor &rhs ) :
-        miSize( rhs.miSize ), 
+        miSize( rhs.miSize ),
         mpiData( new int[ rhs.miSize ] )
     {
         // copiar elementos da fonte original
@@ -58,8 +56,7 @@ namespace MeuVetor {
     }
 
 
-    // ================================================================================
-    //TODO Começa aqui. Implemente os métodos da classe abaixo.
+    //TODO starts here!
 
     //! Segundo construtor que recebe um arranjo para inicializar o objeto.
     /*! Cria um Vetor com o tamanho especificado e o preenche com os valores fornecidos
@@ -76,17 +73,24 @@ namespace MeuVetor {
      *  Vetor a( 5, vet )
      *  'a' será criado com 5 posições, sendo a:[ mpiData = { 5, 4, 3, 2, 1 }, miSize = 5 ].
      */
-    Vetor::Vetor( int _iSz, int * _piVals ) : 
-        miSize( _iSz ),
-        mpiData( new int[ miSize ] )
+    Vetor::Vetor( int _iSz, int * _piVals ) :
+        miSize( _iSz )
     {
+        // Verifiy whether we get a valid size.
         if ( _iSz <= 0 )
-            throw std::invalid_argument( "[Vetor::Vetor(int,int)]: Size of Vetor is invalid!" );
+            throw std::invalid_argument("[Vetor::Vetor(int,int*)]: New size is invalid!");
 
-        // Initialize with filling value provided.
-        for ( int i(0) ; i < miSize ; i++ )
-            mpiData[i] = _piVals[i]; // 
+        // Allocate memory
+        try{ mpiData  = new int[ miSize ]; }
+        catch( std::bad_alloc & e ) {
+            throw e;
+        }
+
+        // Initialize with values from the array provided.
+        for ( int i(0) ; i<miSize ; i++ )
+            mpiData[ i ] = _piVals[ i ]; //
     }
+
 
     //! Modifica o conteudo do vetor em uma posicao especificada.
     /*! Modifica o conteudo do vetor em uma posicao especificada.
@@ -104,22 +108,15 @@ namespace MeuVetor {
      *  a.assignAt( 0, 3 ); // Atribui o valor 3 na posição zero do Vetor 'a'.
      *  a[0] = 3; 
      */
-    void 
-    Vetor::assignAt( int _idx, int _iNewVal )
-    {
-        if ( _idx < 0 ||  _idx > miSize )
-            throw std::out_of_range( "Index provided out of valid range!" );
-
-        mpiData[_idx] = _iNewVal;
-    }
-    // Alternativamente, implemente o metodo abaixo no lugar do de cima.
     int&
-    Vetor::operator[]( int _idx )
+    Vetor::operator[]( int idx )
     {
-        if ( _idx < 0 ||  _idx > miSize )
-            throw std::out_of_range( "Index provided out of valid range!" );
+        // Verificar se idx esta no limite do vetor
+        if ( idx < 0 || idx >= miSize )
+            throw std::out_of_range( "[Vetor::operator[]()] Index provided out of valid range!" );
 
-        return mpiData[_idx];
+        // Regular returining.
+        return mpiData[ idx ];
     }
 
     //! Retorna o conteudo do vetor em uma posicao especificada.
@@ -138,22 +135,93 @@ namespace MeuVetor {
      *  ou
      *  int x = a[0];
      */
-    int
-    Vetor::at( int _idx ) const
-    {
-        if ( _idx < 0 ||  _idx > miSize )
-            throw std::out_of_range( "Index provided out of valid range!" );
-
-        return mpiData[_idx];
-    }
-    // Alternativamente, implemente o metodo abaixo no lugar do de cima.
+    // Necessary when passing const object arguments to functions.
     const int
-    Vetor::operator[]( int _idx ) const
+    Vetor::operator[]( int idx ) const
     {
-        if ( _idx < 0 ||  _idx > miSize )
-            throw std::out_of_range( "Index provided out of valid range!" );
+        // Verificar se idx esta no limite do vetor
+        if ( idx < 0 || idx >= miSize )
+            throw std::out_of_range( "[Vetor::operator[]()] Index provided out of valid range!" );
 
-        return mpiData[_idx];
+        // Regular returining.
+        return mpiData[ idx ];
+    }
+
+
+    //! Retorna o conteudo do vetor em uma posicao especificada.
+    /*! Recupera o conteudo do vetor em uma posicao especificada.
+     *  Você deve ter o cuidado de garantir que o indice eh válido, ou seja, corresponde
+     *  a uma posicao válida dentro do objeto Vetor.
+     *
+     *  Se o índice for inválido você pode lançar uma exeção assim:
+     *  throw std::out_of_range( "Index provided out of valid range!" );
+     *
+     *  @param _idx Localização do elemento requisitado
+     *  @return Retorna o valor do vetor na posição requisitada.
+     *
+     *  A forma de uso eh do tipo:
+     *  int x = a.at( 0 ); // recupera o valor na posição zero do Vetor 'a'.
+     *  ou
+     *  int x = a[0];
+     */
+    // int x = a.at( 2 ); // out_of_bounds
+    int
+    Vetor::at( int idx ) const
+    {
+        // Verificar se idx esta no limite do vetor
+        if ( idx < 0 || idx >= miSize )
+            throw std::out_of_range( "[Vetor::at()] Index provided out of valid range!" );
+
+        // Regular returining.
+        return mpiData[ idx ];
+    }
+
+    //! Modifica o conteudo do vetor em uma posicao especificada.
+    /*! Modifica o conteudo do vetor em uma posicao especificada.
+     *  Você deve ter o cuidado de garantir que o indice eh válido, ou seja, corresponde
+     *  a uma posicao válida dentro do objeto Vetor.
+     *
+     *  Se o índice for inválido você pode lançar uma exeção assim:
+     *  throw std::out_of_range( "Index provided out of valid range!" );
+     *
+     *  @param _idx Localização do elemento requisitado.
+     *  @param _iNewVal Novo valor a ser atribuido na posicao solicitada.
+     *  
+     *
+     *  A forma de uso eh do tipo:
+     *  a.assignAt( 0, 3 ); // Atribui o valor 3 na posição zero do Vetor 'a'.
+     *  a[0] = 3; 
+     */
+    // a.assignAt( 2 ) = 3;
+    int&
+    Vetor::assignAt( int idx )
+    {
+        // Verificar se idx esta no limite do vetor
+        if ( idx < 0 || idx >= miSize )
+            throw std::out_of_range( "[Vetor::assignAt()] Index provided out of valid range!" );
+
+        // Regular returining.
+        return mpiData[ idx ];
+    }
+
+    // a.assignAt( 2 ) = 3;
+    void
+    Vetor::assignAt( int idx, int val )
+    {
+        // Verificar se idx esta no limite do vetor
+        if ( idx < 0 || idx >= miSize )
+            throw std::out_of_range( "[Vetor::assignAt()] Index provided out of valid range!" );
+
+        // Regular returining.
+        mpiData[ idx ] = val;
+    }
+
+
+
+    bool
+    Vetor::operator!=( const Vetor& rhs ) const
+    {
+        return !( this->operator==( rhs ) );
     }
 
     //! Verifica se um vetor eh idêntico a outro.
@@ -169,32 +237,34 @@ namespace MeuVetor {
      *  OU
      *  if ( a == b ) 
      */
-    bool Vetor::isEqual( const Vetor& _rhs ) const
+    bool
+    Vetor::operator==( const Vetor& rhs ) const
     {
-        // Verifica se os vetores possuem o mesmo tamanho
-        if ( this->miSize != _rhs.miSize )
-            return false;
-        else
+        // Self comparison
+        if ( this == &rhs ) return true;
+
+        if ( this->miSize != rhs.miSize ) return false;
+
+        // All elements must be equal
+        for( int i(0) ; i<this->miSize ; ++i )
         {
-            // Verificação elemento a elemento
-            for ( int i(0) ; i < this->miSize ; i++ )
-                if ( this->mpiData[i] != _rhs.mpiData[i] ) return false;       
+            if ( this->mpiData[i] != rhs.mpiData[i] ) return false;
         }
 
         return true;
     }
-    // Alternativamente, implemente o metodo abaixo no lugar do de cima.
-    bool
-    Vetor::operator==( const Vetor& _rhs ) const
+
+    bool Vetor::isEqual( const Vetor& rhs ) const
     {
-        // Verifica se os vetores possuem o mesmo tamanho
-        if ( this->miSize != _rhs.miSize )
-            return false;
-        else
+        // Self comparison
+        if ( this == &rhs ) return true;
+
+        if ( this->miSize != rhs.miSize ) return false;
+
+        // All elements must be equal
+        for( int i(0) ; i<this->miSize ; ++i )
         {
-            // Verificação elemento a elemento
-            for ( int i(0) ; i < this->miSize ; i++ )
-                if ( this->mpiData[i] != _rhs.mpiData[i] ) return false;       
+            if ( this->mpiData[i] != rhs.mpiData[i] ) return false;
         }
 
         return true;
@@ -215,46 +285,64 @@ namespace MeuVetor {
      *  OU
      *  a = b;
      */
+    const Vetor&
+    Vetor::operator=( const Vetor& rhs )
+    {
+        // Teste para evitar auto-atribuição, como a = a.
+        if ( this != &rhs )
+        {
+            // Do they have different length?
+            if ( miSize != rhs.miSize )
+            {
+                delete [] this->mpiData;
+                this->mpiData = new int[ rhs.miSize ];
+                this->miSize = rhs.miSize;
+            }
+
+            // Copy values from source 'rhs'.
+            for( int i(0) ; i < miSize ; ++i )
+            {
+                this->mpiData[i] = rhs.mpiData[i];
+            }
+        }
+
+        return *this;
+    }
+
     void
     Vetor::assign( const Vetor& _rhs ) // a.assign( b );
     {
         // Teste para evitar auto-atribuição, como a = a.
         if ( this != &_rhs )
         {
-            // Verifica se os vetores possuem o mesmo tamanho
-            if ( this->miSize != _rhs.miSize )
+            // Do they have different length?
+            if ( miSize != _rhs.miSize )
             {
-                // Realoca o vetor de acordo com _rhs
-                this->miSize = _rhs.miSize;
+                delete [] this->mpiData;
                 this->mpiData = new int[ _rhs.miSize ];
+                this->miSize = _rhs.miSize;
             }
 
-            // Atribui os valores para mpiData
-            for ( int i(0) ; i < this->miSize ; i++ )
+            // Copy values from source 'rhs'.
+            for( int i(0) ; i < miSize ; ++i )
+            {
                 this->mpiData[i] = _rhs.mpiData[i];
+            }
         }
     }
-    // Alternativamente, implemente o metodo abaixo no lugar do de cima.
-    const Vetor&
-    Vetor::operator=( const Vetor& _rhs )
+
+    int
+    Vetor::front( void ) const
     {
-        // Teste para evitar auto-atribuição, como a = a.
-        if ( this != &_rhs )
-        {
-            // Verifica se os vetores possuem o mesmo tamanho
-            if ( this->miSize != _rhs.miSize )
-            {
-                // Realoca o vetor de acordo com _rhs
-                this->miSize = _rhs.miSize;
-                this->mpiData = new int[ _rhs.miSize ];
-            }
+        // Regular returining.
+        return mpiData[ 0 ];
+    }
 
-            // Atribui os valores para mpiData
-            for ( int i(0) ; i < this->miSize ; i++ )
-                this->mpiData[i] = _rhs.mpiData[i];
-        }
-
-        return *this;
+    int
+    Vetor::back( void ) const
+    {
+        // Regular returining.
+        return mpiData[ miSize-1 ];
     }
 
     //! Retorna o menor elemento de um vetor.
@@ -264,10 +352,14 @@ namespace MeuVetor {
     int
     Vetor::min( void ) const
     {
-        // TODO
-
-        // STUB, o codigo abaixo deve ser substituido pelo codigo apropriado.
-        return 0;
+        int min(0);
+        // Assume first is the min and start from second.
+        for( int i(1) ; i<miSize ; ++i )
+        {
+            if ( mpiData[i] < mpiData[min] )
+                min = i; // Update new min.
+        }
+        return mpiData[min];
     }
 
     //! Retorna o maior elemento de um vetor.
@@ -277,10 +369,14 @@ namespace MeuVetor {
     int
     Vetor::max( void ) const
     {
-        // TODO
-
-        // STUB, o codigo abaixo deve ser substituido pelo codigo apropriado.
-        return 0;
+        int max(0);
+        // Assume first is the max and start from second.
+        for( int i(1) ; i<miSize ; ++i )
+        {
+            if ( mpiData[i] > mpiData[max] )
+                max = i; // Update new min.
+        }
+        return mpiData[max];
     }
 
     //! Troca os elementos de dois vetores.
@@ -296,20 +392,17 @@ namespace MeuVetor {
      *  a = { 10, 20, 30, 7, 1, 2, 8 }, b = { 4, 5, 6 };
      */
     void
-    Vetor::swap( Vetor & _rhs )
+    Vetor::swap( Vetor & rhs )
     {
-        int length = 0;
+        int i(0);
 
-        // Verifica se os vetores possuem o mesmo tamanho
-        if ( this->miSize > _rhs.miSize )
-            length = _rhs.miSize;
-        else
-            length = this->miSize;
-
-        // Swap the elements
-        for ( int i(0) ; i < length; i++ )
-            std::swap(this->mpiData[i], _rhs.mpiData[i]);
+        while ( i<miSize && i<rhs.miSize )
+        {
+            std::swap( mpiData[i], rhs.mpiData[i] );
+            i++;
+        }
     }
+
 
     //! Retorna a média dos elementos presentes no vetor.
     /*! Retorna a média aritmética simples dos elementos presentes no vetor.
@@ -321,13 +414,14 @@ namespace MeuVetor {
     float
     Vetor::average( void ) const
     {
-        float avg = 0.f;
+        float fAvg(0);
 
-        // Sum the elements
-        for ( int i(0) ; i < this->miSize; i++ )
-            avg += this->mpiData[i];
+        if ( miSize == 0 ) return 0.f;
 
-        return (avg/this->miSize);
+        for( int i(0) ; i<miSize ; i++ )
+            fAvg += mpiData[i];
+
+        return fAvg/miSize;
     }
 
     //! Reverte a ordem dos elementos em um vetor.
@@ -340,15 +434,10 @@ namespace MeuVetor {
     void
     Vetor::reverse( void )
     {
-        int idx_last = (this->miSize - 1);
-
-        // Reverse the vector
-        for ( int i(0) ; i < (this->miSize)/2; i++ )
-        {
-            std::swap(this->mpiData[i], this->mpiData[idx_last]);
-            idx_last--;
-        }
+        for ( int i(0) ; i<(miSize/2) ; ++i )
+            std::swap( mpiData[i], mpiData[ (miSize-i)-1 ] );
     }
+
 
     //! Altera o tamanho do vetor, mantendo os elementos originais até o novo tamanho.
     /*! Modifica o tamanho original do vetor para o novo tamanho informado.
@@ -377,25 +466,26 @@ namespace MeuVetor {
     void
     Vetor::resize( int _iNewSz )
     {
-        // Verifica se o novo tamnho do vetor é válido
-        if ( _iNewSz <= 0 )
-            throw std::invalid_argument( "Novo tamanho de vetor invalido!" );
+        if ( _iNewSz <= 0 ) throw std::invalid_argument( "<<< [Vetor::resize()] Novo tamanho de vetor invalido!\n" );
 
-        // Instância um ponteiro com o novo valor
-        int * ptrAux = new int[ _iNewSz ];
+        // New data storage
+        int *piDummy = new int[ _iNewSz ];
 
-        // Preenche com 0's
-        for ( auto i(0); i < _iNewSz ; ++i )
-            ptrAux[ i ] = 0;
+        // Fill it up with zeros.
+        std::memset( piDummy, 0, sizeof( int) * _iNewSz );
 
-        // Preenche o ponteiro com as infos
-        for ( auto j(0); j < this->miSize && j < _iNewSz; ++j )
-            ptrAux[ j ] = mpiData[ j ];
+        // Copy old data to the new storage area.
+        // Copy only valid data (whichever finishes first).
+        int i(0);
+        while( i<miSize && i<_iNewSz )
+        {
+            piDummy[i] = mpiData[i];
+            i++;
+        }
 
-        // Desacolca a memória
-        delete [] mpiData;
-        mpiData = ptrAux;
-        miSize = _iNewSz;
+        miSize = _iNewSz;  // Update new size.
+        delete [] mpiData; // Free old storage memory area.
+        mpiData = piDummy; // Point to the new storage area.
     }
 
     //! Preencher o Vetor com os elementos fornecidos via arranjo.
@@ -420,17 +510,14 @@ namespace MeuVetor {
     void
     Vetor::fill( int _iSz, int _aiNewVals[] )
     {
-         // Verifica se o novo tamnho do vetor é válido
-        if ( _iSz <= 0 )
-            throw std::invalid_argument( "Novo tamanho de vetor invalido!" );
+        // Change size only if necessary.
+        if ( _iSz != miSize )
+            this->resize( _iSz );
 
-        // Realoca o vetor de acordo com _iSz
-        this->miSize = _iSz;
-        this->mpiData = new int[ _iSz ];
-
-        // Atribui os valores para mpiData
-        for ( int i(0); i < this->miSize; i++ )
-            this->mpiData[i] = _aiNewVals[i];
+        // Copy new values.
+        std::memcpy( reinterpret_cast< int * >( mpiData ),        // Source
+                     reinterpret_cast<const int *>( _aiNewVals ), // Destination
+                     sizeof(int) * _iSz );                        // number of bytes to copy
     }
 
     //! Elimina elementos repetidos no vetor.
@@ -447,27 +534,47 @@ namespace MeuVetor {
     int
     Vetor::unique( void )
     {
-        // Variáveis auxiliares
-        int idxSlow(0);
-        int idxFast(1);
-        bool checked = true;
+        int iSlow(0); // Last position of unique elements in array
+        int iFast(1); // Start from second element.
 
-        // Percorre o vetor
-        while ( idxFast < miSize )
+        // ===================================================================
+        // Proof of correctness:
+        // -------------------------------------------------------------------
+        //
+        // [Pre-condition, P]: We may have elements not unique in array [0;miSize) & iSlow = 0.
+        //
+        // The iSlow index determines a limit within the array.
+        // [Loop invariant]: All elements until iSlow (inclusive) are unique.
+        //
+        // The iFast index points to elements in the subarray (after iSlow)
+        // that have not been tested just yet.
+        //
+        //   UNIQUE        UNKNOWN ???
+        // [0 ... iSlow][iFast ... n-1]
+        while ( iFast < miSize )
         {
-            for ( auto i(idxSlow); i >= 0 && checked; --i )
+            // Run through front subarray with unique elements.
+            bool bSuccess = true;
+            for ( int i(iSlow) ; i>=0 && bSuccess ; --i )
             {
-                if ( mpiData[ i ] == mpiData[ idxFast ] )
-                    checked = false;
+                if ( mpiData[ iFast ] == mpiData[ i ] )
+                    bSuccess = false;
             }
 
-            if ( checked )
-                std::swap( mpiData[ ++idxSlow ] , mpiData[ idxFast ] );
+            // Do we include this one as unique?
+            if ( bSuccess )
+                std::swap( mpiData[++iSlow], mpiData[iFast] );
 
-            idxFast++;
+            // [Loop invariant]: All elements until iSlow (inclusive) are unique.
+            // Still true.
+
+            // Always advances
+            iFast++;
+            // [D(X) = miSize - iFast]
         }
+        // [Pos-condition, Q]: All elements within [0;iSlow] are unique.
 
-        this->resize( idxSlow + 1 );
+        this->resize( iSlow+1 ); // New vetor's size.
         return miSize;
     }
 
@@ -480,86 +587,7 @@ namespace MeuVetor {
     void
     Vetor::sort( void )
     {
-        // Chama o método de ordenação
-        //this->quickSort(mpiData, 0, (miSize - 1));
-
-        int key, holePos;
-        /* ordenação InsertionSort */
-        for (int i = 1; i < miSize; i++)
-        {
-            key = mpiData[ i ];
-            holePos = i - 1;
-
-            while( holePos >= 0 && compara(key,mpiData[holePos]) == -1)
-            {
-                mpiData[ holePos + 1 ] = mpiData[ holePos ];
-                holePos = holePos - 1; 
-            }
-            mpiData[holePos + 1] = key;
-        }
+        // Sort values
+        std::sort( mpiData, mpiData + miSize );
     }
-
-    /**
-     * Quicksort.
-     * @param _rhs - The array to be sorted.
-     * @param first - The start of the sequence to be sorted.
-     * @param last - The end of the sequence to be sorted.
-    */
-    void
-    Vetor::quickSort( Vetor& _rhs, int first, int last ) 
-    {
-        int pivotElement;
-
-        if( first < last )
-        {
-            pivotElement = this->pivot(_rhs, first, last);
-            this->quickSort(_rhs, first, pivotElement-1);
-            this->quickSort(_rhs, pivotElement+1, last);
-        }
-    }
-
-    //! Compara dois valores.
-    /*! O método compara dois valores e retorna -1 caso o 1º seja menor que o 2º
-     *  e retorna 1 caso contrario.
-     *  @param _a O primeiro valor.
-     *  @param _b O segundo valor.
-     *  @return -1 se (_a < _b) e 1 caso contrario
-     */ 
-    int Vetor::compara(int _a, int _b)
-    {
-        if(_a < _b)
-            return -1;
-        return 1;   
-    }
-
-    /**
-     * Find and return the index of pivot element.
-     * @param _rhs - The array.
-     * @param first - The start of the sequence.
-     * @param last - The end of the sequence.
-     * @return - the pivot element
-    */
-    int
-    Vetor::pivot( Vetor& _rhs, int first, int last ) 
-    {
-        int  p = first;
-        int pivotElement = _rhs[first];
-     
-        for(int i = first+1 ; i <= last ; i++)
-        {
-            /* If you want to sort the list in the other order, change "<=" to ">" */
-            if(_rhs[i] <= pivotElement)
-            {
-                p++;
-                std::swap(_rhs[i], _rhs[p]);
-            }
-        }
-     
-        std::swap(_rhs[p], _rhs[first]);
-     
-        return p;
-    }
-
 }
-
-// ==============================[ Fim vetor.cpp ]============================== //

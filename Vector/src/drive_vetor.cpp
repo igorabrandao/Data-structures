@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cmath>
 #include <limits>
-#include <cstring>
 
 #include "vetor.h"
 
@@ -40,7 +39,7 @@ int main()
                 break;
             }
         }
-        
+
         fTotalScore +=  ( vbSuccess ) ? 10.f : 0.f;
 
         if ( vbSuccess )
@@ -60,7 +59,7 @@ int main()
         cout << "=======================================================\n";
         cout << ">>>> [T02] Testando: comparacao operator()== ou equal() \n";
         Vetor v1( 5 , -1 ); // Vetor de 5 elementos, todos com valor -1: vetor original.
-        Vetor v2( 5 , -1 ); // Vetor de 5 elementos, todos com valor -1: igual vetor iriginal.
+        Vetor v2( 5 , -1 ); // Vetor de 5 elementos, todos com valor -1: igual vetor original.
         Vetor v3( 5 , -2 ); // Vetor de 5 elementos, todos com valor -2: mesmo tamanho, elementos diferentes.
         Vetor v4( 10, -1 ); // Vetor de 10 elementos, todos com valor -1: > que vetor original.
         Vetor v5( 4 , -1 ); // Vetor de 4 elementos, todos com valor -1: < que vetor original.
@@ -239,7 +238,7 @@ int main()
         Vetor v2( 10, 2 ); // Vetor de 10 elementos, todos com valor 2.
         Vetor v3( 10, 3 ); // Vetor de 10 elementos, todos com valor 3.
         Vetor v4( 5 , 4 ); // Vetor de 5 elementos, todos com valor 4.
-        
+
         //%
         cout << ">> v1: " << v1 << endl;
         cout << ">> v2: " << v2 << endl;
@@ -297,7 +296,7 @@ int main()
         int n(10);
         Vetor v1( n, 1 ); // Vetor de 10 elementos, todos com valor 1.
         v1.fillN(); // Agora vetor tem 10 elementos, preenchidos de 1 a 10.
-        
+
         //%
         cout << ">> v1: " << v1 << endl;
         cout << ">> media dos elementos de v1, v1.average(): ";
@@ -308,7 +307,7 @@ int main()
         if ( fAvg != fExpectedAvg )
             vbSuccess = false;
         //%
-        
+
         // Reduce score.
         fTotalScore +=  ( vbSuccess ) ? 5.f : 0.f;
 
@@ -329,7 +328,7 @@ int main()
     {
         cout << "=======================================================\n";
         cout << ">>>> [T07] Testando: metodo reverse(). \n";
-        
+
         //%
         int n(11);
         Vetor v1( n, 1 ); // Vetor de 10 elementos, todos com valor 1.
@@ -355,7 +354,7 @@ int main()
         }
 
         //%
-        
+ 
         // Reduce score.
         fTotalScore +=  ( vbSuccess ) ? 5.f : 0.f;
 
@@ -376,7 +375,7 @@ int main()
     {
         cout << "=======================================================\n";
         cout << ">>>> [T08] Testando: metodo resize(). \n";
-        
+
         //%
         int n(5);
         Vetor v1( n, 1 ); // Vetor de 5 elementos, todos com valor 1.
@@ -412,7 +411,7 @@ int main()
             }
         }
         //%
-        
+
         // Reduce score.
         fTotalScore +=  ( vbSuccess ) ? 15.f : 0.f;
 
@@ -433,7 +432,7 @@ int main()
     {
         cout << "=======================================================\n";
         cout << ">>>> [T09] Testando: metodo fill( size, vetor[] ). \n";
-        
+
         //%
         int n(5);
         Vetor v1( n, 1 ); // Vetor de 5 elementos, todos com valor 1.
@@ -470,7 +469,7 @@ int main()
             }
         }
         //%
-        
+
         // Reduce score.
         fTotalScore +=  ( vbSuccess ) ? 10.f : 0.f;
 
@@ -491,7 +490,7 @@ int main()
     {
         cout << "=======================================================\n";
         cout << ">>>> [T10] Testando: metodo unique(). \n";
-        
+
         //%
         int aiDummyArr[] = { 2, 1, 1, 1, 1, 2, 3, 3, 2, 2, 3 };
         int iDummySz = sizeof( aiDummyArr ) / sizeof( int );
@@ -511,7 +510,7 @@ int main()
             }
         }
         //%
-        
+
         // Reduce score.
         fTotalScore +=  ( vbSuccess ) ? 15.f : 0.f;
 
@@ -532,7 +531,7 @@ int main()
     {
         cout << "=======================================================\n";
         cout << ">>>> [T11] Testando: metodo sort(). \n";
-        
+
         //%
         Vetor v1( 20 ); // Vetor de 20 elementos, todos com valor 0.
         v1.fillNShuffle(); // Agora vetor tem 20 elementos, preenchidos de 1 a 20.
@@ -550,7 +549,7 @@ int main()
             }
         }
         //%
-        
+
         // Reduce score.
         fTotalScore +=  ( vbSuccess ) ? 5.f : 0.f;
 

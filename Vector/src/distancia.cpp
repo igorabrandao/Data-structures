@@ -17,15 +17,17 @@ using namespace MeuVetor;
  */
 float euclideanDist( const Vetor& a, const Vetor& b )
 {
-    /* Inicializa n */
-    float n = 0; 
+    long lAcum(0l);
 
-    /* Somatorio do produto notável */
-    for (int i = 0; i < a.size(); i++) 
-        n += (a[i] - b[i])*(a[i] - b[i]);
-    
-    /* Retorna a raiz de N */ 
-    return sqrt(n);
+    if ( a.size() != b.size() )
+        throw std::length_error( "[euclideanDist()] vectors do not match in size." );
+
+    for( int i(0) ; i<a.size() ; ++i )
+    {
+        lAcum += (b[i]-a[i])*(b[i]-a[i]);
+    }
+
+    return sqrt( lAcum );
 }
 
 /**
@@ -37,14 +39,17 @@ float euclideanDist( const Vetor& a, const Vetor& b )
  */
 float manhattanDist( const Vetor& a, const Vetor& b )
 {
-    /* Inicializa n */
-    float n = 0;
-    
-    /* somatorio do modulo de pi(a[i]) - qi(b[i]) */
-    for (int i = 0; i < a.size(); i++) 
-        n += fabs( (a[i] - b[i]) );
-    
-    return n;
+    int iAcum(0);
+
+    if ( a.size() != b.size() )
+        throw std::length_error( "[euclideanDist()] vectors do not match in size." );
+
+    for( int i(0) ; i<a.size() ; ++i )
+    {
+        iAcum += std::abs( a[i] - b[i] );
+    }
+
+    return static_cast<float>( iAcum );
 }
 
 /**
@@ -64,10 +69,20 @@ float manhattanDist( const Vetor& a, const Vetor& b )
 template < typename Obj >
 int searchSmallestDistance( Obj V[], int iSz, const Obj &Target, float (* distFunc)( const Obj& o1, const Obj& o2 ) )
 {
-    // TODO
+    float fDist = distFunc( V[0], Target ); // Assume first distance found is the (temporary) smallest.
+    int iIdxMin(0); // Index of the element with smallest distance to target.
 
-    // STUB, o codigo abaixo deve ser substituido pelo codigo apropriado.
-    return 0.f;
+    // Run through the array looking for the element in collection with smallest distance to target.
+    for ( int i(1); i < iSz; ++i ) // Start from 2nd.
+    { 
+        float fTempDist = distFunc( V[ i ], Target );
+        if ( fTempDist < fDist  ) // Is this smaller than the minimum found so far?
+        {
+            iIdxMin = i; // Update index of this object.
+            fDist = fTempDist; // Update smallest distance found so far.
+        }
+    }
+    return iIdxMin;
 }
 
 
@@ -91,7 +106,6 @@ int main()
     //Vetor oTarget( 5, 100 );
     //Vetor oTarget( 5, -3 );
     cout << ">>>> Target element is: " << oTarget << endl << endl;
-
 
 
 
@@ -145,6 +159,9 @@ int main()
 
     cout << ">>>> Nota atual: " << fTotalScore << endl << endl << endl;
 
+
+
+    // ===============================================================================
 
     cout << "\n >>>> Normal existing!\n";
 
