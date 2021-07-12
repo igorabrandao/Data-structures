@@ -63,8 +63,11 @@ public:
     // Function to get an element by its position
     T &getAt(int index_) const;
 
+    // Function to expand the array N positions
+    void expand(int newSize_ = 0);
+
     // Function to print the array
-    void print(string arrayName_ = "");
+    void print(string arrayName_ = "") const;
 
     // ***************************************************
     // ** Overload operators

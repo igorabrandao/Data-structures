@@ -86,11 +86,30 @@ T &Array<T>::getAt(int index_) const
 	return this->arr[index_];
 }
 
+template <typename T>
+void Array<T>::expand(int newSize_)
+{
+	int szToExpand = newSize_;
+
+	// If the new size wasn't informed, just double the Array
+	if (szToExpand == 0)
+		szToExpand *= 2;
+
+	// Create a temp Array and allocate the necessary memory to it
+	this->arr = new T[size];
+
+	for (auto i = 0; i < this->nrOfEl; i++)
+	{
+		// Copy each element from the origin array
+		temp[i] = new T(*this->arr[i]);
+	}
+}
+
 /**
  * Function to print the array
  */
 template <typename T>
-void Array<T>::print(string arrayName_)
+void Array<T>::print(string arrayName_) const
 {
 	if (arrayName_.compare("") != 0)
 		cout << arrayName_ << ": [ ";

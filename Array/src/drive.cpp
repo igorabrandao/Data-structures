@@ -85,8 +85,8 @@ int main()
     cout << "intArray[0]: " << intArray[0] << endl;
     cout << "intArray[5]: " << intArray[5] << endl;
     cout << "intArray[9]: " << intArray[9] << endl;
-    cout << "intArray[10]: " << intArray[10] << endl;
-    cout << "intArray[-1]: " << intArray[-1] << endl;
+    //cout << "intArray[10]: " << intArray[10] << endl;
+    //cout << "intArray[-1]: " << intArray[-1] << endl;
     cout << endl;
 
     /* ============================================================================== */
