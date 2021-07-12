@@ -9,7 +9,7 @@
 	TO COMPILE..: Use makefile.
 	OBS.........: Part of Data Structures Project.
 
-	tail UPDATE.: Octuber 16th, 2015.
+	tail UPDATE.: July 12th, 2021.
 	</pre>
 */
 #ifndef Array_H_
@@ -30,44 +30,22 @@ private:
     // ***************************************************
     // ** Attributes
     // ***************************************************
-
-    // Max size
-    int mSize = 0;
-
-    // Current size
-    int nrOfEl = 0;
-
-    // The actual array
-    T *arr;
+    int mSize = 0; // Max size
+    int nrOfEl = 0; // Current size
+    T *arr;        // The actual array
 
 public:
     // ***************************************************
     // ** Functions
     // ***************************************************
-
-    // Class constructor
-    Array(int size_ = 5);
-
-    // Class Destructor
-    ~Array();
-
-    // Copy constructor
-    Array(const Array &obj_);
-
-    // Function to return the array size
-    int size() const;
-
-    // Function to add an element into the array
-    void add(const T &obj_);
-
-    // Function to get an element by its position
-    T &getAt(int index_) const;
-
-    // Function to expand the array N positions
-    void expand(int newSize_ = 0);
-
-    // Function to print the array
-    void print(string arrayName_ = "") const;
+    Array(int size_ = 5);                     // Class constructor
+    ~Array();                                 // Class Destructor
+    Array(const Array &obj_);                 // Copy constructor
+    int size() const;                         // Function to return the array size
+    void add(const T &obj_);                  // Function to add an element into the array
+    T &getAt(int index_) const;               // Function to get an element by its position
+    void expand(int newSize_ = 0);            // Function to expand the array N positions
+    void print(string arrayName_ = "") const; // Function to print the array
 
     // ***************************************************
     // ** Overload operators

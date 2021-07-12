@@ -22,8 +22,19 @@ Array<T>::Array(int size_)
 	this->mSize = size_;
 	this->nrOfEl = 0;
 
-	// Allocate the necessary memory to it
-	this->arr = new T[this->mSize];
+	try
+	{
+		// Allocate the necessary memory to it
+		this->arr = new T[this->mSize];
+	}
+	catch (const bad_alloc &exception)
+	{
+		// Here we need to take action
+		cerr << "\n[main()]: Error during the array[] allocation!\n";
+
+		// Abort the program, used just in test case
+		assert(false);
+	}
 }
 
 /**
@@ -102,6 +113,9 @@ T &Array<T>::getAt(int index_) const
 	return this->arr[index_];
 }
 
+/**
+ * Function to expand the array N positions
+ */
 template <typename T>
 void Array<T>::expand(int newSize_)
 {

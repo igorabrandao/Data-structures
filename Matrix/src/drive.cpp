@@ -1,28 +1,45 @@
+/*! \brief drive.cpp.
+ *
+ *  Program to test the Matrix class.
+*/
 #include <iostream>
 #include <string>
-#include "MemoryCell.h"
+#include "Matrix.h"
 
 using namespace std;
 
 /**
- * Program to test the MemoryCell template class
+ * Program to test the Matrix template class
  */
 int main()
 {
-    MemoryCell<int> m1;
-    MemoryCell<string> m2("hello");
-    MemoryCell<float> m3;
-    MemoryCell<double> m4(2.1);
+    // Matrix initial size
+    int iRows = 2;
+    int iCols = 5;
 
-    m1.write(37);
-    m2.write(m2.read() + " world!");
-    m3.write(1.8f);
-    m4.write(m4.read() * 2);
+    /* ---------------------------- [ Test Matrix class ] ---------------------------- */
 
-    cout << m1.read() << endl
-         << m2.read() << endl
-         << m3.read() << endl
-         << m4.read() << endl;
+    // Matrix class instance with int
+    Matrix<int> intMatrix(iRows, iCols);
 
-    return 0;
+    cout << "<<< Testing the Matrix initialization:" << endl;
+
+    // Add some values
+    for (auto i = 0; i < iRows; i++)
+    {
+        for (auto j = 0; j < iCols; j++)
+        {
+            intMatrix.add(i, j, (i * iCols + j));
+        }
+    }
+
+    // Print the values
+    intMatrix.print("intMatrix");
+    cout << endl;
+
+    /* ============================================================================== */
+
+    // Finish the program
+    cout << "Finished successfully!\n";
+    return EXIT_SUCCESS;
 }
