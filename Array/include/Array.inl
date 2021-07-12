@@ -3,6 +3,11 @@
 // ***************************************************
 #include "Array.h"
 
+// To use the assert() function
+#include <cassert>
+
+using std::bad_alloc;
+
 // ***************************************************
 // ** Functions
 // ***************************************************
@@ -40,17 +45,28 @@ Array<T>::Array(const Array &obj_)
 	// Get the original array size
 	int size = obj_.size();
 
-	// Allocate the necessary memory to the new array
-	this->arr = new T[size];
-
-	for (int i = 0; i < size; i++)
+	try
 	{
-		// Copy each element from the origin array
-		this->arr[i] = obj_.arr[i];
-	}
+		// Allocate the necessary memory to the new array
+		this->arr = new T[size];
 
-	// Update the number of elements
-	this->nrOfEl = size;
+		for (int i = 0; i < size; i++)
+		{
+			// Copy each element from the origin array
+			this->arr[i] = obj_.arr[i];
+		}
+
+		// Update the number of elements
+		this->nrOfEl = size;
+	}
+	catch (const bad_alloc &exception)
+	{
+		// Here we need to take action
+		cerr << "\n[main()]: Error during the array[] allocation!\n";
+
+		// Abort the program, used just in test case
+		assert(false);
+	}
 }
 
 /**
@@ -95,13 +111,33 @@ void Array<T>::expand(int newSize_)
 	if (szToExpand == 0)
 		szToExpand *= 2;
 
-	// Create a temp Array and allocate the necessary memory to it
-	this->arr = new T[size];
-
-	for (auto i = 0; i < this->nrOfEl; i++)
+	try
 	{
-		// Copy each element from the origin array
-		temp[i] = new T(*this->arr[i]);
+		// Create a temp Array and allocate the necessary memory to it
+		T *temp = new T[szToExpand];
+
+		for (auto i = 0; i < this->nrOfEl; i++)
+		{
+			// Copy each element from the origin array
+			temp[i] = T(this->arr[i]);
+		}
+
+		// Delete the original array
+		delete[] this->arr;
+
+		// Copy the temp array to the original
+		this->arr = temp;
+
+		// Update the number of elements
+		this->nrOfEl = szToExpand;
+	}
+	catch (const bad_alloc &exception)
+	{
+		// Here we need to take action
+		cerr << "\n[main()]: Error during the array[] allocation!\n";
+
+		// Abort the program, used just in test case
+		assert(false);
 	}
 }
 
@@ -149,16 +185,29 @@ Array<T> &Array<T>::operator=(const Array &rhs)
 
 		// Perform the deep copy of the rhs
 		int size = rhs.size();
-		this->arr = new T[size];
 
-		for (int i = 0; i < size; i++)
+		try
 		{
-			// Copy each element from the origin array
-			this->arr[i] = rhs.arr[i];
-		}
+			// Allocate the necessary memory to the Array
+			this->arr = new T[size];
 
-		// Update the number of elements
-		this->nrOfEl = size;
+			for (int i = 0; i < size; i++)
+			{
+				// Copy each element from the origin array
+				this->arr[i] = rhs.arr[i];
+			}
+
+			// Update the number of elements
+			this->nrOfEl = size;
+		}
+		catch (const bad_alloc &exception)
+		{
+			// Here we need to take action
+			cerr << "\n[main()]: Error during the array[] allocation!\n";
+
+			// Abort the program, used just in test case
+			assert(false);
+		}
 	}
 
 	// Return a reference for Array for cascading assignment

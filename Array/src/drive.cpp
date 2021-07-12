@@ -91,5 +91,24 @@ int main()
 
     /* ============================================================================== */
 
-    return 0;
+    /* ------------------------- [ Test the expand operation ] ---------------------- */
+
+    cout << "<<< Expanding the intArray:" << endl;
+    int nSize = 50;
+    intArray.expand(nSize);
+
+    // Fill the new Array positions
+    for (auto i = iSize; i < nSize; i++)
+    {
+        intArray[i] = i;
+    }
+
+    intArray.print("intArray");
+    cout << endl;
+
+    /* ============================================================================== */
+
+    // Finish the program
+    cout << "Finished successfully!\n";
+    return EXIT_SUCCESS;
 }
