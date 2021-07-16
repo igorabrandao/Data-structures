@@ -47,7 +47,7 @@ public:
     inline Node *Next() { return this->next; };
 
     // Returns data of the current node
-    inline int Data() { return this->data; };
+    inline T Data() { return this->data; };
 };
 
 /**

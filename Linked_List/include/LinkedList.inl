@@ -64,7 +64,7 @@ void LinkedList<T>::push_front(T data_)
 	newNode->setNext(this->head);
 
 	// Set the Head pointer to the new node
-	this->head->setNext(newNode);
+	this->head = newNode;
 
 	// Update the list size
 	this->listSize++;
@@ -122,7 +122,7 @@ void LinkedList<T>::pop_front()
 		Node<T> *node = this->head;
 
 		// Assign the head to the second element
-		this->head = this->head->next;
+		this->head = this->head->Next();
 
 		// Delete the first element
 		delete node;
@@ -149,11 +149,11 @@ void LinkedList<T>::print(string listName_) const
 	// Loop over the list until it reachs the tail
 	while (tmp != nullptr)
 	{
-		std::cout << tmp->Data() << " ";
+		std::cout << tmp->Data() << " -> ";
 		tmp = tmp->Next();
 	}
 
-	std::cout << "]\n";
+	std::cout << "NULL ]\n";
 }
 
 // ***************************************************
