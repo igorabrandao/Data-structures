@@ -43,8 +43,11 @@ int main()
 
     // Print the values
     intLinkedList.print("intLinkedList");
+    cout << endl;
     intLinkedList2.print("intLinkedList2");
+    cout << endl;
     stringLinkedList.print("stringLinkedList");
+    cout << endl;
     stringLinkedList2.print("stringLinkedList2");
     cout << endl;
 

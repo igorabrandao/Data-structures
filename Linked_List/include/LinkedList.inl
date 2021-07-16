@@ -34,9 +34,6 @@ LinkedList<T>::~LinkedList()
 		delete currNode;
 		currNode = nextNode;
 	}
-
-	// Delete the LinkedList head
-	delete this->head;
 }
 
 /**
