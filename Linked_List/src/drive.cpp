@@ -20,11 +20,11 @@ int main()
 
     // LinkedList class instance with int
     LinkedList<int> intLinkedList;
-    LinkedList<int> intLinkedList2;
+    LinkedList<int> intLinkedListReverse;
 
     // LinkedList class instance with string
     LinkedList<char> stringLinkedList;
-    LinkedList<char> stringLinkedList2;
+    LinkedList<char> stringLinkedListReverse;
 
     cout << "<<< Testing the LinkedList initialization:" << endl;
 
@@ -32,23 +32,36 @@ int main()
     for (auto i = 0; i < iSize; i++)
     {
         intLinkedList.push_back(i);
-        intLinkedList2.push_front(i);
+        intLinkedListReverse.push_front(i);
     }
 
     for (char &c : phrase)
     {
         stringLinkedList.push_back(c);
-        stringLinkedList2.push_front(c);
+        stringLinkedListReverse.push_front(c);
     }
 
     // Print the values
     intLinkedList.print("intLinkedList");
-    cout << endl;
-    intLinkedList2.print("intLinkedList2");
-    cout << endl;
+    intLinkedListReverse.print("intLinkedListReverse");
     stringLinkedList.print("stringLinkedList");
+    stringLinkedListReverse.print("stringLinkedListReverse");
     cout << endl;
-    stringLinkedList2.print("stringLinkedList2");
+
+    /* ============================================================================== */
+
+    /* --------------------- [ Test the Linked List deep copy ] --------------------- */
+
+    /**
+     * Now, let's create another integer & char linked lists
+     * and assign the values from original linked list to the new one
+     */
+    LinkedList<int> intLinkedListCopy = intLinkedList;
+    LinkedList<char> stringLinkedListCopy = stringLinkedList;
+
+    cout << "<<< Testing the copy constructor:" << endl;
+    intLinkedListCopy.print("intLinkedListCopy");
+    stringLinkedListCopy.print("stringLinkedListCopy");
     cout << endl;
 
     /* ============================================================================== */

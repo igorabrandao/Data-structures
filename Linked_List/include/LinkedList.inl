@@ -13,7 +13,7 @@
 template <typename T>
 LinkedList<T>::LinkedList()
 {
-	// Initialize the list head & tail
+	// Initialize the list head
 	this->head = new Node<T>();
 }
 
@@ -42,7 +42,24 @@ LinkedList<T>::~LinkedList()
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList &obj_)
 {
-	// TODO
+	// Temp pointer to loop over the original list
+	Node<T> *temp = obj_.head;
+
+	// Initialize the list head
+	this->head = new Node<T>();
+
+	// Iterate through the end of the list
+	while (temp && temp->Next())
+	{
+		/**
+		 * Set the copied node as next of last node
+		 * (Current List)->(Node)
+		 */
+		this->push_back(temp->Next()->Data());
+
+		// Go to the next node of the original list
+		temp = temp->Next();
+	}
 }
 
 /**
