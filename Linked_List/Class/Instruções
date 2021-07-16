@@ -1,5 +1,0 @@
-/* Organização do projeto */
-include -> llseq.h
-bin -> .o e drive_llseq.exe
-src -> drive_llseq.cpp e llseq.cpp
-raiz -> makefile
