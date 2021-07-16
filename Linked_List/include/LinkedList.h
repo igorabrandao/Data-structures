@@ -9,7 +9,7 @@
 	TO COMPILE..: Use makefile.
 	OBS.........: Part of Data Structures Project.
 
-	tail UPDATE.: July 12th, 2021.
+	tail UPDATE.: July 15th, 2021.
 	</pre>
 */
 #ifndef LINKED_LIST_H_
@@ -26,16 +26,28 @@ using namespace std;
 template <class T>
 class Node
 {
-public:
+private:
     T data;
-    Node *next;
+    Node<T> *next;
 
+public:
+    // ***************************************************
+    // ** Methods
+    // ***************************************************
     // Class constructor
-    Node(T data_)
-    {
-        data = data_;
-        next = NULL;
-    }
+    Node() : next(nullptr){};
+
+    // Class constructor overload
+    Node(T data_) : data(data_), next(nullptr){};
+
+    // Adds the given node as next of the current node
+    inline void setNext(Node *node) { this->next = node; };
+
+    // Return pointer of the next node
+    inline Node *Next() { return this->next; };
+
+    // Returns data of the current node
+    inline int Data() { return this->data; };
 };
 
 /**
@@ -49,7 +61,7 @@ private:
     // ** Attributes
     // ***************************************************
     int listSize = 0; // The list size
-    Node *head;       // The head of the list
+    Node<T> *head;    // The head of the list
 
 public:
     // ***************************************************
@@ -58,9 +70,9 @@ public:
     LinkedList();                          // Class constructor
     ~LinkedList();                         // Class Destructor
     LinkedList(const LinkedList &obj_);    // Copy constructor
+    void push_front(T data_);              // Function to add a value to the front of the list
     void push_back(T data_);               // Function to add a value to the back of the list
-    void push(T data_);                    // Function to add a value to the front of the list
-    void pop();                            // Function to remove the first value of the list
+    void pop_front();                      // Function to remove the first value of the list
     void pop_back();                       // Function to remove the last value of the list
     void print(string llName_ = "") const; // Function to print the linked list
 
