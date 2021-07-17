@@ -124,7 +124,7 @@ void LinkedList<T>::push_back(T data_)
 }
 
 /**
- * Function to remove the last node of the list
+ * Function to remove the first value of the list
  */
 template <typename T>
 void LinkedList<T>::pop_front()
@@ -147,18 +147,54 @@ void LinkedList<T>::pop_front()
 }
 
 /**
+ * Function to remove the last value of the list
+ */
+template <typename T>
+void LinkedList<T>::pop_back()
+{
+	if (this->head == nullptr)
+	{
+		// Nothing happens
+	}
+	else if (this->head->Next() == nullptr)
+	{
+		// Delete the list head
+		delete this->head;
+	}
+	else
+	{
+		Node<T> *secondLast = this->head;
+
+		// Find the second last node
+		while (secondLast->Next()->Next() != nullptr)
+		{
+			secondLast = secondLast->Next();
+		}
+
+		// Delete last node
+		delete secondLast->Next();
+
+		// Change next of second last node
+		secondLast->setNext(nullptr);
+	}
+
+	// Update the list size
+	this->listSize--;
+}
+
+/**
  * Function to print the linked list
  */
 template <typename T>
 void LinkedList<T>::print(string listName_) const
 {
 	// Create a pointer to the list head
-	Node<T> *tmp = this->head;
+	Node<T> *tmp = this->head->Next();
 
 	if (listName_.compare("") != 0)
-		cout << listName_ << ": [ ";
+		cout << listName_ << ": [ H -> ";
 	else
-		cout << "[ ";
+		cout << "[ H -> ";
 
 	// Loop over the list until it reachs the tail
 	while (tmp != nullptr)

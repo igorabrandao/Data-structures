@@ -66,6 +66,30 @@ int main()
 
     /* ============================================================================== */
 
+    /*------------------- [ Test the Linked List pop operations ] ------------------- */
+
+    // Get the previous list and remove some elements to see what happen
+    intLinkedList.pop_front();
+    intLinkedList.pop_back();
+    intLinkedList.pop_back();
+    intLinkedList.pop_back();
+    intLinkedList.pop_front();
+
+    stringLinkedList.pop_front();
+    stringLinkedList.pop_front();
+    stringLinkedList.pop_front();
+    stringLinkedList.pop_front();
+    stringLinkedList.pop_front();
+    stringLinkedList.pop_back();
+    stringLinkedList.pop_back();
+
+    cout << "<<< Testing the pop operations:" << endl;
+    intLinkedList.print("intLinkedList");
+    stringLinkedList.print("stringLinkedList");
+    cout << endl;
+
+    /* ============================================================================== */
+
     // Finish the program
     cout << "Finished successfully!\n";
     return EXIT_SUCCESS;
