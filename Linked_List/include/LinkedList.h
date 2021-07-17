@@ -81,6 +81,9 @@ public:
     // Return pointer to the list head
     inline Node<T> *Head() { return this->head; };
 
+    // Return pointer to the list tail
+    inline Node<T> *Tail() { return this->tail; };
+
     // ***************************************************
     // ** Overload operators
     // ***************************************************
