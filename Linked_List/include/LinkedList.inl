@@ -223,11 +223,10 @@ void LinkedList<T>::print(bool showLength_, string listName_) const
 			cout << listName_ << "(" << this->length() << "): [ H -> ";
 		else
 			cout << listName_ << ": [ H -> ";
+	else if (showLength_)
+		cout << this->length() << ": [ H -> ";
 	else
-		if (showLength_)
-			cout << this->length() << ": [ H -> ";
-		else
-			cout << "[ H -> ";
+		cout << "[ H -> ";
 
 	// Loop over the list until it reachs the tail
 	while (tmp != nullptr)

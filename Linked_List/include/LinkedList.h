@@ -78,6 +78,9 @@ public:
     void print(bool, string llName_ = "") const; // Function to print the linked list
     int length() const;                          // Function to return the number of elements in the list
 
+    // Return pointer to the list head
+    inline Node<T> *Head() { return this->head; };
+
     // ***************************************************
     // ** Overload operators
     // ***************************************************
