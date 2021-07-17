@@ -98,7 +98,7 @@ void LinkedList<T>::push_front(T data_)
 	}
 
 	// Update the list size
-	this->listSize++;
+	this->listSize = this->length();
 }
 
 /**
@@ -143,7 +143,7 @@ void LinkedList<T>::push_back(T data_)
 	}
 
 	// Update the list size
-	this->listSize++;
+	this->listSize = this->length();
 }
 
 /**
@@ -153,7 +153,11 @@ template <typename T>
 void LinkedList<T>::pop_front()
 {
 	// Check if the list has any elements
-	if (this->head != nullptr)
+	if (this->head->Next() == nullptr)
+	{
+		cout << "<<< pop_front(): List already empty!" << endl;
+	}
+	else
 	{
 		// Create a pointer to the list head
 		Node<T> *node = this->head;
@@ -165,7 +169,7 @@ void LinkedList<T>::pop_front()
 		delete node;
 
 		// Update the list size
-		this->listSize--;
+		this->listSize = this->length();
 	}
 }
 
@@ -175,15 +179,13 @@ void LinkedList<T>::pop_front()
 template <typename T>
 void LinkedList<T>::pop_back()
 {
-	if (this->head == nullptr)
-	{
-		// Nothing happens
-	}
-	else if (this->head->Next() == nullptr)
+	if (this->head->Next() == nullptr)
 	{
 		// Delete the list head & tail
 		delete this->head;
 		delete this->tail;
+
+		cout << "<<< pop_back(): List already empty!" << endl;
 	}
 	else
 	{
@@ -206,14 +208,14 @@ void LinkedList<T>::pop_back()
 	}
 
 	// Update the list size
-	this->listSize--;
+	this->listSize = this->length();
 }
 
 /**
  * Function to print the linked list
  */
 template <typename T>
-void LinkedList<T>::print(bool showLength_, string listName_)
+void LinkedList<T>::print(bool showLength_, string listName_) const
 {
 	// Create a pointer to the list head
 	Node<T> *tmp = this->head;
@@ -248,9 +250,11 @@ void LinkedList<T>::print(bool showLength_, string listName_)
 
 /**
  * Function to return the number of elements in the list
+ * 
+ * time complexity = O(n)
  */
 template <typename T>
-int LinkedList<T>::length()
+int LinkedList<T>::length() const
 {
 	int size = 0;
 
@@ -263,10 +267,8 @@ int LinkedList<T>::length()
 		tmp = tmp->Next();
 		size++;
 	}
-
-	// Update the list size count
-	this->listSize = size;
-	return this->listSize;
+	
+	return size;
 }
 
 // ***************************************************

@@ -22,6 +22,7 @@ int main()
     LinkedList<int> intLinkedList;
     LinkedList<int> intLinkedListReverse;
     LinkedList<int> intLinkedListMini;
+    LinkedList<int> intLinkedListEmpty;
 
     // LinkedList class instance with string
     LinkedList<char> stringLinkedList;
@@ -42,12 +43,13 @@ int main()
         stringLinkedListReverse.push_front(c);
     }
 
-    intLinkedListMini.push_back(100);
+    intLinkedListMini.push_back(123);
 
     // Print the values
     intLinkedList.print(true, "intLinkedList");
     intLinkedListReverse.print(true, "intLinkedListReverse");
     intLinkedListMini.print(true, "intLinkedListMini");
+    intLinkedListEmpty.print(true, "intLinkedListEmpty");
     stringLinkedList.print(true, "stringLinkedList");
     stringLinkedListReverse.print(true, "stringLinkedListReverse");
     cout << endl;
@@ -88,6 +90,9 @@ int main()
     stringLinkedList.pop_back();
 
     cout << "<<< Testing the pop operations:" << endl;
+    intLinkedListEmpty.pop_back();
+    intLinkedListEmpty.pop_front();
+
     intLinkedList.print(true, "intLinkedList");
     stringLinkedList.print(true, "stringLinkedList");
     cout << endl;
