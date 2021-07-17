@@ -220,18 +220,26 @@ void LinkedList<T>::print(bool showLength_, string listName_) const
 
 	if (listName_.compare("") != 0)
 		if (showLength_)
-			cout << listName_ << "(" << this->length() << "): [ H -> ";
+			cout << listName_ << "(" << this->length() << "): [ ";
 		else
-			cout << listName_ << ": [ H -> ";
+			cout << listName_ << ": [ ";
 	else if (showLength_)
-		cout << this->length() << ": [ H -> ";
+		cout << this->length() << ": [ ";
 	else
-		cout << "[ H -> ";
+		cout << "[ ";
 
 	// Loop over the list until it reachs the tail
 	while (tmp != nullptr)
 	{
-		std::cout << tmp->Data() << " -> ";
+		if (tmp == this->head && tmp == this->tail)
+			std::cout << tmp->Data() << "(H)(T) -> ";
+		else if (tmp == this->head)
+			std::cout << "(H) -> ";
+		else if (tmp == this->tail)
+			std::cout << tmp->Data() << "(T) -> ";
+		else
+			std::cout << tmp->Data() << " -> ";
+
 		tmp = tmp->Next();
 	}
 

@@ -21,6 +21,7 @@ int main()
     // LinkedList class instance with int
     LinkedList<int> intLinkedList;
     LinkedList<int> intLinkedListReverse;
+    LinkedList<int> intLinkedListMini;
 
     // LinkedList class instance with string
     LinkedList<char> stringLinkedList;
@@ -41,9 +42,12 @@ int main()
         stringLinkedListReverse.push_front(c);
     }
 
+    intLinkedListMini.push_back(100);
+
     // Print the values
     intLinkedList.print(true, "intLinkedList");
     intLinkedListReverse.print(true, "intLinkedListReverse");
+    intLinkedListMini.print(true, "intLinkedListMini");
     stringLinkedList.print(true, "stringLinkedList");
     stringLinkedListReverse.print(true, "stringLinkedListReverse");
     cout << endl;
