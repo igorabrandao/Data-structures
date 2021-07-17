@@ -13,9 +13,10 @@
 template <typename T>
 LinkedList<T>::LinkedList()
 {
-	// Initialize the list head & tail
+	// Initialize the list basic attributes
 	this->head = new Node<T>();
 	this->tail = new Node<T>();
+	this->listSize = 0;
 }
 
 /**
@@ -46,8 +47,9 @@ LinkedList<T>::LinkedList(const LinkedList &obj_)
 	// Temp pointer to loop over the original list
 	Node<T> *temp = obj_.head;
 
-	// Initialize the list head
+	// Initialize the list basic attributes
 	this->head = new Node<T>();
+	this->tail = new Node<T>();
 
 	// Iterate through the end of the list
 	while (temp && temp->Next())
@@ -68,6 +70,8 @@ LinkedList<T>::LinkedList(const LinkedList &obj_)
 
 /**
  * Function to add a value to the front of the list
+ * 
+ * time complexity = O(n)
  */
 template <typename T>
 void LinkedList<T>::push_front(T data_)
@@ -75,14 +79,23 @@ void LinkedList<T>::push_front(T data_)
 	// Create a new node
 	Node<T> *newNode = new Node<T>(data_);
 
-	/**
-	 * Set Next of Node to Head of the current list
-	 * (Node)->(Current List)
-	 */
-	newNode->setNext(this->head);
+	if (this->head == nullptr)
+	{
+		// Handle first node push
+		this->head = newNode;
+		this->tail = newNode;
+	}
+	else
+	{
+		/**
+		 * Set Next of Node to Head of the current list
+		 * (Node)->(Current List)
+		 */
+		newNode->setNext(this->head);
 
-	// Set the Head pointer to the new node
-	this->head = newNode;
+		// Set the Head pointer to the new node
+		this->head = newNode;
+	}
 
 	// Update the list size
 	this->listSize++;
@@ -90,6 +103,8 @@ void LinkedList<T>::push_front(T data_)
 
 /**
  * Function to add a value to the back of the list
+ * 
+ * time complexity = O(n)
  */
 template <typename T>
 void LinkedList<T>::push_back(T data_)
@@ -198,15 +213,21 @@ void LinkedList<T>::pop_back()
  * Function to print the linked list
  */
 template <typename T>
-void LinkedList<T>::print(string listName_) const
+void LinkedList<T>::print(bool showLength_, string listName_) const
 {
 	// Create a pointer to the list head
-	Node<T> *tmp = this->head->Next();
+	Node<T> *tmp = this->head;
 
 	if (listName_.compare("") != 0)
-		cout << listName_ << ": [ H -> ";
+		if (showLength_)
+			cout << listName_ << "(" << this->length() << "): [ H -> ";
+		else
+			cout << listName_ << ": [ H -> ";
 	else
-		cout << "[ H -> ";
+		if (showLength_)
+			cout << this->length() << ": [ H -> ";
+		else
+			cout << "[ H -> ";
 
 	// Loop over the list until it reachs the tail
 	while (tmp != nullptr)
@@ -216,6 +237,15 @@ void LinkedList<T>::print(string listName_) const
 	}
 
 	std::cout << "NULL ]\n";
+}
+
+/**
+ * Function to return the number of elements in the list
+ */
+template <typename T>
+int LinkedList<T>::length() const
+{
+	return this->listSize;
 }
 
 // ***************************************************

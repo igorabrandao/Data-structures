@@ -68,14 +68,15 @@ public:
     // ***************************************************
     // ** Functions
     // ***************************************************
-    LinkedList();                          // Class constructor
-    ~LinkedList();                         // Class Destructor
-    LinkedList(const LinkedList &obj_);    // Copy constructor
-    void push_front(T data_);              // Function to add a value to the front of the list
-    void push_back(T data_);               // Function to add a value to the back of the list
-    void pop_front();                      // Function to remove the first value of the list
-    void pop_back();                       // Function to remove the last value of the list
-    void print(string llName_ = "") const; // Function to print the linked list
+    LinkedList();                                // Class constructor
+    ~LinkedList();                               // Class Destructor
+    LinkedList(const LinkedList &obj_);          // Copy constructor
+    void push_front(T data_);                    // Function to add a value to the front of the list
+    void push_back(T data_);                     // Function to add a value to the back of the list
+    void pop_front();                            // Function to remove the first value of the list
+    void pop_back();                             // Function to remove the last value of the list
+    void print(bool, string llName_ = "") const; // Function to print the linked list
+    int length() const;                          // Function to return the number of elements in the list
 
     // ***************************************************
     // ** Overload operators

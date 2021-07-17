@@ -42,10 +42,10 @@ int main()
     }
 
     // Print the values
-    intLinkedList.print("intLinkedList");
-    intLinkedListReverse.print("intLinkedListReverse");
-    stringLinkedList.print("stringLinkedList");
-    stringLinkedListReverse.print("stringLinkedListReverse");
+    intLinkedList.print(true, "intLinkedList");
+    intLinkedListReverse.print(true, "intLinkedListReverse");
+    stringLinkedList.print(true, "stringLinkedList");
+    stringLinkedListReverse.print(true, "stringLinkedListReverse");
     cout << endl;
 
     /* ============================================================================== */
@@ -60,8 +60,8 @@ int main()
     LinkedList<char> stringLinkedListCopy = stringLinkedList;
 
     cout << "<<< Testing the copy constructor:" << endl;
-    intLinkedListCopy.print("intLinkedListCopy");
-    stringLinkedListCopy.print("stringLinkedListCopy");
+    intLinkedListCopy.print(true, "intLinkedListCopy");
+    stringLinkedListCopy.print(true, "stringLinkedListCopy");
     cout << endl;
 
     /* ============================================================================== */
@@ -84,8 +84,8 @@ int main()
     stringLinkedList.pop_back();
 
     cout << "<<< Testing the pop operations:" << endl;
-    intLinkedList.print("intLinkedList");
-    stringLinkedList.print("stringLinkedList");
+    intLinkedList.print(true, "intLinkedList");
+    stringLinkedList.print(true, "stringLinkedList");
     cout << endl;
 
     /* ============================================================================== */
