@@ -213,7 +213,7 @@ void LinkedList<T>::pop_back()
  * Function to print the linked list
  */
 template <typename T>
-void LinkedList<T>::print(bool showLength_, string listName_) const
+void LinkedList<T>::print(bool showLength_, string listName_)
 {
 	// Create a pointer to the list head
 	Node<T> *tmp = this->head;
@@ -250,8 +250,22 @@ void LinkedList<T>::print(bool showLength_, string listName_) const
  * Function to return the number of elements in the list
  */
 template <typename T>
-int LinkedList<T>::length() const
+int LinkedList<T>::length()
 {
+	int size = 0;
+
+	// Create a pointer to first element of the list
+	Node<T> *tmp = this->head->Next();
+
+	// Loop over the list until it reachs the tail
+	while (tmp != nullptr)
+	{
+		tmp = tmp->Next();
+		size++;
+	}
+
+	// Update the list size count
+	this->listSize = size;
 	return this->listSize;
 }
 
