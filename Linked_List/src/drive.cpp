@@ -74,6 +74,8 @@ int main()
 
     /*------------------- [ Test the Linked List pop operations ] ------------------- */
 
+    cout << "<<< Testing the pop operations:" << endl;
+
     // Get the previous list and remove some elements to see what happen
     intLinkedList.pop_front();
     intLinkedList.pop_back();
@@ -89,12 +91,33 @@ int main()
     stringLinkedList.pop_back();
     stringLinkedList.pop_back();
 
-    cout << "<<< Testing the pop operations:" << endl;
     intLinkedListEmpty.pop_back();
     intLinkedListEmpty.pop_front();
 
     intLinkedList.print(true, "intLinkedList");
     stringLinkedList.print(true, "stringLinkedList");
+    intLinkedListEmpty.print(true, "intLinkedListEmpty");
+    cout << endl;
+
+    /* ============================================================================== */
+
+    /* ============================================================================== */
+
+    /*----------------- [ Test the Linked List search operations ] ------------------ */
+
+    cout << "<<< Testing the search operations:" << endl;
+
+    // Get the previous list and search for elements
+    cout << "intLinkedList 1st: " << intLinkedList.getElemByIndex(0)->Data() << endl;
+    cout << "intLinkedList 2nd: " << intLinkedList.getElemByIndex(1)->Data() << endl;
+    cout << "intLinkedList last: " << intLinkedList.getElemByIndex(intLinkedList.length() - 1)->Data() << endl;
+    cout << "intLinkedList 10th: " << intLinkedList.getElemByIndex(9) << endl;
+    cout << "intLinkedList -1th: " << intLinkedList.getElemByIndex(-1) << endl;
+
+    cout << "stringLinkedListCopy 5th: " << stringLinkedListCopy.getElemByIndex(4)->Data() << endl;
+    cout << "stringLinkedListCopy 7th: " << stringLinkedListCopy.getElemByIndex(6)->Data() << endl;
+    cout << "stringLinkedListCopy last: " << stringLinkedListCopy.getElemByIndex(stringLinkedListCopy.length() - 1)->Data() << endl;
+
     cout << endl;
 
     /* ============================================================================== */

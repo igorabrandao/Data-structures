@@ -155,7 +155,11 @@ void LinkedList<T>::pop_front()
 	// Check if the list has any elements
 	if (this->head->Next() == nullptr)
 	{
-		cout << "<<< pop_front(): List already empty!" << endl;
+		// Delete the list head & tail
+		delete this->head;
+		delete this->tail;
+
+		cout << "<< pop_front(): List already empty! >>" << endl;
 	}
 	else
 	{
@@ -185,7 +189,7 @@ void LinkedList<T>::pop_back()
 		delete this->head;
 		delete this->tail;
 
-		cout << "<<< pop_back(): List already empty!" << endl;
+		cout << "<< pop_back(): List already empty! >>" << endl;
 	}
 	else
 	{
@@ -267,8 +271,46 @@ int LinkedList<T>::length() const
 		tmp = tmp->Next();
 		size++;
 	}
-	
+
 	return size;
+}
+
+/**
+ * Function to return the ith element from the list
+ */
+template <typename T>
+Node<T> *LinkedList<T>::getElemByIndex(int index_) const
+{
+	// First of all check the validity of the index
+	if (index_ < 0 || index_ > (this->listSize - 1))
+	{
+		cout << "<< Index out of range! >>" << endl;
+		return nullptr;
+	}
+	else
+	{
+		int currIdx = 0;
+
+		// Start the search from the first node, not from the head pointer
+		Node<T> *currNode = this->head->Next();
+
+		/**
+		 * Iterate through the end of the list
+		 */
+		while (currNode)
+		{
+			// Check if it's the correct element
+			if (currIdx == index_)
+				return currNode;
+
+			// Increase the count and goto the next node
+			currIdx++;
+			currNode = currNode->Next();
+		}
+	}
+
+	cout << "<< Element not found! >>" << endl;
+	return nullptr;
 }
 
 // ***************************************************

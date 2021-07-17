@@ -77,6 +77,7 @@ public:
     void pop_back();                             // Function to remove the last value of the list
     void print(bool, string llName_ = "") const; // Function to print the linked list
     int length() const;                          // Function to return the number of elements in the list
+    Node<T> *getElemByIndex(int index_) const;   // Function to return the ith element from the list
 
     // Return pointer to the list head
     inline Node<T> *Head() { return this->head; };
