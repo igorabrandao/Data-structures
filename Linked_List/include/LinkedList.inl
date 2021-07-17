@@ -13,8 +13,9 @@
 template <typename T>
 LinkedList<T>::LinkedList()
 {
-	// Initialize the list head
+	// Initialize the list head & tail
 	this->head = new Node<T>();
+	this->tail = new Node<T>();
 }
 
 /**
@@ -60,6 +61,9 @@ LinkedList<T>::LinkedList(const LinkedList &obj_)
 		// Go to the next node of the original list
 		temp = temp->Next();
 	}
+
+	// Set-up the copy list tail
+	this->tail = temp;
 }
 
 /**
@@ -97,6 +101,7 @@ void LinkedList<T>::push_back(T data_)
 	if (this->head->Next() == nullptr)
 	{
 		this->head->setNext(newNode);
+		this->tail = newNode;
 	}
 	else
 	{
@@ -114,9 +119,12 @@ void LinkedList<T>::push_back(T data_)
 
 		/**
 		 * At this point curr is the last node
-		 * Set newNode as the next of the last node
+		 * Set newNode as the next of the last node (tail)
 		 */
 		currNode->setNext(newNode);
+
+		// Assign the last element to the list tail
+		this->tail = currNode->Next();
 	}
 
 	// Update the list size
@@ -158,8 +166,9 @@ void LinkedList<T>::pop_back()
 	}
 	else if (this->head->Next() == nullptr)
 	{
-		// Delete the list head
+		// Delete the list head & tail
 		delete this->head;
+		delete this->tail;
 	}
 	else
 	{
@@ -171,11 +180,14 @@ void LinkedList<T>::pop_back()
 			secondLast = secondLast->Next();
 		}
 
-		// Delete last node
+		// Delete last node and second last becomes the last
 		delete secondLast->Next();
 
 		// Change next of second last node
 		secondLast->setNext(nullptr);
+
+		// Assign the last element to the tail
+		this->tail = secondLast;
 	}
 
 	// Update the list size

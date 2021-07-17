@@ -62,6 +62,7 @@ private:
     // ***************************************************
     int listSize = 0; // The list size
     Node<T> *head;    // The head of the list
+    Node<T> *tail;    // The tail of the list
 
 public:
     // ***************************************************
