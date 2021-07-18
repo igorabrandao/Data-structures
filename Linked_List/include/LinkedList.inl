@@ -277,6 +277,8 @@ int LinkedList<T>::length() const
 
 /**
  * Function to return the ith element from the list
+ * 
+ * time complexity = O(index_)
  */
 template <typename T>
 Node<T> *LinkedList<T>::getElemByIndex(int index_) const
@@ -306,6 +308,17 @@ Node<T> *LinkedList<T>::getElemByIndex(int index_) const
 
 	cout << "<< Element not found! >>" << endl;
 	return nullptr;
+}
+
+/**
+ * Function to return the ith element value from the list
+ * 
+ * time complexity = O(index_)
+ */
+template <typename T>
+T LinkedList<T>::getElemValueByIndex(int index_) const
+{
+	return this->getElemByIndex(index_)->Data();
 }
 
 // ***************************************************

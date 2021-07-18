@@ -114,9 +114,9 @@ int main()
     cout << "intLinkedList 10th: " << intLinkedList.getElemByIndex(9) << endl;
     cout << "intLinkedList -1th: " << intLinkedList.getElemByIndex(-1) << endl;
 
-    cout << "stringLinkedListCopy 5th: " << stringLinkedListCopy.getElemByIndex(4)->Data() << endl;
-    cout << "stringLinkedListCopy 7th: " << stringLinkedListCopy.getElemByIndex(6)->Data() << endl;
-    cout << "stringLinkedListCopy last: " << stringLinkedListCopy.getElemByIndex(stringLinkedListCopy.length() - 1)->Data() << endl;
+    cout << "stringLinkedListCopy 5th: " << stringLinkedListCopy.getElemValueByIndex(4) << endl;
+    cout << "stringLinkedListCopy 7th: " << stringLinkedListCopy.getElemValueByIndex(6) << endl;
+    cout << "stringLinkedListCopy last: " << stringLinkedListCopy.getElemValueByIndex(stringLinkedListCopy.length() - 1) << endl;
 
     cout << endl;
 
