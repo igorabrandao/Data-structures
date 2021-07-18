@@ -91,10 +91,10 @@ void LinkedList<T>::push_front(T data_)
 		 * Set Next of Node to Head of the current list
 		 * (Node)->(Current List)
 		 */
-		newNode->setNext(this->head);
+		newNode->setNext(this->head->Next());
 
 		// Set the Head pointer to the new node
-		this->head = newNode;
+		this->head->setNext(newNode);
 	}
 
 	// Update the list size
@@ -335,14 +335,20 @@ void LinkedList<T>::insertIthNode(T data_, int index_)
 	{
 		cout << "<< Index out of range! >>" << endl;
 	}
+	else if (index_ == 0)
+	{
+		// Insert at the beginning of the list
+		this->push_front(data_);
+	}
+	else if (index_ == this->listSize)
+	{
+		// Insert at the end of the list
+		this->push_back(data_);
+	}
 	else
 	{
 		// Access the node in the previous position
-		Node<T> *prevNode;
-		if (index_ == 0)
-			prevNode = this->Head();
-		else
-			prevNode = this->getIthNode(index_ - 1);
+		Node<T> *prevNode = this->getIthNode(index_ - 1);
 
 		// Create the new node
 		Node<T> *newNode = new Node<T>(data_);
@@ -350,12 +356,6 @@ void LinkedList<T>::insertIthNode(T data_, int index_)
 		// Update the links between the nodes
 		newNode->setNext(prevNode->Next());
 		prevNode->setNext(newNode);
-
-		// Update the list head & tail if it's necessary
-		if (index_ == this->listSize)
-			this->tail = newNode;
-		else if (index_ == 0)
-			this->head->setNext(newNode);
 
 		// Update the list size
 		this->listSize = this->length();

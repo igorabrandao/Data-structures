@@ -128,10 +128,10 @@ int main()
 
     stringLinkedListCopy.print(true, "stringLinkedListCopy");
 
-    stringLinkedListCopy.insertIthNode('@', 0);
+    stringLinkedListCopy.insertIthNode('@', 0); // the same of push_front
     stringLinkedListCopy.insertIthNode('X', 3);
     stringLinkedListCopy.insertIthNode('Y', 6);
-    stringLinkedListCopy.insertIthNode('Z', (stringLinkedListCopy.length()));
+    stringLinkedListCopy.insertIthNode('Z', (stringLinkedListCopy.length())); // the same of push_back
 
     stringLinkedListCopy.print(true, "stringLinkedListCopy");
 
