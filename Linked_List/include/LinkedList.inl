@@ -278,10 +278,10 @@ int LinkedList<T>::length() const
 /**
  * Function to return the ith element from the list
  * 
- * time complexity = O(index_)
+ * time complexity = O(index_) | worst case: O(n)
  */
 template <typename T>
-Node<T> *LinkedList<T>::getElemByIndex(int index_) const
+Node<T> *LinkedList<T>::getIthNode(int index_) const
 {
 	// First of all check the validity of the index
 	if (index_ < 0 || index_ > (this->listSize - 1))
@@ -316,9 +316,85 @@ Node<T> *LinkedList<T>::getElemByIndex(int index_) const
  * time complexity = O(index_)
  */
 template <typename T>
-T LinkedList<T>::getElemValueByIndex(int index_) const
+T LinkedList<T>::getIthNodeValue(int index_) const
 {
-	return this->getElemByIndex(index_)->Data();
+	Node<T> *node = this->getIthNode(index_);
+	return node != nullptr ? node->Data() : T();
+}
+
+/**
+ * Function to add a new node at the ith position
+ * 
+ * time complexity = O(n)
+ */
+template <typename T>
+void LinkedList<T>::insertIthNode(T data_, int index_)
+{
+	// First of all check the validity of the index
+	if (index_ < 0 || index_ > this->listSize)
+	{
+		cout << "<< Index out of range! >>" << endl;
+	}
+	else
+	{
+		// Access the node in the previous position
+		Node<T> *prevNode = this->getIthNode(index_ - 1);
+
+		// Create the new node
+		Node<T> *newNode = new Node<T>(data_);
+
+		// Update the links between the nodes
+		newNode->setNext(prevNode->Next());
+		prevNode->setNext(newNode);
+
+		// Update the list head & tail if it's necessary
+		if (index_ == this->listSize)
+			this->tail = newNode;
+		else if (index_ == 0)
+			this->head = newNode;
+
+		// Update the list size
+		this->listSize = this->length();
+	}
+}
+
+/**
+ * Function to delete the ith node
+ * 
+ * time complexity = O(n)
+ */
+template <typename T>
+void LinkedList<T>::deleteIthNode(int index_)
+{
+	// First of all check the validity of the index
+	if (index_ < 0 || index_ >= this->listSize)
+	{
+		cout << "<< Index out of range! >>" << endl;
+	}
+	else
+	{
+		// Access the node in the previous position
+		Node<T> *prevNode = this->getIthNode(index_ - 1);
+		Node<T> *node = prevNode->Next();
+
+		// Update the links
+		if (prevNode->Next() && prevNode->Next()->Next())
+			prevNode->setNext(prevNode->Next()->Next());
+		else
+			prevNode->setNext(nullptr);
+
+		// Update the list head & tail if it's necessary
+		if (index_ == (this->listSize - 1))
+			this->tail = prevNode;
+		else if (index_ == 0)
+			this->head = prevNode->Next();
+
+		// Delete the node
+		delete node;
+
+		// Update the list size
+		this->listSize = this->length();
+	}
 }
 
 // ***************************************************

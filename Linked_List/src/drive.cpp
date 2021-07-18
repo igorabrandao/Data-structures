@@ -108,15 +108,46 @@ int main()
     cout << "<<< Testing the search operations:" << endl;
 
     // Get the previous list and search for elements
-    cout << "intLinkedList 1st: " << intLinkedList.getElemByIndex(0)->Data() << endl;
-    cout << "intLinkedList 2nd: " << intLinkedList.getElemByIndex(1)->Data() << endl;
-    cout << "intLinkedList last: " << intLinkedList.getElemByIndex(intLinkedList.length() - 1)->Data() << endl;
-    cout << "intLinkedList 10th: " << intLinkedList.getElemByIndex(9) << endl;
-    cout << "intLinkedList -1th: " << intLinkedList.getElemByIndex(-1) << endl;
+    cout << "intLinkedList(0): " << intLinkedList.getIthNode(0)->Data() << endl;
+    cout << "intLinkedList(1): " << intLinkedList.getIthNode(1)->Data() << endl;
+    cout << "intLinkedList(last): " << intLinkedList.getIthNode(intLinkedList.length() - 1)->Data() << endl;
+    cout << "intLinkedList(9): " << intLinkedList.getIthNode(9) << endl;
+    cout << "intLinkedList(-1): " << intLinkedList.getIthNode(-1) << endl;
 
-    cout << "stringLinkedListCopy 5th: " << stringLinkedListCopy.getElemValueByIndex(4) << endl;
-    cout << "stringLinkedListCopy 7th: " << stringLinkedListCopy.getElemValueByIndex(6) << endl;
-    cout << "stringLinkedListCopy last: " << stringLinkedListCopy.getElemValueByIndex(stringLinkedListCopy.length() - 1) << endl;
+    cout << "stringLinkedListCopy(4): " << stringLinkedListCopy.getIthNodeValue(4) << endl;
+    cout << "stringLinkedListCopy(6): " << stringLinkedListCopy.getIthNodeValue(6) << endl;
+    cout << "stringLinkedListCopy(last): " << stringLinkedListCopy.getIthNodeValue(stringLinkedListCopy.length() - 1) << endl;
+
+    cout << endl;
+
+    /* ============================================================================== */
+
+    /*-------------- [ Test the Linked List insertIthNode operations ] -------------- */
+
+    cout << "<<< Testing the insertIthNode operations:" << endl;
+
+    stringLinkedListCopy.print(true, "stringLinkedListCopy");
+
+    stringLinkedListCopy.insertIthNode('X', 2);
+    stringLinkedListCopy.insertIthNode('Y', 5);
+    stringLinkedListCopy.insertIthNode('Z', (stringLinkedListCopy.length()));
+
+    stringLinkedListCopy.print(true, "stringLinkedListCopy");
+
+    cout << endl;
+
+    /* ============================================================================== */
+
+    /*-------------- [ Test the Linked List deleteIthNode operations ] -------------- */
+
+    cout << "<<< Testing the deleteIthNode operations:" << endl;
+
+    stringLinkedListCopy.deleteIthNode(2);
+    stringLinkedListCopy.deleteIthNode(4);
+    stringLinkedListCopy.deleteIthNode((stringLinkedListCopy.length() - 1));
+    stringLinkedListCopy.deleteIthNode((stringLinkedListCopy.length()));
+    stringLinkedListCopy.deleteIthNode(-1);
+    stringLinkedListCopy.print(true, "stringLinkedListCopy");
 
     cout << endl;
 

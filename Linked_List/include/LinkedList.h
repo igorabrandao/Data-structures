@@ -77,8 +77,10 @@ public:
     void pop_back();                             // Function to remove the last value of the list
     void print(bool, string llName_ = "") const; // Function to print the linked list
     int length() const;                          // Function to return the number of elements in the list
-    Node<T> *getElemByIndex(int index_) const;   // Function to return the ith element from the list
-    T getElemValueByIndex(int index_) const;     // Function to return the ith element value from the list
+    Node<T> *getIthNode(int index_) const;       // Function to return the ith element from the list
+    T getIthNodeValue(int index_) const;         // Function to return the ith element value from the list
+    void insertIthNode(T data_, int index_);     // Function to add a new node at the ith position
+    void deleteIthNode(int index_);              // Function to delete the ith node
 
     // Return pointer to the list head
     inline Node<T> *Head() { return this->head; };
