@@ -289,24 +289,19 @@ Node<T> *LinkedList<T>::getElemByIndex(int index_) const
 	}
 	else
 	{
-		int currIdx = 0;
-
 		// Start the search from the first node, not from the head pointer
 		Node<T> *currNode = this->head->Next();
 
 		/**
 		 * Iterate through the end of the list
 		 */
-		while (currNode)
+		for (auto i = 0; i < index_; i++)
 		{
-			// Check if it's the correct element
-			if (currIdx == index_)
-				return currNode;
-
-			// Increase the count and goto the next node
-			currIdx++;
+			// Goto the next node
 			currNode = currNode->Next();
 		}
+
+		return currNode;
 	}
 
 	cout << "<< Element not found! >>" << endl;
