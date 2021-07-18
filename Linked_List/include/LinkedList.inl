@@ -284,7 +284,7 @@ template <typename T>
 Node<T> *LinkedList<T>::getIthNode(int index_) const
 {
 	// First of all check the validity of the index
-	if (index_ < 0 || index_ > (this->listSize - 1))
+	if (index_ < 0 || index_ >= this->listSize)
 	{
 		cout << "<< Index out of range! >>" << endl;
 		return nullptr;
@@ -338,7 +338,11 @@ void LinkedList<T>::insertIthNode(T data_, int index_)
 	else
 	{
 		// Access the node in the previous position
-		Node<T> *prevNode = this->getIthNode(index_ - 1);
+		Node<T> *prevNode;
+		if (index_ == 0)
+			prevNode = this->Head();
+		else
+			prevNode = this->getIthNode(index_ - 1);
 
 		// Create the new node
 		Node<T> *newNode = new Node<T>(data_);
@@ -351,7 +355,7 @@ void LinkedList<T>::insertIthNode(T data_, int index_)
 		if (index_ == this->listSize)
 			this->tail = newNode;
 		else if (index_ == 0)
-			this->head = newNode;
+			this->head->setNext(newNode);
 
 		// Update the list size
 		this->listSize = this->length();
@@ -374,7 +378,13 @@ void LinkedList<T>::deleteIthNode(int index_)
 	else
 	{
 		// Access the node in the previous position
-		Node<T> *prevNode = this->getIthNode(index_ - 1);
+		Node<T> *prevNode;
+		if (index_ == 0)
+			prevNode = this->Head();
+		else
+			prevNode = this->getIthNode(index_ - 1);
+
+		// Create the new node
 		Node<T> *node = prevNode->Next();
 
 		// Update the links
@@ -387,7 +397,7 @@ void LinkedList<T>::deleteIthNode(int index_)
 		if (index_ == (this->listSize - 1))
 			this->tail = prevNode;
 		else if (index_ == 0)
-			this->head = prevNode->Next();
+			this->head->setNext(prevNode->Next());
 
 		// Delete the node
 		delete node;

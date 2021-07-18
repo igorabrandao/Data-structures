@@ -128,8 +128,9 @@ int main()
 
     stringLinkedListCopy.print(true, "stringLinkedListCopy");
 
-    stringLinkedListCopy.insertIthNode('X', 2);
-    stringLinkedListCopy.insertIthNode('Y', 5);
+    stringLinkedListCopy.insertIthNode('@', 0);
+    stringLinkedListCopy.insertIthNode('X', 3);
+    stringLinkedListCopy.insertIthNode('Y', 6);
     stringLinkedListCopy.insertIthNode('Z', (stringLinkedListCopy.length()));
 
     stringLinkedListCopy.print(true, "stringLinkedListCopy");
@@ -142,6 +143,7 @@ int main()
 
     cout << "<<< Testing the deleteIthNode operations:" << endl;
 
+    stringLinkedListCopy.deleteIthNode(0);
     stringLinkedListCopy.deleteIthNode(2);
     stringLinkedListCopy.deleteIthNode(4);
     stringLinkedListCopy.deleteIthNode((stringLinkedListCopy.length() - 1));
