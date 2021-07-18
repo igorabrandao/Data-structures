@@ -98,7 +98,7 @@ void LinkedList<T>::push_front(T data_)
 	}
 
 	// Update the list size
-	this->listSize = this->length();
+	this->listSize++;
 }
 
 /**
@@ -143,7 +143,7 @@ void LinkedList<T>::push_back(T data_)
 	}
 
 	// Update the list size
-	this->listSize = this->length();
+	this->listSize++;
 }
 
 /**
@@ -173,7 +173,7 @@ void LinkedList<T>::pop_front()
 		delete node;
 
 		// Update the list size
-		this->listSize = this->length();
+		this->listSize--;
 	}
 }
 
@@ -212,7 +212,7 @@ void LinkedList<T>::pop_back()
 	}
 
 	// Update the list size
-	this->listSize = this->length();
+	this->listSize--;
 }
 
 /**
@@ -313,7 +313,7 @@ Node<T> *LinkedList<T>::getIthNode(int index_) const
 /**
  * Function to return the ith element value from the list
  * 
- * time complexity = O(index_)
+ * time complexity = O(index_) | worst case: O(n)
  */
 template <typename T>
 T LinkedList<T>::getIthNodeValue(int index_) const
@@ -325,7 +325,7 @@ T LinkedList<T>::getIthNodeValue(int index_) const
 /**
  * Function to add a new node at the ith position
  * 
- * time complexity = O(n)
+ * time complexity = O(index_) | worst case: O(n)
  */
 template <typename T>
 void LinkedList<T>::insertIthNode(T data_, int index_)
@@ -358,14 +358,14 @@ void LinkedList<T>::insertIthNode(T data_, int index_)
 		prevNode->setNext(newNode);
 
 		// Update the list size
-		this->listSize = this->length();
+		this->listSize++;
 	}
 }
 
 /**
  * Function to delete the ith node
  * 
- * time complexity = O(n)
+ * time complexity = O(index_) | worst case: O(n)
  */
 template <typename T>
 void LinkedList<T>::deleteIthNode(int index_)
@@ -375,14 +375,20 @@ void LinkedList<T>::deleteIthNode(int index_)
 	{
 		cout << "<< Index out of range! >>" << endl;
 	}
+	else if (index_ == 0)
+	{
+		// Delete at the beginning of the list
+		this->pop_front();
+	}
+	else if (index_ == (this->listSize - 1))
+	{
+		// Delete at the end of the list
+		this->pop_back();
+	}
 	else
 	{
 		// Access the node in the previous position
-		Node<T> *prevNode;
-		if (index_ == 0)
-			prevNode = this->Head();
-		else
-			prevNode = this->getIthNode(index_ - 1);
+		Node<T> *prevNode = this->getIthNode(index_ - 1);
 
 		// Create the new node
 		Node<T> *node = prevNode->Next();
@@ -393,17 +399,11 @@ void LinkedList<T>::deleteIthNode(int index_)
 		else
 			prevNode->setNext(nullptr);
 
-		// Update the list head & tail if it's necessary
-		if (index_ == (this->listSize - 1))
-			this->tail = prevNode;
-		else if (index_ == 0)
-			this->head->setNext(prevNode->Next());
-
 		// Delete the node
 		delete node;
 
 		// Update the list size
-		this->listSize = this->length();
+		this->listSize--;
 	}
 }
 
