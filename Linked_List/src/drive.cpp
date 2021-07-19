@@ -155,6 +155,19 @@ int main()
 
     /* ============================================================================== */
 
+    /*------------------ [ Test the Linked List recursive length ] ------------------ */
+
+    cout << "<<< Testing the recursive length:" << endl;
+
+    cout << "intLinkedList: " << intLinkedList.recursiveLength(intLinkedList.Head()) << endl;
+    cout << "intLinkedListEmpty: " << intLinkedListEmpty.recursiveLength(intLinkedListEmpty.Head()) << endl;
+    cout << "intLinkedListCopy: " << intLinkedListCopy.recursiveLength(intLinkedListCopy.Head()) << endl;
+    cout << "stringLinkedListCopy: " << stringLinkedListCopy.recursiveLength(stringLinkedListCopy.Head()) << endl;
+
+    cout << endl;
+
+    /* ============================================================================== */
+
     // Finish the program
     cout << "Finished successfully!\n";
     return EXIT_SUCCESS;

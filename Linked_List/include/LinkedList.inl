@@ -256,6 +256,7 @@ void LinkedList<T>::print(bool showLength_, string listName_) const
  * Function to return the number of elements in the list
  * 
  * time complexity = O(n)
+ * space complexity = O(1)
  */
 template <typename T>
 int LinkedList<T>::length() const
@@ -273,6 +274,28 @@ int LinkedList<T>::length() const
 	}
 
 	return size;
+}
+
+/**
+ * Function to return the number of elements in the list (recursively)
+ * 
+ * time complexity = O(n)
+ * space complexity = O(n) due to the use of the stack for recursion
+ */
+template <typename T>
+int LinkedList<T>::recursiveLength(Node<T> *currNode_) const
+{
+	/**
+	 * Check if the current node exists and if it's not the head
+	 * we won't count the head!
+	 */
+	if (currNode_ == nullptr)
+		return 0;
+	else if (currNode_ == this->head && currNode_->Next())
+		currNode_ = currNode_->Next();
+
+	// Perform the recursive call
+	return 1 + this->recursiveLength(currNode_->Next());
 }
 
 /**
@@ -390,17 +413,17 @@ void LinkedList<T>::deleteIthNode(int index_)
 		// Access the node in the previous position
 		Node<T> *prevNode = this->getIthNode(index_ - 1);
 
-		// Create the new node
-		Node<T> *node = prevNode->Next();
+		// Access the node in the current position
+		Node<T> *currNode = prevNode->Next();
 
 		// Update the links
-		if (prevNode->Next() && prevNode->Next()->Next())
-			prevNode->setNext(prevNode->Next()->Next());
+		if (currNode && currNode->Next())
+			prevNode->setNext(currNode->Next());
 		else
 			prevNode->setNext(nullptr);
 
 		// Delete the node
-		delete node;
+		delete currNode;
 
 		// Update the list size
 		this->listSize--;

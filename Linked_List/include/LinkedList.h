@@ -77,6 +77,7 @@ public:
     void pop_back();                             // Function to remove the last value of the list
     void print(bool, string llName_ = "") const; // Function to print the linked list
     int length() const;                          // Function to return the number of elements in the list
+    int recursiveLength(Node<T> *) const;        // Function to return the number of elements in the list (recursively)
     Node<T> *getIthNode(int index_) const;       // Function to return the ith element from the list
     T getIthNodeValue(int index_) const;         // Function to return the ith element value from the list
     void insertIthNode(T data_, int index_);     // Function to add a new node at the ith position

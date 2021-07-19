@@ -24,7 +24,7 @@ Current implemented data structures:
 
 **Matrix** => An array with N dimensions.
 
-**Linked list (in progress)** => A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
+**Linked list** => A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
 
 ## Ways to contribute
 
