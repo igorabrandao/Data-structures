@@ -82,6 +82,7 @@ public:
     T getIthNodeValue(int index_) const;         // Function to return the ith element value from the list
     void insertIthNode(T data_, int index_);     // Function to add a new node at the ith position
     void deleteIthNode(int index_);              // Function to delete the ith node
+    int searchValue(T data_) const;              // Function to search a node by it's value first occurrence
 
     // Return pointer to the list head
     inline Node<T> *Head() { return this->head; };

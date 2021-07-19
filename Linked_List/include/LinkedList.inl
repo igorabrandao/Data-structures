@@ -430,6 +430,34 @@ void LinkedList<T>::deleteIthNode(int index_)
 	}
 }
 
+/**
+ * Function to search a node by it's value first occurrence
+ * 
+ * time complexity = O(n)
+ */
+template <typename T>
+int LinkedList<T>::searchValue(T data_) const
+{
+	int index = -1;
+	Node<T> *currNode = this->head->Next();
+
+	// Iterate through the end of the list
+	while (currNode)
+	{
+		// Increase the index
+		index++;
+
+		// Check if it's the searched value
+		if (currNode->Data() == data_)
+			return index;
+
+		// Goto the next node
+		currNode = currNode->Next();
+	}
+
+	return -1;
+}
+
 // ***************************************************
 // ** Overload operators
 // ***************************************************

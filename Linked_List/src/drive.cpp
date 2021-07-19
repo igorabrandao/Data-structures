@@ -168,6 +168,35 @@ int main()
 
     /* ============================================================================== */
 
+    /*--------------- [ Test the Linked List searchValue operation ] --------------- */
+
+    cout << "<<< Testing the searchValue operation:" << endl;
+
+    intLinkedList.print(false, "intLinkedList");
+    cout << "2 is at position: " << intLinkedList.searchValue(2) << endl;
+    cout << endl;
+
+    intLinkedListEmpty.print(false, "intLinkedListEmpty");
+    cout << "100 is at position: " << intLinkedListEmpty.searchValue(100) << endl;
+    cout << "0 is at position: " << intLinkedListEmpty.searchValue(0) << endl;
+    cout << endl;
+
+    intLinkedListCopy.print(false, "intLinkedListCopy");
+    cout << "5 is at position: " << intLinkedListCopy.searchValue(5) << endl;
+    cout << endl;
+
+    stringLinkedListCopy.print(false, "stringLinkedListCopy");
+    cout << "k is at position: " << stringLinkedListCopy.searchValue('k') << endl;
+    cout << "K is at position: " << stringLinkedListCopy.searchValue('K') << endl;
+    cout << "t is at position: " << stringLinkedListCopy.searchValue('t') << endl;
+    cout << "z is at position: " << stringLinkedListCopy.searchValue('z') << endl;
+    cout << "- is at position: " << stringLinkedListCopy.searchValue('-') << endl;
+    cout << "d is at position: " << stringLinkedListCopy.searchValue('d') << endl;
+    cout << "' ' is at position: " << stringLinkedListCopy.searchValue(' ') << endl;
+    cout << endl;
+
+    /* ============================================================================== */
+
     // Finish the program
     cout << "Finished successfully!\n";
     return EXIT_SUCCESS;
