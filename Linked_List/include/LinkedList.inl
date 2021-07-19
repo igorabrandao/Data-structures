@@ -458,6 +458,71 @@ int LinkedList<T>::searchValue(T data_) const
 	return -1;
 }
 
+/**
+ * Function to search a node by it's value first occurrence (recursively)
+ * 
+ * time complexity = O(n)
+ * space complexity = O(n) due to the use of the stack for recursion
+ */
+template <typename T>
+int LinkedList<T>::recursiveSearchValue(Node<T> *currNode_, T data_) const
+{
+	// Check if the current node exists and if it's not the head
+	if (currNode_ == nullptr)
+		return -1; // empty list
+	else if (currNode_ == this->head && currNode_->Next())
+		currNode_ = currNode_->Next();
+
+	if (currNode_->Data() == data_)
+		return 0; // data found!
+	else
+		return 1 + this->recursiveSearchValue(currNode_->Next(), data_);
+}
+
+/**
+ * Function to return the midpoint node
+ * 
+ * time complexity = O(n)
+ */
+template <typename T>
+Node<T> *LinkedList<T>::midpoint() const
+{
+	// Check if the list is empty
+	if (this->head == nullptr || this->head->Next() == nullptr)
+	{
+		return nullptr; // empty list
+	}
+	else
+	{
+		// Use the slow & fast pointers approach
+		Node<T> *slow = this->head->Next();
+		Node<T> *fast = this->head->Next()->Next();
+
+		while (fast && fast->Next())
+		{
+			// Jump 1 node for slow and 2 nodes for fast pointer
+			slow = slow->Next();
+			fast = fast->Next()->Next();
+		}
+
+		if (fast != nullptr)
+			return slow->Next(); // List with even size
+
+		// List with odd size
+		return slow;
+	}
+}
+
+/**
+ * Function to return the midpoint node data
+ */
+template <typename T>
+T LinkedList<T>::midpointData() const
+{
+	Node<T> *node = this->midpoint();
+	return node != nullptr ? node->Data() : T();
+}
+
 // ***************************************************
 // ** Overload operators
 // ***************************************************

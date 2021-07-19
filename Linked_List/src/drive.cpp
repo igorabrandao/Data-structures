@@ -193,6 +193,33 @@ int main()
     cout << "- is at position: " << stringLinkedListCopy.searchValue('-') << endl;
     cout << "d is at position: " << stringLinkedListCopy.searchValue('d') << endl;
     cout << "' ' is at position: " << stringLinkedListCopy.searchValue(' ') << endl;
+    cout << "l is at position: " << stringLinkedListCopy.recursiveSearchValue(stringLinkedListCopy.Head(), 'l') << endl;
+    cout << "s is at position: " << stringLinkedListCopy.recursiveSearchValue(stringLinkedListCopy.Head(), 's') << endl;
+    cout << "i is at position: " << stringLinkedListCopy.recursiveSearchValue(stringLinkedListCopy.Head(), 'i') << endl;
+    cout << endl;
+
+    /* ============================================================================== */
+
+    /*----------------- [ Test the Linked List midpoint operations ] ---------------- */
+
+    cout << "<<< Testing the midpoint operation:" << endl;
+
+    intLinkedList.print(false, "intLinkedList");
+    cout << "Midpoint: " << intLinkedList.midpointData() << endl;
+    cout << endl;
+
+    intLinkedListCopy.print(false, "intLinkedListCopy");
+    cout << "Midpoint: " << intLinkedListCopy.midpointData() << endl;
+    cout << endl;
+
+    stringLinkedListCopy.print(false, "stringLinkedListCopy");
+    cout << "Midpoint: " << stringLinkedListCopy.midpointData() << endl;
+    cout << endl;
+
+    intLinkedListEmpty.print(false, "intLinkedListEmpty");
+    cout << "Midpoint: " << intLinkedListEmpty.midpointData() << endl;
+    cout << endl;
+
     cout << endl;
 
     /* ============================================================================== */
