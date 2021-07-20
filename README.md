@@ -18,7 +18,7 @@ Use the makefile by typing the **'make'** command from the terminal, after navig
 
 ## Project structure
 
-Current implemented data structures:
+Currently implemented data structures:
 
 **Array** => An array is a collection of items stored at contiguous memory locations.
 

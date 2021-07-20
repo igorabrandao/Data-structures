@@ -523,6 +523,35 @@ T LinkedList<T>::midpointData() const
 	return node != nullptr ? node->Data() : T();
 }
 
+/**
+ * Function to reverse the list
+ * 
+ * time complexity = O(n)
+ * space complexity = O(1)
+ */
+template <typename T>
+void LinkedList<T>::reverse()
+{
+	// Check if the list is empty
+	if (this->head != nullptr)
+	{
+		// We need 3 pointers to solve this
+		Node<T> *prevNode = nullptr;
+		Node<T> *currNode = this->head;
+
+		while (currNode != nullptr)
+		{
+			Node<T> *nextNode = currNode->Next();
+			currNode->setNext(prevNode);
+			prevNode = currNode;
+			currNode = nextNode;
+		}
+
+		this->head = prevNode;
+		//this->tail = currNode;
+	}
+}
+
 // ***************************************************
 // ** Overload operators
 // ***************************************************

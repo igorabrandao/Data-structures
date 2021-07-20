@@ -224,6 +224,34 @@ int main()
 
     /* ============================================================================== */
 
+    /*------------------ [ Test the Linked List reverse operation ] ----------------- */
+
+    cout << "<<< Testing the reverse operation:" << endl;
+
+    intLinkedList.print(false, "intLinkedList");
+    intLinkedList.reverse();
+    intLinkedList.print(false, "reverse: ");
+    cout << endl;
+
+    intLinkedListCopy.print(false, "intLinkedListCopy");
+    intLinkedListCopy.reverse();
+    intLinkedListCopy.print(false, "reverse: ");
+    cout << endl;
+
+    stringLinkedListCopy.print(false, "stringLinkedListCopy");
+    stringLinkedListCopy.reverse();
+    stringLinkedListCopy.print(false, "reverse: ");
+    cout << endl;
+
+    intLinkedListEmpty.print(false, "intLinkedListEmpty");
+    intLinkedListEmpty.reverse();
+    intLinkedListEmpty.print(false, "reverse: ");
+    cout << endl;
+
+    cout << endl;
+
+    /* ============================================================================== */
+
     // Finish the program
     cout << "Finished successfully!\n";
     return EXIT_SUCCESS;

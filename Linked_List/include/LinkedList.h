@@ -86,6 +86,7 @@ public:
     int recursiveSearchValue(Node<T> *, T data_) const; // Function to search a node by it's value first occurrence (recursively)
     Node<T> *midpoint() const;                          // Function to return the midpoint node
     T midpointData() const;                             // Function to return the midpoint node data
+    void reverse();                                     // Function to reverse the list
 
     // Return pointer to the list head
     inline Node<T> *Head() { return this->head; };
