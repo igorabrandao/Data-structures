@@ -60,11 +60,12 @@ private:
     // ***************************************************
     // ** Attributes
     // ***************************************************
-    int listSize = 0; // The list size
     Node<T> *head;    // The head of the list
     Node<T> *tail;    // The tail of the list
 
 public:
+    int listSize = 0; // The list size
+    
     // ***************************************************
     // ** Functions
     // ***************************************************
@@ -82,14 +83,17 @@ public:
     T getIthNodeValue(int index_) const;                // Function to return the ith element value from the list
     void insertIthNode(T data_, int index_);            // Function to add a new node at the ith position
     void deleteIthNode(int index_);                     // Function to delete the ith node
+    void deleteIthNodeFromEnd(int nBeforeEnd_);         // Function to delete the ith node from the end of the list
     int searchValue(T data_) const;                     // Function to search a node by it's value first occurrence
     int recursiveSearchValue(Node<T> *, T data_) const; // Function to search a node by it's value first occurrence (recursively)
     Node<T> *midpoint() const;                          // Function to return the midpoint node
     T midpointData() const;                             // Function to return the midpoint node data
     void reverse();                                     // Function to reverse the list
+    void merge(Node<T> *, Node<T> *);                   // Function to merge 2 sorted linked lists
 
     // Return pointer to the list head
     inline Node<T> *Head() { return this->head; };
+    inline void setHead(Node<T> *head_) { this->head = head_; };
 
     // Return pointer to the list tail
     inline Node<T> *Tail() { return this->tail; };

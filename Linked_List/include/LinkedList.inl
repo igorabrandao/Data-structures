@@ -431,6 +431,63 @@ void LinkedList<T>::deleteIthNode(int index_)
 }
 
 /**
+ * Function to delete the ith node from the end of the list
+ * 
+ * time complexity: O(n)
+ * space complexity: O(1)
+ */
+template <typename T>
+void LinkedList<T>::deleteIthNodeFromEnd(int nBeforeEnd_)
+{
+	// Check for edge cases
+	if (this->head->Next() == nullptr)
+	{
+		cout << "<< Empty list! >>" << endl;
+	}
+	else if (nBeforeEnd_ < 0 || nBeforeEnd_ >= this->listSize)
+	{
+		cout << "<< Index out of range! >>" << endl;
+	}
+	else
+	{
+		// To do so, we'll need 2 pointers
+		Node<T> *behindNode = this->head;
+		Node<T> *fowardNode = this->head;
+
+		// Advance the foward node n positions
+		while (nBeforeEnd_--)
+			fowardNode = fowardNode->Next();
+
+		// Special case: the list length == n
+		if (fowardNode == nullptr)
+		{
+			// Delete the list head
+			Node<T> *node = this->head->Next();
+			delete this->head;
+			this->head = node;
+		}
+
+		// Traverse the list until the foward pointer reachs the last node
+		while (fowardNode->Next() != nullptr)
+		{
+			behindNode = behindNode->Next();
+			fowardNode = fowardNode->Next();
+		}
+
+		cout << "node to delete: " << behindNode->Next()->Data() << endl;
+
+		// Keep track of the node that needs to be deleted
+		Node<T> *node = behindNode->Next();
+
+		// Connect the previous node with the next node of the one which needs to be deleted.
+		behindNode->Next()->setNext(node->Next());
+
+		// Delete the node
+		delete node;
+	}
+}
+
+/**
  * Function to search a node by it's value first occurrence
  * 
  * time complexity = O(n)
@@ -550,6 +607,68 @@ void LinkedList<T>::reverse()
 		this->head = prevNode;
 		//this->tail = currNode;
 	}
+}
+
+/**
+ * Function to merge 2 sorted linked lists
+ * 
+ * time complexity: O(m+n)
+ * 
+ * space comlexity: O(1)
+ */
+template <typename T>
+void LinkedList<T>::merge(Node<T> *list1_, Node<T> *list2_)
+{
+	// Check if the lists are not empty
+	if (list1_ == nullptr)
+		this->head = list2_;
+	else if (list2_ == nullptr)
+		this->head = list1_;
+
+	// Create the head of the merged list
+	Node<T> *finalHead = nullptr;
+
+	// Initialize the finalHead pointer
+	if (list1_->Data() < list2_->Data())
+	{
+		finalHead = list1_;
+		list1_ = list1_->Next();
+	}
+	else
+	{
+		finalHead = list2_;
+		list2_ = list2_->Next();
+	}
+
+	// Pointer to create the new nodes of the merged list
+	Node<T> *node = finalHead;
+
+	// Traverse both lists
+	while (list1_ && list2_)
+	{
+		if (list1_->Data() < list2_->Data())
+		{
+			node->setNext(list1_); // insert at tail
+			list1_ = list1_->Next();
+		}
+		else
+		{
+			node->setNext(list2_);
+			list2_ = list2_->Next();
+		}
+
+		// Update the merged list tail
+		node = node->Next();
+	}
+
+	// Handle the case where one list is longer than the other
+	if (list1_)
+		node->setNext(list1_); // Add the remaining of list1
+	else
+		node->setNext(list2_); // Add the remaining of list2
+
+	// Return the head of the merged list
+	this->head = finalHead->Next();
 }
 
 // ***************************************************
