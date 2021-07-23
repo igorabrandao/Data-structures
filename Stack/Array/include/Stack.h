@@ -16,7 +16,8 @@
 #define STACK_H_
 
 #include <iostream>
-#include "../../Array/include/Array.h"
+#include <string>
+#include "../../../Array/include/Array.h"
 
 using namespace std;
 
@@ -31,24 +32,24 @@ private:
     // ** Attributes
     // ***************************************************
     Array<T> *data; // The Array structure to holds the Stack data
+    int iSize;      // Stack max size
     int currIndex;  // Holds the current position on the stack
 
-    // ***************************************************
-    // ** Methods
-    // ***************************************************
     inline Stack(const Stack &){/* empty */}; // Disable copy constructor
 
 public:
     // ***************************************************
     // ** Functions
     // ***************************************************
-    Stack(int size_ = 5); // Class constructor
-    ~Stack();             // Class Destructor
-    void push(T data_);   // Method to add elements into the stack
-    void pop();           // Method to remove elements from the stack following LIFO
-    T top() const;        // Function to retrieve the last element from the stack
-    int size() const;     // Returns the size of the stack
-    bool isEmpty() const; // Function to check whether or not the stack is empty
+    Stack(int size_ = 5);                           // Class constructor
+    inline ~Stack(){/* empty */};                   // Class Destructor
+    int size() const;                               // Returns the size of the stack
+    bool isEmpty() const;                           // Function to check whether or not the stack is empty
+    bool isFull() const;                            // Function to check whether or not the stack is empty
+    void push(T data_);                             // Method to add elements into the stack
+    void pop();                                     // Method to remove elements from the stack following LIFO
+    T top() const;                                  // Function to retrieve the last element from the stack
+    void print(bool, string stackName_ = "") const; // Method to print the stack
 
     // ***************************************************
     // ** Overload operators
