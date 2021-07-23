@@ -102,6 +102,31 @@ void Array<T>::add(const T &obj_)
 }
 
 /**
+ * Method to remove an element from the array
+ */
+template <typename T>
+void Array<T>::remove(int index_)
+{
+	if (index_ < 0 || index_ >= this->nrOfEl)
+		throw std::out_of_range("<< Index out of range exception! >>");
+
+	cout << "index: " << index_ << endl;
+
+	// Start from rightmost element and shif the elements to the left
+	int prev = this->arr[index_ - 1], i;
+
+	for (i = index_ - 2; i >= 0; i--)
+	{
+		int curr = this->arr[i];
+		this->arr[i] = prev;
+		prev = curr;
+	}
+
+	// Move the next element in place of x
+	this->arr[i] = prev;
+}
+
+/**
  * Function to get an element by its position
  */
 template <typename T>

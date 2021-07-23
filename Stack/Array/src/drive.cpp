@@ -32,21 +32,26 @@ int main()
         intStack.push(i);
     }
 
-    intStack.pop();
-    intStack.pop();
-
     for (char &c : phrase)
     {
         stringStack.push(c);
     }
 
+    // Print the stacks
+    intStack.print(true, "intStack");
+    stringStack.print(true, "stringStack");
+
+    /* ============================================================================== */
+
+    /* --------------------------- [ Test pop operation ] --------------------------- */
+
+    intStack.pop();
     stringStack.pop();
     stringStack.push('!');
 
     // Print the stacks
     intStack.print(true, "intStack");
     stringStack.print(true, "stringStack");
-    cout << endl;
 
     /* ============================================================================== */
 

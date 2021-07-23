@@ -79,8 +79,8 @@ void Stack<T>::pop()
 	else
 	{
 		// Remove the value from the stack
-		// TODO: implement the shifting routine
-		this->data->getAt(this->currIndex - 1) = T();
+		//this->data->getAt(this->currIndex - 1) = T();
+		this->data->remove(this->currIndex - 1);
 
 		// Update the index
 		this->currIndex--;
