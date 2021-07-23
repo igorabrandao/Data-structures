@@ -9,7 +9,7 @@
 	TO COMPILE..: Use makefile.
 	OBS.........: Part of Data Structures Project.
 
-	tail UPDATE.: July 15th, 2021.
+	tail UPDATE.: July 23th, 2021.
 	</pre>
 */
 #ifndef LINKED_LIST_H_

@@ -1,5 +1,5 @@
 # ====================================================
-# Makefile build 'Array project' using Make
+# Makefile build 'Linked List project' using Make
 # ====================================================
 all:
 	g++ -Wall -std=c++0x src/drive.cpp -I include/ -o bin/linkedList -g

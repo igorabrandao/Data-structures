@@ -26,6 +26,8 @@ Currently implemented data structures:
 
 **Linked list** => A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
 
+**Stack (in progress)** => A Stack is a linear data structure that follows the LIFO (Last-In-First-Out) principle.
+
 ## Ways to contribute
 
 You can help us to make this projet even better :rocket:. Here are the ways you can contribute to this project:
