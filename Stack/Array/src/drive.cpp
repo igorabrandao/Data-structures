@@ -64,6 +64,33 @@ int main()
 
     /* ============================================================================== */
 
+    /* --------------------------- [ Test top operation ] --------------------------- */
+
+    cout << "<<< Testing the top operations:" << endl;
+
+    // Print the stacks top
+    cout << "intStack top: " << intStack.top() << endl;
+    cout << "stringStack top: " << stringStack.top() << endl;
+    cout << endl;
+
+    cout << "pop()" << endl;
+    intStack.pop();
+    stringStack.pop();
+
+    cout << "intStack top: " << intStack.top() << endl;
+    cout << "stringStack top: " << stringStack.top() << endl;
+    cout << endl;
+
+    cout << "pop()" << endl;
+    intStack.pop();
+    stringStack.pop();
+
+    cout << "intStack top: " << intStack.top() << endl;
+    cout << "stringStack top: " << stringStack.top() << endl;
+    cout << endl;
+
+    /* ============================================================================== */
+
     // Finish the program
     cout << "Finished successfully!\n";
     return EXIT_SUCCESS;

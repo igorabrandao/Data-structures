@@ -56,7 +56,7 @@ void Stack<T>::push(T data_)
 {
 	// Check if the stack is full
 	if (this->isFull())
-		cout << "<< Stack is Full! >>" << endl;
+		cout << "<< Stack is Full! >>" << endl; // stack overflow
 	else
 	{
 		// Add the new value to the stack
@@ -75,7 +75,7 @@ void Stack<T>::pop()
 {
 	// Check if the stack is empty
 	if (this->isEmpty())
-		cout << "<< Stack is Empty! >>" << endl;
+		cout << "<< Stack is Empty! >>" << endl; // stack underflow
 	else
 	{
 		// Remove the value from the stack
@@ -96,12 +96,12 @@ T Stack<T>::top() const
 	if (this->isEmpty())
 	{
 		cout << "<< Stack is Empty! >>" << endl;
-		return nullptr;
+		return T();
 	}
 	else
 	{
 		// Return the last element from the stack
-		return this->data[this->currIndex];
+		return this->data->getAt(this->currIndex - 1);
 	}
 }
 
