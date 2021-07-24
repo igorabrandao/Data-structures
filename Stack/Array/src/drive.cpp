@@ -19,10 +19,10 @@ int main()
     /* ---------------------------- [ Test Stack class ] ---------------------------- */
 
     // Stack class instance with int
-    Stack<int> intStack(iSize);
+    Stack<int> intStack;
 
     // Stack class instance with string
-    Stack<char> stringStack(iSize);
+    Stack<char> stringStack;
 
     cout << "<<< Testing the Stack initialization:" << endl;
 
@@ -46,21 +46,24 @@ int main()
     /* --------------------------- [ Test pop operation ] --------------------------- */
 
     cout << "<<< Testing the pop & push operations:" << endl;
+    cout << endl;
 
+    cout << "<<< intStack: pop(), pop(), pop(), push(99)" << endl;
     intStack.pop();
     intStack.pop();
     intStack.pop();
     intStack.push(99);
+    intStack.print(true, "intStack");
+    cout << endl;
 
+    cout << "<<< stringStack: pop(), pop(), push('!'), pop(), push('X')" << endl;
     stringStack.pop();
     stringStack.pop();
     stringStack.push('!');
     stringStack.pop();
     stringStack.push('X');
-
-    // Print the stacks
-    intStack.print(true, "intStack");
     stringStack.print(true, "stringStack");
+    cout << endl;
 
     /* ============================================================================== */
 
@@ -83,6 +86,16 @@ int main()
 
     cout << "pop()" << endl;
     intStack.pop();
+    stringStack.pop();
+
+    cout << "intStack top: " << intStack.top() << endl;
+    cout << "stringStack top: " << stringStack.top() << endl;
+    cout << endl;
+
+    cout << "pop()" << endl;
+    
+    stringStack.pop();
+    stringStack.pop();
     stringStack.pop();
 
     cout << "intStack top: " << intStack.top() << endl;

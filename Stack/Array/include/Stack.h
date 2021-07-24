@@ -41,7 +41,7 @@ public:
     // ***************************************************
     // ** Functions
     // ***************************************************
-    Stack(int size_ = 5);                           // Class constructor
+    Stack();                                        // Class constructor
     inline ~Stack(){/* empty */};                   // Class Destructor
     int size() const;                               // Returns the size of the stack
     bool isEmpty() const;                           // Function to check whether or not the stack is empty

@@ -148,7 +148,7 @@ void Array<T>::expand(int newSize_)
 
 	// If the new size wasn't informed, just double the Array
 	if (szToExpand == 0)
-		szToExpand *= 2;
+		szToExpand = this->mSize * 2;
 
 	try
 	{
@@ -167,8 +167,8 @@ void Array<T>::expand(int newSize_)
 		// Copy the temp array to the original
 		this->arr = temp;
 
-		// Update the number of elements
-		this->nrOfEl = szToExpand;
+		// Update the Array max size
+		this->mSize = szToExpand;
 	}
 	catch (const bad_alloc &exception)
 	{

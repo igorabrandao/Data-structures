@@ -11,14 +11,14 @@
  * Class constructor
  */
 template <typename T>
-Stack<T>::Stack(int size_)
+Stack<T>::Stack()
 {
 	// Set the strack basic attributes
-	this->iSize = size_;
+	this->iSize = 0;
 	this->currIndex = 0;
 
 	// Initialize the stack
-	this->data = new Array<T>(size_);
+	this->data = new Array<T>(this->iSize);
 }
 
 /**
@@ -56,15 +56,17 @@ void Stack<T>::push(T data_)
 {
 	// Check if the stack is full
 	if (this->isFull())
-		cout << "<< Stack is Full! >>" << endl; // stack overflow
-	else
 	{
-		// Add the new value to the stack
-		this->data->add(data_);
-
-		// Update the index
-		this->currIndex++;
+		// Double the array
+		this->iSize = (this->iSize == 0 ? 1 : this->iSize * 2);
+		this->data->expand(this->iSize);
 	}
+	
+	// Add the new value to the stack
+	this->data->add(data_);
+
+	// Update the index
+	this->currIndex++;
 }
 
 /**
