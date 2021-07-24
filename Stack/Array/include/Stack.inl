@@ -79,7 +79,6 @@ void Stack<T>::pop()
 	else
 	{
 		// Remove the value from the stack
-		//this->data->getAt(this->currIndex - 1) = T();
 		this->data->remove(this->currIndex - 1);
 
 		// Update the index

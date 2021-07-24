@@ -45,9 +45,18 @@ int main()
 
     /* --------------------------- [ Test pop operation ] --------------------------- */
 
+    cout << "<<< Testing the pop & push operations:" << endl;
+
     intStack.pop();
+    intStack.pop();
+    intStack.pop();
+    intStack.push(99);
+
+    stringStack.pop();
     stringStack.pop();
     stringStack.push('!');
+    stringStack.pop();
+    stringStack.push('X');
 
     // Print the stacks
     intStack.print(true, "intStack");

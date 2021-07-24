@@ -110,20 +110,20 @@ void Array<T>::remove(int index_)
 	if (index_ < 0 || index_ >= this->nrOfEl)
 		throw std::out_of_range("<< Index out of range exception! >>");
 
-	cout << "index: " << index_ << endl;
+	// Start from index_ element and shif the elements to the left
+	int i = 0;
 
-	// Start from rightmost element and shif the elements to the left
-	int prev = this->arr[index_ - 1], i;
-
-	for (i = index_ - 2; i >= 0; i--)
+	for (i = index_; i < (this->nrOfEl - 1); i++)
 	{
-		int curr = this->arr[i];
-		this->arr[i] = prev;
-		prev = curr;
+		T next = this->arr[i + 1];
+		this->arr[i] = next;
 	}
 
-	// Move the next element in place of x
-	this->arr[i] = prev;
+	// Replace the empty right position
+	this->arr[i] = T();
+
+	// Update the number of elements
+	this->nrOfEl--;
 }
 
 /**
