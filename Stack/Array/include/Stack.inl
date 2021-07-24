@@ -57,7 +57,7 @@ void Stack<T>::push(T data_)
 	// Check if the stack is full
 	if (this->isFull())
 	{
-		// Double the array
+		// Expand the array size to fit the new stack data
 		this->iSize = (this->iSize == 0 ? 1 : this->iSize * 2);
 		this->data->expand(this->iSize);
 	}
