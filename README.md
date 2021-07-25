@@ -26,7 +26,9 @@ Currently implemented data structures:
 
 **Linked list** => A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
 
-**Stack (in progress)** => A Stack is a linear data structure that follows the LIFO (Last-In-First-Out) principle.
+**Stack** => A Stack is a linear data structure that follows the LIFO (Last-In-First-Out) principle.
+
+**Pair** => A pair is a class template that provides a way to store two heterogeneous objects as a single unit.
 
 ## Ways to contribute
 
