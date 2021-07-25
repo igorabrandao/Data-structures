@@ -40,6 +40,8 @@ LinkedList<T>::~LinkedList()
 
 /**
  * Copy constructor (deep copy)
+ * 
+ * time complexity: O(n)
  */
 template <typename T>
 LinkedList<T>::LinkedList(const LinkedList &obj_)
@@ -71,7 +73,7 @@ LinkedList<T>::LinkedList(const LinkedList &obj_)
 /**
  * Function to add a value to the front of the list
  * 
- * time complexity = O(n)
+ * time complexity = O(1)
  */
 template <typename T>
 void LinkedList<T>::push_front(T data_)
@@ -104,7 +106,7 @@ void LinkedList<T>::push_front(T data_)
 /**
  * Function to add a value to the back of the list
  * 
- * time complexity = O(n)
+ * time complexity = O(1)
  */
 template <typename T>
 void LinkedList<T>::push_back(T data_)
@@ -120,26 +122,11 @@ void LinkedList<T>::push_back(T data_)
 	}
 	else
 	{
-		Node<T> *currNode = this->head;
-
-		/**
-		 * Iterate through the end of the list and set new node as next
-		 * of last node
-		 * (Current List)->(Node)
-		 */
-		while (currNode && currNode->Next())
-		{
-			currNode = currNode->Next();
-		}
-
-		/**
-		 * At this point curr is the last node
-		 * Set newNode as the next of the last node (tail)
-		 */
-		currNode->setNext(newNode);
+		// Set newNode as the next of the last node (tail)
+		this->tail->setNext(newNode);
 
 		// Assign the last element to the list tail
-		this->tail = currNode->Next();
+		this->tail = this->tail->Next();
 	}
 
 	// Update the list size
@@ -148,6 +135,8 @@ void LinkedList<T>::push_back(T data_)
 
 /**
  * Function to remove the first value of the list
+ * 
+ * time complexity = O(1)
  */
 template <typename T>
 void LinkedList<T>::pop_front()
@@ -179,6 +168,8 @@ void LinkedList<T>::pop_front()
 
 /**
  * Function to remove the last value of the list
+ * 
+ * time complexity = O(n)
  */
 template <typename T>
 void LinkedList<T>::pop_back()
@@ -217,6 +208,8 @@ void LinkedList<T>::pop_back()
 
 /**
  * Function to print the linked list
+ * 
+ * time complexity = O(n)
  */
 template <typename T>
 void LinkedList<T>::print(bool showLength_, string listName_) const

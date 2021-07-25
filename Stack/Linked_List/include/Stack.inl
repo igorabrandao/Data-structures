@@ -23,6 +23,8 @@ Stack<T>::Stack()
 
 /**
  * Returns the size of the stack
+ * 
+ * time complexity: O(1)
  */
 template <typename T>
 int Stack<T>::size() const
@@ -32,6 +34,8 @@ int Stack<T>::size() const
 
 /**
  * Function to check whether or not the stack is empty
+ * 
+ * time complexity: O(1)
  */
 template <typename T>
 bool Stack<T>::isEmpty() const
@@ -41,6 +45,8 @@ bool Stack<T>::isEmpty() const
 
 /**
  * Method to add elements into the stack
+ * 
+ * time complexity: O(1)
  */
 template <typename T>
 void Stack<T>::push(T data_)
@@ -54,6 +60,8 @@ void Stack<T>::push(T data_)
 
 /**
  * Method to remove elements from the stack following LIFO
+ * 
+ * time complexity: O(1)
  */
 template <typename T>
 void Stack<T>::pop()
@@ -73,6 +81,8 @@ void Stack<T>::pop()
 
 /**
  * Function to retrieve the last element from the stack
+ * 
+ * time complexity: O(1)
  */
 template <typename T>
 T Stack<T>::top() const
@@ -92,6 +102,8 @@ T Stack<T>::top() const
 
 /**
  * Method to print the stack
+ * 
+ * time complexity = O(n)
  */
 template <typename T>
 void Stack<T>::print(bool showLength_, string stackName_) const
