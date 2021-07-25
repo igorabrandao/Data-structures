@@ -22,15 +22,15 @@ using namespace std;
 /**
  * Pair template class
  */
-template <class T, class V>
+template <class T1, class T2>
 class Pair
 {
 private:
     // ***************************************************
     // ** Attributes
     // ***************************************************
-    T x; // x attribute
-    V y; // y attribute
+    T1 x; // x attribute
+    T2 y; // y attribute
 
 public:
     // ***************************************************
@@ -38,19 +38,19 @@ public:
     // ***************************************************
     Pair()
     {
-        this->x = T();
-        this->y = V();
+        this->x = T1();
+        this->y = T2();
     };
-    Pair(T x_, V y_)
+    Pair(T1 x_, T2 y_)
     {
         this->setX(x_);
         this->setY(y_);
-    };                                       // Class constructor overload
-    ~Pair(){};                               // Class Destructor
-    void setX(T data_) { this->x = data_; }; // Set the x attribute
-    T getX() { return this->x; };            // Return the x attribute
-    void setY(V data_) { this->y = data_; }; // Set the y attribute
-    V getY() { return this->y; };            // Return the y attribute
+    };                                        // Class constructor overload
+    ~Pair(){};                                // Class Destructor
+    void setX(T1 data_) { this->x = data_; }; // Set the x attribute
+    T1 getX() { return this->x; };            // Return the x attribute
+    void setY(T2 data_) { this->y = data_; }; // Set the y attribute
+    T2 getY() { return this->y; };            // Return the y attribute
 
     // ***************************************************
     // ** Overload operators
