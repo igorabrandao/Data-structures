@@ -29,7 +29,7 @@ Currently implemented data structures:
 **Stack** => A Stack is a linear data structure that follows the LIFO (Last-In-First-Out) principle.
 
 - **Array version** => Needs to reallocate memory everytime the stack is full
-- **Linked List version** => Needs to push the elements in front of the list since it's based on single Linked List.
+- **Linked List version** => Needs to push the elements in front of the list since it's based on a single Linked List.
 
 **Pair** => A pair is a class template that provides a way to store two heterogeneous objects as a single unit.
 
