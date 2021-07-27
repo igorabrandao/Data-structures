@@ -43,6 +43,7 @@ public:
     Array(const Array &obj_);                 // Copy constructor
     int size() const;                         // Function to return the array size
     void add(const T &obj_);                  // Function to add an element into the array
+    void addAt(int index_, const T &obj_);    // Function to add an element into a give position the array
     void remove(int index_);                  // Method to remove an element from the array
     T &getAt(int index_) const;               // Function to get an element by its position
     void expand(int newSize_ = 0);            // Function to expand the array N positions

@@ -102,6 +102,21 @@ void Array<T>::add(const T &obj_)
 }
 
 /**
+ * Function to add an element into a give position the array
+ */
+template <typename T>
+void Array<T>::addAt(int index_, const T &obj_)
+{
+	if (this->nrOfEl < this->mSize)
+	{
+		this->arr[index_] = obj_;
+		this->nrOfEl++;
+	}
+	else
+		cout << "<<< Array is full!" << endl;
+}
+
+/**
  * Method to remove an element from the array
  */
 template <typename T>
