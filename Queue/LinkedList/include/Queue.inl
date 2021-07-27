@@ -18,7 +18,7 @@ Queue<T>::Queue()
 	this->currIndex = 0;
 
 	// Initialize the queue
-	this->data = new Array<T>(this->iSize);
+	this->data = new LinkedList<T>();
 }
 
 /**
@@ -56,16 +56,8 @@ bool Queue<T>::isFull() const
 template <typename T>
 void Queue<T>::push(T data_)
 {
-	// Check if the queue is full
-	if (this->isFull())
-	{
-		// Expand the array size to fit the new queue data
-		this->iSize = (this->iSize == 0 ? 1 : this->iSize * 2);
-		this->data->expand(this->iSize);
-	}
-
 	// Add the new value to the queue
-	this->data->add(data_);
+	this->data->push_back(data_);
 
 	// Update the index
 	this->currIndex++;
@@ -87,8 +79,8 @@ void Queue<T>::pop()
 	}
 	else
 	{
-		// Remove the value from the queue
-		this->data->remove(0);
+		// Remove the first value from the queue
+		this->data->pop_front();
 
 		// Update the index
 		this->currIndex--;
@@ -112,7 +104,7 @@ T Queue<T>::front() const
 	else
 	{
 		// Return the first element from the queue
-		return this->data->getAt(0);
+		return this->data->Head()->Next()->Data();
 	}
 }
 
@@ -125,12 +117,7 @@ T Queue<T>::front() const
 template <typename T>
 void Queue<T>::print(bool showLength_, string queueName_) const
 {
-	this->data->print(queueName_);
-
-	if (showLength_)
-		cout << "size: " << this->size() << endl;
-
-	cout << endl;
+	this->data->print(true, queueName_);
 }
 
 // ***************************************************
