@@ -23,6 +23,8 @@ Queue<T>::Queue()
 
 /**
  * Returns the size of the queue
+ * 
+ * time complexity: O(1)
  */
 template <typename T>
 int Queue<T>::size() const
@@ -32,6 +34,8 @@ int Queue<T>::size() const
 
 /**
  * Function to check whether or not the queue is empty
+ * 
+ * time complexity: O(1)
  */
 template <typename T>
 bool Queue<T>::isEmpty() const
@@ -41,6 +45,8 @@ bool Queue<T>::isEmpty() const
 
 /**
  * Function to check whether or not the queue is empty
+ * 
+ * time complexity: O(1)
  */
 template <typename T>
 bool Queue<T>::isFull() const
@@ -66,8 +72,7 @@ void Queue<T>::push(T data_)
 /**
  * Method to remove elements from the queue following FIFO
  * 
- * time complexity: O(n) due to array shifting
- * it can be optimized by implementing a circular queue
+ * time complexity: O(1)
  */
 template <typename T>
 void Queue<T>::pop()
