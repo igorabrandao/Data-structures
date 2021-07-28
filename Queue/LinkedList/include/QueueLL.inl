@@ -127,6 +127,9 @@ void QueueLL<T>::print(bool showLength_, string queueName_) const
 
 /**
  * Function to reverse the queue
+ * 
+ * time complexity: O(n)
+ * space complexity: O(n)
  */
 template <typename T>
 void QueueLL<T>::reverse()
