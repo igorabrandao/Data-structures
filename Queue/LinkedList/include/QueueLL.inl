@@ -1,7 +1,7 @@
 // ***************************************************
 // ** Implements the functions from Queue class
 // ***************************************************
-#include "Queue.h"
+#include "QueueLL.h"
 
 // ***************************************************
 // ** Functions
@@ -11,7 +11,7 @@
  * Class constructor
  */
 template <typename T>
-Queue<T>::Queue()
+QueueLL<T>::QueueLL()
 {
 	// Set the strack basic attributes
 	this->iSize = 0;
@@ -27,7 +27,7 @@ Queue<T>::Queue()
  * time complexity: O(1)
  */
 template <typename T>
-int Queue<T>::size() const
+int QueueLL<T>::size() const
 {
 	return this->currIndex;
 }
@@ -38,7 +38,7 @@ int Queue<T>::size() const
  * time complexity: O(1)
  */
 template <typename T>
-bool Queue<T>::isEmpty() const
+bool QueueLL<T>::isEmpty() const
 {
 	return (this->size() == 0 ? true : false);
 }
@@ -49,7 +49,7 @@ bool Queue<T>::isEmpty() const
  * time complexity: O(1)
  */
 template <typename T>
-bool Queue<T>::isFull() const
+bool QueueLL<T>::isFull() const
 {
 	return (this->currIndex == iSize ? true : false);
 }
@@ -60,7 +60,7 @@ bool Queue<T>::isFull() const
  * time complexity: O(1)
  */
 template <typename T>
-void Queue<T>::push(T data_)
+void QueueLL<T>::push(T data_)
 {
 	// Add the new value to the queue
 	this->data->push_back(data_);
@@ -75,7 +75,7 @@ void Queue<T>::push(T data_)
  * time complexity: O(1)
  */
 template <typename T>
-void Queue<T>::pop()
+void QueueLL<T>::pop()
 {
 	// Check if the queue is empty
 	if (this->isEmpty())
@@ -98,7 +98,7 @@ void Queue<T>::pop()
  * time complexity: O(1)
  */
 template <typename T>
-T Queue<T>::front() const
+T QueueLL<T>::front() const
 {
 	// Check if the queue is empty
 	if (this->isEmpty())
@@ -120,9 +120,28 @@ T Queue<T>::front() const
  * in other words, O(n)/n = O(1) per element
  */
 template <typename T>
-void Queue<T>::print(bool showLength_, string queueName_) const
+void QueueLL<T>::print(bool showLength_, string queueName_) const
 {
 	this->data->print(true, queueName_);
+}
+
+/**
+ * Function to reverse the queue
+ */
+template <typename T>
+void QueueLL<T>::reverse()
+{
+	// Create a temp list
+	LinkedList<T> *temp = new LinkedList<T>();
+
+	while (!this->isEmpty())
+	{
+		temp->push_front(this->front());
+		this->pop();
+	}
+
+	// Copy the new list
+	this->data = temp;
 }
 
 // ***************************************************

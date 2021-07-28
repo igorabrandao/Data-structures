@@ -3,7 +3,7 @@
  *  Program to test the Queue class.
 */
 #include <iostream>
-#include "Queue.h"
+#include "QueueLL.h"
 
 using namespace std;
 
@@ -19,10 +19,10 @@ int main()
     /* ---------------------------- [ Test Queue class ] ---------------------------- */
 
     // Queue class instance with int
-    Queue<int> intQueue;
+    QueueLL<int> intQueue;
 
     // Queue class instance with string
-    Queue<char> stringQueue;
+    QueueLL<char> stringQueue;
 
     cout << "<<< Testing the Queue initialization:" << endl;
 
@@ -106,6 +106,15 @@ int main()
 
     intQueue.print(true, "intQueue");
     stringQueue.print(true, "stringQueue");
+    cout << endl;
+
+    /* ============================================================================== */
+
+    /* ------------------------- [ Test reverse operation ] ------------------------- */
+
+    cout << "intQueue reverse()" << endl;
+    intQueue.reverse();
+    intQueue.print(true, "intQueue");
 
     /* ============================================================================== */
 
