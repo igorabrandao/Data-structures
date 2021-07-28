@@ -31,6 +31,11 @@ Currently implemented data structures:
 - **Array version** => Needs to reallocate memory everytime the stack is full
 - **Linked List version** => Needs to push the elements in front of the list since it's based on a single Linked List.
 
+**Queue** => A Queue is a linear structure which follows a particular order in which the operations are performed FIFO (First-In-First-Out).
+
+- **Array version** => Needs to reallocate memory everytime the queue is full
+- **Linked List version** => Needs to push the elements in the back of the list.
+
 **Pair** => A pair is a class template that provides a way to store two heterogeneous objects as a single unit.
 
 ## Ways to contribute
