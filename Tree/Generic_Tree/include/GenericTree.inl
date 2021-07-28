@@ -76,10 +76,23 @@ void GenericTree<T>::push(TreeNode<T> *node_, T data_)
 template <typename T>
 void GenericTree<T>::print(TreeNode<T> *root_) const
 {
+	// Handle edge case
+	if (root_ == nullptr)
+	{
+		cout << "<Empty tree>" << endl;
+		return;
+	}
+
 	// Print the current tree node value
-	cout << root_->Data() << " ";
+	cout << root_->Data() << ": ";
 
 	// Loop over the current node children
+	for (auto i = 0; i < root_->Children()->size(); i++)
+	{
+		cout << root_->Children()->getAt(i)->Data() << " ";
+	}
+	cout << endl;
+
 	for (auto i = 0; i < root_->Children()->size(); i++)
 	{
 		this->print(root_->Children()->getAt(i));
