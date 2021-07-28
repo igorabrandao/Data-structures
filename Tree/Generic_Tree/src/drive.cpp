@@ -19,10 +19,10 @@ int main()
     /* ---------------------------- [ Test GenericTree class ] ---------------------------- */
 
     // GenericTree class instance with int
-    GenericTree<int> intGenericTree;
+    GenericTree<int> intGenericTree(100);
 
     // GenericTree class instance with string
-    GenericTree<char> stringGenericTree;
+    GenericTree<char> stringGenericTree('@');
 
     // Add some nodes to the tree
     for (auto i = 0; i < iSize; i++)
@@ -34,6 +34,22 @@ int main()
     {
         stringGenericTree.push(stringGenericTree.Root(), c);
     }
+
+    /* ============================================================================== */
+
+    /* -------------------------- [ Test print operation ] -------------------------- */
+
+    cout << "<<< Testing the print operation:" << endl;
+    cout << endl;
+
+    cout << "intGenericTree: ";
+    intGenericTree.print(intGenericTree.Root());
+    cout << endl;
+    
+    cout << "stringGenericTree: ";
+    stringGenericTree.print(stringGenericTree.Root());
+    cout << endl;
+    cout << endl;
 
     /* ============================================================================== */
 

@@ -105,9 +105,6 @@ void Array<T>::push(const T &obj_)
 
 	// Add the new value to the array
 	this->arr[this->nrOfEl++] = obj_;
-
-	// Update the number of elements
-	this->nrOfEl++;
 }
 
 /**

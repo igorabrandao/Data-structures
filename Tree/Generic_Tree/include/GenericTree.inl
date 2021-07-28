@@ -29,7 +29,6 @@ GenericTree<T>::GenericTree(T data_)
 	this->setTreeSize(0);
 }
 
-
 /**
  * Class destructor
  */
@@ -66,6 +65,25 @@ void GenericTree<T>::push(TreeNode<T> *node_, T data_)
 
 	// Update the tree size
 	this->setTreeSize(this->treeSize++);
+}
+
+/**
+ * Method to print the tree
+ * 
+ * time complexity O(n)
+ * space complexity O(n)
+ */
+template <typename T>
+void GenericTree<T>::print(TreeNode<T> *root_) const
+{
+	// Print the current tree node value
+	cout << root_->Data() << " ";
+
+	// Loop over the current node children
+	for (auto i = 0; i < root_->Children()->size(); i++)
+	{
+		this->print(root_->Children()->getAt(i));
+	}
 }
 
 // ***************************************************
