@@ -90,6 +90,27 @@ int Array<T>::size() const
 }
 
 /**
+ * Method to add an element and expand the the array if it's necessary
+ */
+template <typename T>
+void Array<T>::push(const T &obj_)
+{
+	// Check if the array is already full
+	if (this->nrOfEl >= this->mSize)
+	{
+		// If so, expand it
+		this->mSize = (this->mSize == 0 ? 1 : this->mSize * 2);
+		this->expand(mSize);
+	}
+
+	// Add the new value to the array
+	this->arr[this->nrOfEl++] = obj_;
+
+	// Update the number of elements
+	this->nrOfEl++;
+}
+
+/**
  * Function to add an element into the array
  */
 template <typename T>

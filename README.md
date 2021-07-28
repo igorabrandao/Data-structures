@@ -38,6 +38,10 @@ Currently implemented data structures:
 
 **Pair** => A pair is a class template that provides a way to store two heterogeneous objects as a single unit.
 
+**Tree** => A tree is a widely used abstract data type that simulates a hierarchical tree structure, with a root value and subtrees of children with a parent node, represented as a set of linked nodes.
+
+- **Generic tree** => Collection of nodes where each node is a data structure that consists of records and a list of references to its children(duplicate references are not allowed). This tree doesn't have constraint related to the number of children
+
 ## Ways to contribute
 
 You can help us to make this projet even better :rocket:. Here are the ways you can contribute to this project:
