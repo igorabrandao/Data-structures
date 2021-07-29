@@ -71,16 +71,19 @@ public:
     inline void setTreeSize(int size_) { this->treeSize = size_; };
     inline int getTreeSize() { return this->treeSize; };
     inline TreeNode<T> *Root() { return this->root; };
+    void setRoot(TreeNode<T> *root_) { this->root = root_; };
 
     // ***************************************************
     // ** Functions
     // ***************************************************
-    GenericTree();                        // Class constructor
-    GenericTree(T data_);                 // Class constructor overload
-    ~GenericTree();                       // Class Destructor
-    GenericTree(const GenericTree &obj_); // Copy constructor
-    void push(TreeNode<T> *, T data_);    // Method to add a node to a given node of the tree
-    void print(TreeNode<T> *root_) const; // Method to print the tree
+    GenericTree();                                // Class constructor
+    GenericTree(T data_);                         // Class constructor overload
+    ~GenericTree();                               // Class Destructor
+    GenericTree(const GenericTree &obj_);         // Copy constructor
+    void push(TreeNode<T> *, T data_);            // Method to add a node to a given node of the tree
+    void pushChild(TreeNode<T> *, TreeNode<T> *); // Method to add a child to a given node
+    void print(TreeNode<T> *root_) const;         // Method to print the tree
+    TreeNode<T> *takeInputRecursive();            // Method to fill the tree recursively
 
     // ***************************************************
     // ** Overload operators

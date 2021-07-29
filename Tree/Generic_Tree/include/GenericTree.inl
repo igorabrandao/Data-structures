@@ -68,6 +68,21 @@ void GenericTree<T>::push(TreeNode<T> *node_, T data_)
 }
 
 /**
+ * Method to add a child to a given node
+ * 
+ * time complexity O(1)
+ */
+template <typename T>
+void GenericTree<T>::pushChild(TreeNode<T> *parentNode_, TreeNode<T> *childNode_)
+{
+	// Connect the child node with its parent
+	parentNode_->Children()->push(childNode_);
+
+	// Update the tree size
+	this->setTreeSize(this->treeSize++);
+}
+
+/**
  * Method to print the tree
  * 
  * time complexity O(n)
@@ -97,6 +112,38 @@ void GenericTree<T>::print(TreeNode<T> *root_) const
 	{
 		this->print(root_->Children()->getAt(i));
 	}
+}
+
+/**
+ * Method to fill the tree recursively
+ */
+template <typename T>
+TreeNode<T> *GenericTree<T>::takeInputRecursive()
+{
+	// Receive the tree node data from the user input
+	T rootData;
+	cout << "Enter the node data: ";
+	cin >> rootData;
+
+	// Set the root node with the given data
+	TreeNode<T> *root = new TreeNode<T>(rootData);
+
+	// Receive the number of children for the current node
+	int nChildren;
+	cout << "Enter num of children of " << rootData << ": ";
+	cin >> nChildren;
+
+	// Loop over the node children
+	for (auto i = 0; i < nChildren; i++)
+	{
+		// Create the child node and input it with children nodes
+		TreeNode<T> *childNode = this->takeInputRecursive();
+
+		// Input the current root node children
+		this->pushChild(root, childNode);
+	}
+
+	return root;
 }
 
 // ***************************************************
