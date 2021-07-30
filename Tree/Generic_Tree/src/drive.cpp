@@ -58,8 +58,6 @@ int main()
 
     /* ============================================================================== */
 
-    /* ============================================================================== */
-
     /* ------------------ [ Test recursive take input operation ] ------------------- */
 
     cout << "<<< Testing the recursive take input operation:" << endl;
@@ -75,6 +73,17 @@ int main()
     cout << "intInputNode after input" << endl;
     //intInputNode.print(intInputNode.Root());
     intInputNode.printLevelWise(intInputNode.Root());
+    cout << endl;
+
+    /* ============================================================================== */
+
+    /* ----------------------- [ Test nodes count operation ] ------------------------ */
+
+    cout << "<<< Testing the nodes count operation:" << endl;
+    cout << endl;
+
+    cout << "intInputNode nodes count (treeSize): " << intInputNode.getTreeSize() << endl;
+    cout << "intInputNode nodes count (nodes count): " << intInputNode.countNodes(intInputNode.Root()) << endl;
     cout << endl;
 
     /* ============================================================================== */

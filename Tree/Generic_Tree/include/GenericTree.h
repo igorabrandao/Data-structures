@@ -87,6 +87,7 @@ public:
     void printLevelWise(TreeNode<T> *root_) const; // Method to print the tree level wise
     TreeNode<T> *takeInputRecursive();             // Method to fill the tree recursively
     TreeNode<T> *takeInputLevelWise();             // Method to fill the tree level wise
+    int countNodes(TreeNode<T> *root_) const;      // Function to count the number of tree nodes
 
     // ***************************************************
     // ** Overload operators

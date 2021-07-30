@@ -64,7 +64,7 @@ void GenericTree<T>::push(TreeNode<T> *node_, T data_)
 	node_->Children()->push(newNode);
 
 	// Update the tree size
-	this->setTreeSize(this->treeSize++);
+	this->treeSize++;
 }
 
 /**
@@ -79,7 +79,7 @@ void GenericTree<T>::pushChild(TreeNode<T> *parentNode_, TreeNode<T> *childNode_
 	parentNode_->Children()->push(childNode_);
 
 	// Update the tree size
-	this->setTreeSize(this->treeSize++);
+	this->treeSize++;
 }
 
 /**
@@ -197,6 +197,9 @@ TreeNode<T> *GenericTree<T>::takeInputLevelWise()
 	// Set the root node with the given data
 	TreeNode<T> *root = new TreeNode<T>(rootData);
 
+	// Add the root node to the tree size
+	this->treeSize++;
+
 	// Create a queue to store the nodes ref
 	QueueLL<TreeNode<T> *> q;
 	q.push(root);
@@ -228,10 +231,35 @@ TreeNode<T> *GenericTree<T>::takeInputLevelWise()
 			TreeNode<T> *childNode = new TreeNode<T>(childData);
 			q.push(childNode);
 			frontNode->Children()->push(childNode);
+
+			// Update the tree size
+			this->treeSize++;
 		}
 	}
 
 	return root;
+}
+
+/**
+ * Function to count the number of tree nodes
+ */
+template <typename T>
+int GenericTree<T>::countNodes(TreeNode<T> *root_) const
+{
+	// Test the edge case
+	if (root_ == nullptr)
+		return 0;
+
+	int count = 1;
+
+	// Loop over the root children nodes
+	for (auto i = 0; i < root_->Children()->size(); i++)
+	{
+		// Count the current child children nodes recursively
+		count += this->countNodes(root_->Children()->getAt(i));
+	}
+
+	return count;
 }
 
 // ***************************************************
