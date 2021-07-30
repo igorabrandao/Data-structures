@@ -115,6 +115,43 @@ void GenericTree<T>::print(TreeNode<T> *root_) const
 }
 
 /**
+ * Method to print the tree level wise
+ * 
+ * time complexity O(n)
+ * space complexity O(n)
+ */
+template <typename T>
+void GenericTree<T>::printLevelWise(TreeNode<T> *root_) const
+{
+	// Create a queue to store the nodes ref
+	QueueLL<TreeNode<T> *> q;
+	q.push(root_);
+
+	while (!q.isEmpty())
+	{
+		// Store the front node from the queue and remove it
+		TreeNode<T> *frontNode = q.front();
+		q.pop();
+
+		// Print the front node
+		cout << frontNode->Data() << ": ";
+
+		for (auto i = 0; i < frontNode->Children()->size(); i++)
+		{
+			TreeNode<T> *childNode = frontNode->Children()->getAt(i);
+
+			// Add the child node to the stack
+			q.push(childNode);
+
+			// Print the current child node
+			cout << childNode->Data() << " ";
+		}
+
+		cout << endl;
+	}
+}
+
+/**
  * Method to fill the tree recursively
  */
 template <typename T>

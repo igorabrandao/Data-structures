@@ -73,7 +73,8 @@ int main()
     intInputNode.setRoot(intInputNode.takeInputLevelWise());
 
     cout << "intInputNode after input" << endl;
-    intInputNode.print(intInputNode.Root());
+    //intInputNode.print(intInputNode.Root());
+    intInputNode.printLevelWise(intInputNode.Root());
     cout << endl;
 
     /* ============================================================================== */

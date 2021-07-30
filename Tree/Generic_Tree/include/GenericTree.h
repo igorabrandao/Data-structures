@@ -77,15 +77,16 @@ public:
     // ***************************************************
     // ** Functions
     // ***************************************************
-    GenericTree();                                // Class constructor
-    GenericTree(T data_);                         // Class constructor overload
-    ~GenericTree();                               // Class Destructor
-    GenericTree(const GenericTree &obj_);         // Copy constructor
-    void push(TreeNode<T> *, T data_);            // Method to add a node to a given node of the tree
-    void pushChild(TreeNode<T> *, TreeNode<T> *); // Method to add a child to a given node
-    void print(TreeNode<T> *root_) const;         // Method to print the tree
-    TreeNode<T> *takeInputRecursive();            // Method to fill the tree recursively
-    TreeNode<T> *takeInputLevelWise();            // Method to fill the tree level wise
+    GenericTree();                                 // Class constructor
+    GenericTree(T data_);                          // Class constructor overload
+    ~GenericTree();                                // Class Destructor
+    GenericTree(const GenericTree &obj_);          // Copy constructor
+    void push(TreeNode<T> *, T data_);             // Method to add a node to a given node of the tree
+    void pushChild(TreeNode<T> *, TreeNode<T> *);  // Method to add a child to a given node
+    void print(TreeNode<T> *root_) const;          // Method to print the tree
+    void printLevelWise(TreeNode<T> *root_) const; // Method to print the tree level wise
+    TreeNode<T> *takeInputRecursive();             // Method to fill the tree recursively
+    TreeNode<T> *takeInputLevelWise();             // Method to fill the tree level wise
 
     // ***************************************************
     // ** Overload operators
