@@ -152,7 +152,7 @@ void GenericTree<T>::printLevelWise(TreeNode<T> *root_) const
 }
 
 /**
- * Method to fill the tree recursively
+ * Function to fill the tree recursively
  */
 template <typename T>
 TreeNode<T> *GenericTree<T>::takeInputRecursive()
@@ -184,7 +184,7 @@ TreeNode<T> *GenericTree<T>::takeInputRecursive()
 }
 
 /**
- * Method to fill the tree level wise
+ * Function to fill the tree level wise
  */
 template <typename T>
 TreeNode<T> *GenericTree<T>::takeInputLevelWise()
@@ -260,6 +260,28 @@ int GenericTree<T>::countNodes(TreeNode<T> *root_) const
 	}
 
 	return count;
+}
+
+/**
+ * Function to count the tree height
+ */
+template <typename T>
+int GenericTree<T>::height(TreeNode<T> *root_) const
+{
+	// Test the edge case
+	if (root_ == nullptr)
+		return 0;
+
+	int maxHeight = 0;
+
+	// Loop over the root children nodes
+	for (auto i = 0; i < root_->Children()->size(); i++)
+	{
+		// Count the subtree height recursively and Update the maxHeight
+		maxHeight = max(maxHeight, this->height(root_->Children()->getAt(i)));
+	}
+
+	return maxHeight + 1;
 }
 
 // ***************************************************

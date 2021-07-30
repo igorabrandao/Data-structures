@@ -62,8 +62,8 @@ private:
     // ***************************************************
     // ** Attributes
     // ***************************************************
-    TreeNode<T> *root; // The root of the list
-    int treeSize = 0;  // The number of nodes in the tree
+    TreeNode<T> *root;  // The root of the list
+    int treeSize = 0;   // The number of nodes in the tree
 
 public:
     // ***************************************************
@@ -72,7 +72,11 @@ public:
     inline void setTreeSize(int size_) { this->treeSize = size_; };
     inline int getTreeSize() { return this->treeSize; };
     inline TreeNode<T> *Root() { return this->root; };
-    void setRoot(TreeNode<T> *root_) { this->root = root_; };
+    void setRoot(TreeNode<T> *root_)
+    {
+        this->root = root_;
+        this->treeSize++;
+    };
 
     // ***************************************************
     // ** Functions
@@ -85,9 +89,10 @@ public:
     void pushChild(TreeNode<T> *, TreeNode<T> *);  // Method to add a child to a given node
     void print(TreeNode<T> *root_) const;          // Method to print the tree
     void printLevelWise(TreeNode<T> *root_) const; // Method to print the tree level wise
-    TreeNode<T> *takeInputRecursive();             // Method to fill the tree recursively
-    TreeNode<T> *takeInputLevelWise();             // Method to fill the tree level wise
+    TreeNode<T> *takeInputRecursive();             // Function to fill the tree recursively
+    TreeNode<T> *takeInputLevelWise();             // Function to fill the tree level wise
     int countNodes(TreeNode<T> *root_) const;      // Function to count the number of tree nodes
+    int height(TreeNode<T> *root_) const;          // Function to count the tree height
 
     // ***************************************************
     // ** Overload operators

@@ -8,6 +8,27 @@
 using namespace std;
 
 /**
+ * Method to fill a tree
+ */
+template <typename T>
+void fillTree(GenericTree<T> *tree_)
+{
+    // Create the root node
+    TreeNode<T> *filleTreeRoot = new TreeNode<T>(1);
+
+    // Fill manually the tree
+    tree_->setRoot(filleTreeRoot); // root (1st level)
+    tree_->push(tree_->Root(), 2); // 2nd level
+    tree_->push(tree_->Root(), 3);
+    tree_->push(tree_->Root(), 4);
+    tree_->push(tree_->Root()->Children()->getAt(0), 5); // 3rd level
+    tree_->push(tree_->Root()->Children()->getAt(0), 6);
+    tree_->push(tree_->Root()->Children()->getAt(1), 7);
+    tree_->push(tree_->Root()->Children()->getAt(2), 8);
+    tree_->push(tree_->Root()->Children()->getAt(2)->Children()->getAt(0), 9); // 4th level
+}
+
+/**
  * Main method
  */
 int main()
@@ -21,6 +42,7 @@ int main()
     // GenericTree class instance with int
     GenericTree<int> intGenericTree(100);
     GenericTree<int> intInputNode;
+    GenericTree<int> intFilledTree;
 
     // GenericTree class instance with string
     GenericTree<char> stringGenericTree('@');
@@ -36,6 +58,9 @@ int main()
     {
         stringGenericTree.push(stringGenericTree.Root(), c);
     }
+
+    // Pre-fill the tree
+    fillTree(&intFilledTree);
 
     /* ============================================================================== */
 
@@ -68,7 +93,7 @@ int main()
     cout << endl;
 
     //intInputNode.setRoot(intInputNode.takeInputRecursive());
-    intInputNode.setRoot(intInputNode.takeInputLevelWise());
+    //intInputNode.setRoot(intInputNode.takeInputLevelWise());
 
     cout << "intInputNode after input" << endl;
     //intInputNode.print(intInputNode.Root());
@@ -77,13 +102,25 @@ int main()
 
     /* ============================================================================== */
 
-    /* ----------------------- [ Test nodes count operation ] ------------------------ */
+    intFilledTree.printLevelWise(intFilledTree.Root());
+
+    /* ----------------------- [ Test nodes count operation ] ----------------------- */
 
     cout << "<<< Testing the nodes count operation:" << endl;
     cout << endl;
 
-    cout << "intInputNode nodes count (treeSize): " << intInputNode.getTreeSize() << endl;
-    cout << "intInputNode nodes count (nodes count): " << intInputNode.countNodes(intInputNode.Root()) << endl;
+    cout << "intFilledTree nodes count (treeSize): " << intFilledTree.getTreeSize() << endl;
+    cout << "intFilledTree nodes count (nodes count): " << intFilledTree.countNodes(intFilledTree.Root()) << endl;
+    cout << endl;
+
+    /* ============================================================================== */
+
+    /* ----------------------- [ Test tree height operation ] ----------------------- */
+
+    cout << "<<< Testing the tree height operation:" << endl;
+    cout << endl;
+
+    cout << "intFilledTree height: " << intFilledTree.height(intFilledTree.Root()) << endl;
     cout << endl;
 
     /* ============================================================================== */
