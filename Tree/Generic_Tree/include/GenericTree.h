@@ -18,6 +18,7 @@
 #include <iostream>
 #include <string>
 #include "../../../Array/include/Array.h"
+#include "../../../Queue/LinkedList/include/QueueLL.h"
 
 using namespace std;
 
@@ -84,6 +85,7 @@ public:
     void pushChild(TreeNode<T> *, TreeNode<T> *); // Method to add a child to a given node
     void print(TreeNode<T> *root_) const;         // Method to print the tree
     TreeNode<T> *takeInputRecursive();            // Method to fill the tree recursively
+    TreeNode<T> *takeInputLevelWise();            // Method to fill the tree level wise
 
     // ***************************************************
     // ** Overload operators

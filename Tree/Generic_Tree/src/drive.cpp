@@ -69,7 +69,8 @@ int main()
     intInputNode.print(intInputNode.Root());
     cout << endl;
 
-    intInputNode.setRoot(intInputNode.takeInputRecursive());
+    //intInputNode.setRoot(intInputNode.takeInputRecursive());
+    intInputNode.setRoot(intInputNode.takeInputLevelWise());
 
     cout << "intInputNode after input" << endl;
     intInputNode.print(intInputNode.Root());

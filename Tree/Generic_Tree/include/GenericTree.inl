@@ -146,6 +146,57 @@ TreeNode<T> *GenericTree<T>::takeInputRecursive()
 	return root;
 }
 
+/**
+ * Method to fill the tree level wise
+ */
+template <typename T>
+TreeNode<T> *GenericTree<T>::takeInputLevelWise()
+{
+	// Receive the tree node data from the user input
+	T rootData;
+	cout << "Enter the root data: ";
+	cin >> rootData;
+
+	// Set the root node with the given data
+	TreeNode<T> *root = new TreeNode<T>(rootData);
+
+	// Create a queue to store the nodes ref
+	QueueLL<TreeNode<T> *> q;
+	q.push(root);
+
+	while (!q.isEmpty())
+	{
+		// Store the front node from the queue and remove it
+		TreeNode<T> *frontNode = q.front();
+		q.pop();
+
+		// Receive the number of children for the current node
+		int nChildren;
+		cout << "Enter num of children of " << frontNode->Data() << ": ";
+		cin >> nChildren;
+
+		for (auto i = 1; i <= nChildren; i++)
+		{
+			// Receive the current child input
+			T childData;
+			cout << "Enter the " << i << "th child of " << frontNode->Data() << ": ";
+			cin >> childData;
+
+			/**
+			 * Now perform 3 operations:
+			 * 1) create de node
+			 * 2) push it to the queue
+			 * 3) connect it with the parent
+			 */
+			TreeNode<T> *childNode = new TreeNode<T>(childData);
+			q.push(childNode);
+			frontNode->Children()->push(childNode);
+		}
+	}
+
+	return root;
+}
+
 // ***************************************************
 // ** Overload operators
 // ***************************************************
