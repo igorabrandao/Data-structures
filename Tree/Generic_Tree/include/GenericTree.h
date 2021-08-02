@@ -92,6 +92,7 @@ public:
     TreeNode<T> *takeInputRecursive();                       // Function to fill the tree recursively
     TreeNode<T> *takeInputLevelWise();                       // Function to fill the tree level wise
     int countNodes(TreeNode<T> *root_) const;                // Function to count the number of tree nodes
+    int countLeafNodes(TreeNode<T> *root_) const;            // Function to count the number of tree leaf nodes
     int height(TreeNode<T> *root_) const;                    // Function to count the tree height
     void printNodesLevelK(TreeNode<T> *root_, int k_) const; // Method to print the tree nodes at K depth level
 

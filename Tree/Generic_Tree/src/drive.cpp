@@ -24,8 +24,8 @@ void fillTree(GenericTree<T> *tree_)
     tree_->push(tree_->Root()->Children()->getAt(0), 5); // 3rd level
     tree_->push(tree_->Root()->Children()->getAt(0), 6);
     tree_->push(tree_->Root()->Children()->getAt(1), 7);
-    tree_->push(tree_->Root()->Children()->getAt(2), 8);
-    tree_->push(tree_->Root()->Children()->getAt(2)->Children()->getAt(0), 9); // 4th level
+    tree_->push(tree_->Root()->Children()->getAt(1), 8);
+    tree_->push(tree_->Root()->Children()->getAt(1)->Children()->getAt(1), 9); // 4th level
 }
 
 /**
@@ -148,6 +148,16 @@ int main()
     depthLevel = 3;
     cout << "intFilledTree nodes at level " << depthLevel << ": " << endl;
     intFilledTree.printNodesLevelK(intFilledTree.Root(), depthLevel);
+    cout << endl;
+
+    /* ============================================================================== */
+
+    /* -------------------- [ Test nodes leaf count operation ] --------------------- */
+
+    cout << "<<< Testing the nodes leaf count operation:" << endl;
+    cout << endl;
+
+    cout << "intFilledTree nodes leaf count: " << intFilledTree.countLeafNodes(intFilledTree.Root()) << endl;
     cout << endl;
 
     /* ============================================================================== */

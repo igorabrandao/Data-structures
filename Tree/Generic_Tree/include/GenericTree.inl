@@ -263,6 +263,32 @@ int GenericTree<T>::countNodes(TreeNode<T> *root_) const
 }
 
 /**
+ * Function to count the number of tree leaf nodes
+ */
+template <typename T>
+int GenericTree<T>::countLeafNodes(TreeNode<T> *root_) const
+{
+	// Test the edge case
+	if (root_ == nullptr)
+		return 0;
+
+	// Test the base case
+	if (root_->Children()->size() == 0)
+		return 1;
+
+	int count = 0;
+
+	// Loop over the root children nodes
+	for (auto i = 0; i < root_->Children()->size(); i++)
+	{
+		// Count the current child children leaf nodes recursively
+		count += this->countLeafNodes(root_->Children()->getAt(i));
+	}
+
+	return count;
+}
+
+/**
  * Function to count the tree height
  */
 template <typename T>
