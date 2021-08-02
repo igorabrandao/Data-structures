@@ -89,7 +89,8 @@ public:
     void pushChild(TreeNode<T> *, TreeNode<T> *);            // Method to add a child to a given node
     void print(TreeNode<T> *root_) const;                    // Method to print the tree
     void printLevelWise(TreeNode<T> *root_) const;           // Method to print the tree level wise
-    void preOrder(TreeNode<T> *root_) const;                 // Method to print the tree pre order
+    void preOrder(TreeNode<T> *root_) const;                 // Method to print the tree in pre order traversal
+    void postOrder(TreeNode<T> *root_) const;                // Method to print the tree in post order traversal
     TreeNode<T> *takeInputRecursive();                       // Function to fill the tree recursively
     TreeNode<T> *takeInputLevelWise();                       // Function to fill the tree level wise
     int countNodes(TreeNode<T> *root_) const;                // Function to count the number of tree nodes

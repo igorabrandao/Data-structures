@@ -106,8 +106,13 @@ int main()
     intFilledTree.print(intFilledTree.Root());
     cout << endl;
 
-    cout << "<<< Testing the tree pre order operation:" << endl;
+    cout << "<<< Testing the tree pre order traversal operation:" << endl;
     intFilledTree.preOrder(intFilledTree.Root());
+    cout << endl;
+
+    cout << endl;
+    cout << "<<< Testing the tree post order traversal operation:" << endl;
+    intFilledTree.postOrder(intFilledTree.Root());
     cout << endl;
 
     cout << endl;
