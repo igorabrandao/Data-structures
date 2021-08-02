@@ -125,6 +125,33 @@ int main()
 
     /* ============================================================================== */
 
+    /* --------------------- [ Test printNodesLevelK operation ] -------------------- */
+
+    cout << "<<< Testing the printNodesLevelK operation:" << endl;
+    cout << endl;
+
+    int depthLevel = 0;
+    cout << "intFilledTree nodes at level " << depthLevel << ": " << endl;
+    intFilledTree.printNodesLevelK(intFilledTree.Root(), depthLevel);
+    cout << endl;
+
+    depthLevel = 1;
+    cout << "intFilledTree nodes at level " << depthLevel << ": " << endl;
+    intFilledTree.printNodesLevelK(intFilledTree.Root(), depthLevel);
+    cout << endl;
+
+    depthLevel = 2;
+    cout << "intFilledTree nodes at level " << depthLevel << ": " << endl;
+    intFilledTree.printNodesLevelK(intFilledTree.Root(), depthLevel);
+    cout << endl;
+
+    depthLevel = 3;
+    cout << "intFilledTree nodes at level " << depthLevel << ": " << endl;
+    intFilledTree.printNodesLevelK(intFilledTree.Root(), depthLevel);
+    cout << endl;
+
+    /* ============================================================================== */
+
     // Finish the program
     cout << "Finished successfully!\n";
     return EXIT_SUCCESS;

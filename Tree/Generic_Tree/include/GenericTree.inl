@@ -284,6 +284,30 @@ int GenericTree<T>::height(TreeNode<T> *root_) const
 	return maxHeight + 1;
 }
 
+/**
+ * Method to print the tree nodes at K depth level
+ */
+template <typename T>
+void GenericTree<T>::printNodesLevelK(TreeNode<T> *root_, int k_) const
+{
+	// Test the edge case
+	if (root_ == nullptr)
+		return;
+
+	// Base case (we reach the desired depth level of the tree)
+	if (k_ == 0)
+	{
+		cout << root_->Data() << " ";
+		return;
+	}
+
+	// Traverse the tree recursively
+	for (auto i = 0; i < root_->Children()->size(); i++)
+	{
+		printNodesLevelK(root_->Children()->getAt(i), (k_ - 1));
+	}
+}
+
 // ***************************************************
 // ** Overload operators
 // ***************************************************

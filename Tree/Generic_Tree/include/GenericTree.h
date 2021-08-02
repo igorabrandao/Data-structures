@@ -62,8 +62,8 @@ private:
     // ***************************************************
     // ** Attributes
     // ***************************************************
-    TreeNode<T> *root;  // The root of the list
-    int treeSize = 0;   // The number of nodes in the tree
+    TreeNode<T> *root; // The root of the list
+    int treeSize = 0;  // The number of nodes in the tree
 
 public:
     // ***************************************************
@@ -81,18 +81,19 @@ public:
     // ***************************************************
     // ** Functions
     // ***************************************************
-    GenericTree();                                 // Class constructor
-    GenericTree(T data_);                          // Class constructor overload
-    ~GenericTree();                                // Class Destructor
-    GenericTree(const GenericTree &obj_);          // Copy constructor
-    void push(TreeNode<T> *, T data_);             // Method to add a node to a given node of the tree
-    void pushChild(TreeNode<T> *, TreeNode<T> *);  // Method to add a child to a given node
-    void print(TreeNode<T> *root_) const;          // Method to print the tree
-    void printLevelWise(TreeNode<T> *root_) const; // Method to print the tree level wise
-    TreeNode<T> *takeInputRecursive();             // Function to fill the tree recursively
-    TreeNode<T> *takeInputLevelWise();             // Function to fill the tree level wise
-    int countNodes(TreeNode<T> *root_) const;      // Function to count the number of tree nodes
-    int height(TreeNode<T> *root_) const;          // Function to count the tree height
+    GenericTree();                                           // Class constructor
+    GenericTree(T data_);                                    // Class constructor overload
+    ~GenericTree();                                          // Class Destructor
+    GenericTree(const GenericTree &obj_);                    // Copy constructor
+    void push(TreeNode<T> *, T data_);                       // Method to add a node to a given node of the tree
+    void pushChild(TreeNode<T> *, TreeNode<T> *);            // Method to add a child to a given node
+    void print(TreeNode<T> *root_) const;                    // Method to print the tree
+    void printLevelWise(TreeNode<T> *root_) const;           // Method to print the tree level wise
+    TreeNode<T> *takeInputRecursive();                       // Function to fill the tree recursively
+    TreeNode<T> *takeInputLevelWise();                       // Function to fill the tree level wise
+    int countNodes(TreeNode<T> *root_) const;                // Function to count the number of tree nodes
+    int height(TreeNode<T> *root_) const;                    // Function to count the tree height
+    void printNodesLevelK(TreeNode<T> *root_, int k_) const; // Method to print the tree nodes at K depth level
 
     // ***************************************************
     // ** Overload operators
