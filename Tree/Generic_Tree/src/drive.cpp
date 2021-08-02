@@ -178,6 +178,17 @@ int main()
 
     /* ============================================================================== */
 
+    /* ------------------------- [ Test delete operation ] -------------------------- */
+
+    cout << "<<< Testing the delete tree operation:" << endl;
+    cout << endl;
+
+    delete intFilledTree.Root();
+    cout << "intFilledTree deleted successfully!\n";
+    cout << endl;
+
+    /* ============================================================================== */
+
     // Finish the program
     cout << "Finished successfully!\n";
     return EXIT_SUCCESS;

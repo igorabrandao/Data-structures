@@ -42,6 +42,14 @@ public:
     // Class constructor overload
     TreeNode(T data_) : data(data_) { this->children = new Array<TreeNode<T> *>(); };
 
+    // Class destructor
+    ~TreeNode()
+    {
+        // Delete the nodes with a recursive postOrder traversal
+        for (auto i = 0; i < this->Children()->size(); i++)
+            delete this->Children()->getAt(i);
+    };
+
     // Adds the given node as children of the current node
     inline void setChildren(TreeNode *treeNode_) { this->children = treeNode_; };
 
@@ -97,6 +105,7 @@ public:
     int countLeafNodes(TreeNode<T> *root_) const;            // Function to count the number of tree leaf nodes
     int height(TreeNode<T> *root_) const;                    // Function to count the tree height
     void printNodesLevelK(TreeNode<T> *root_, int k_) const; // Method to print the tree nodes at K depth level
+    void deleteTree(TreeNode<T> *root_);                     // Method to delete the tree
 
     // ***************************************************
     // ** Overload operators

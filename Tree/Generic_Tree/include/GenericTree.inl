@@ -382,6 +382,27 @@ void GenericTree<T>::printNodesLevelK(TreeNode<T> *root_, int k_) const
 	}
 }
 
+/**
+ * Method to delete the tree
+ * 
+ * time complexity O(n)
+ * space complexity O(n)
+ */
+template <typename T>
+void GenericTree<T>::deleteTree(TreeNode<T> *root_)
+{
+	// Handle edge case
+	if (root_ == nullptr)
+		return;
+
+	// Loop over the current node children
+	for (auto i = 0; i < root_->Children()->size(); i++)
+		deleteTree(root_->Children()->getAt(i));
+
+	// Delete the current node
+	delete root_;
+}
+
 // ***************************************************
 // ** Overload operators
 // ***************************************************
