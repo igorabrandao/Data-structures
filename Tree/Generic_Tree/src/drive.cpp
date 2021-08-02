@@ -102,7 +102,18 @@ int main()
 
     /* ============================================================================== */
 
+    cout << "<<< Testing the tree print recursive operation:" << endl;
+    intFilledTree.print(intFilledTree.Root());
+    cout << endl;
+
+    cout << "<<< Testing the tree pre order operation:" << endl;
+    intFilledTree.preOrder(intFilledTree.Root());
+    cout << endl;
+
+    cout << endl;
+    cout << "<<< Testing the tree printLevelWise operation:" << endl;
     intFilledTree.printLevelWise(intFilledTree.Root());
+    cout << endl;
 
     /* ----------------------- [ Test nodes count operation ] ----------------------- */
 

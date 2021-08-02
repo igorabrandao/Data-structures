@@ -152,6 +152,32 @@ void GenericTree<T>::printLevelWise(TreeNode<T> *root_) const
 }
 
 /**
+ * Method to print the tree pre order
+ * 
+ * time complexity O(n)
+ * space complexity O(n)
+ */
+template <typename T>
+void GenericTree<T>::preOrder(TreeNode<T> *root_) const
+{
+	// Handle edge case
+	if (root_ == nullptr)
+	{
+		cout << "<Empty tree>" << endl;
+		return;
+	}
+
+	// Print the current tree node value
+	cout << root_->Data() << " ";
+
+	// Loop over the current node children
+	for (auto i = 0; i < root_->Children()->size(); i++)
+	{
+		this->preOrder(root_->Children()->getAt(i));
+	}
+}
+
+/**
  * Function to fill the tree recursively
  */
 template <typename T>
