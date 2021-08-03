@@ -94,13 +94,13 @@ int main()
     /* ------------------------- [ Test the expand operation ] ---------------------- */
 
     cout << "<<< Expanding the intArray:" << endl;
-    int nSize = 50;
+    int nSize = 105;
     intArray.expand(nSize);
 
     // Fill the new Array positions
     for (auto i = iSize; i < nSize; i++)
     {
-        intArray[i] = i;
+        intArray.push(i);
     }
 
     intArray.print("intArray");

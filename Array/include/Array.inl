@@ -69,6 +69,7 @@ Array<T>::Array(const Array &obj_)
 
 		// Update the number of elements
 		this->nrOfEl = size;
+		this->mSize = size;
 	}
 	catch (const bad_alloc &exception)
 	{
