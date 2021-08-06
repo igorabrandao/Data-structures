@@ -41,7 +41,7 @@ HashMap<T>::~HashMap()
 /**
  * Function to generate a index according to the key
  * 
- * time complexity: O(1)
+ * time complexity: O(l) where l is the key size
  * space complexity: O(1)
  */
 template <typename T>
@@ -67,6 +67,59 @@ int HashMap<T>::hashFunction(string key_) const
 }
 
 /**
+ * Method to perform the rehash operation
+ * 
+ * time complexity: O(n)
+ */
+template <typename T>
+void HashMap<T>::rehash()
+{
+	// Create a copy of the current buckets
+	MapNode<T> **temp = this->buckets;
+
+	int oldBucketSize = this->numBuckets;
+	int newBucketSize = (2 * this->numBuckets);
+
+	// Double the bucket size
+	this->buckets = new MapNode<T> *[newBucketSize];
+
+	// Initialize the new doubled bucket array to remove garbage
+	for (auto i = 0; i < newBucketSize; i++)
+		this->buckets[i] = nullptr;
+
+	// Reinitialize the map attributes
+	this->count = 0;
+	this->numBuckets = oldBucketSize;
+
+	// Loop over the original bucket array
+	for (auto i = 0; i < oldBucketSize; i++)
+	{
+		// Point to the LL head of the current item
+		MapNode<T> *head = temp[i];
+
+		// Loop over the linked list
+		while (head != nullptr)
+		{
+			// Get the current node <key, value> pair
+			string currKey = head->key;
+			T currValue = head->value;
+
+			// Insert the current <key, value> pair into the new bucket array
+			this->insert(currKey, currValue);
+
+			// Goto the next node
+			head = head->next;
+		}
+	}
+
+	// Delete the temp bucket array
+	for (auto i = 0; i < oldBucketSize; i++)
+		delete temp[i];
+
+	delete[] temp;
+}
+
+/**
  * Function to return the bucket array size
  * 
  * time complexity: O(1)
@@ -88,12 +141,40 @@ int HashMap<T>::size() const
 template <typename T>
 T HashMap<T>::getValue(string key_) const
 {
+	// Get the unique index
+	int bucketIndex = this->hashFunction(key_);
+
+	// Point to the bucket list item LL head
+	MapNode<T> *head = this->buckets[bucketIndex];
+
+	// Loop over the linked list
+	while (head != nullptr)
+	{
+		// Check if it exists a node with the given key
+		if (head->key == key_)
+			return head->value;
+
+		// Goto the next node
+		head = head->next;
+	}
+
+	// Given key is not present
+	return T();
 }
 
 /**
  * Method to insert a <K, V> pair into the map
  * 
- * time complexity: O(1)
+ * time complexity: O(n) + O(l) = O(n)
+ * in case we have a bad hashFunction and all values goes to the same
+ * index. So traversing the LL will take O(n)
+ * However, since we have a good hashFunction O(n) will never happen, so
+ * the average case will be O(n/b), where n is the number of <key, value> pairs
+ * and b is the bucket array size. n/b stands for the map Load Factor.
+ * A good Load Factor is around 0.7
+ * In other words, since we have O(n/b) and n/b <= 0.7, the real time complexity
+ * is O(1)
+ * 
  * space complexity: O(1)
  */
 template <typename T>
@@ -126,6 +207,12 @@ void HashMap<T>::insert(string key_, T value_)
 
 	// Update the number of <key, value> pairs inside the map
 	this->count++;
+
+	// Calculates the current load factor
+	double currLoadFactor = (1.0 * this->count / this->numBuckets);
+
+	if (currLoadFactor > this->loadFactor)
+		this->rehash();
 }
 
 /**

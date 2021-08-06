@@ -56,12 +56,14 @@ private:
     // ***************************************************
     // ** Attributes
     // ***************************************************
-    MapNode<T> **buckets; // Bucket array
-    int numBuckets;       // Bucket array size
-    int count;            // Number of <key, value> pairs inside the map
+    MapNode<T> **buckets;   // Bucket array
+    int numBuckets;         // Bucket array size
+    int count;              // Number of <key, value> pairs inside the map
+    const loadFactor = 0.7; // Represents the ideal relation between (count/numBuckets)
 
     int hashFunction(string key_) const; // Function to generate a index according to the key
-
+    void rehash();                       // Method to perform the rehash operation
+ 
 public:
     // ***************************************************
     // ** Functions
