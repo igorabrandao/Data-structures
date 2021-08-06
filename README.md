@@ -42,6 +42,8 @@ Currently implemented data structures:
 
 - **Generic tree** => Collection of nodes where each node is a data structure that consists of records and a list of references to its children(duplicate references are not allowed). This tree doesn't have constraint related to the number of children
 
+**Hashmap** => Unordered map is an associative container that contains key-value pairs with unique keys. Search, insertion, and removal of elements have average constant-time complexity.
+
 ## Ways to contribute
 
 You can help us to make this projet even better :rocket:. Here are the ways you can contribute to this project:
