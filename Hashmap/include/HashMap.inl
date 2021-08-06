@@ -109,7 +109,8 @@ void HashMap<T>::insert(string key_, T value_)
 	while (head != nullptr)
 	{
 		// Check if it already exists a node with the same key
-		if (head->key == key_) {
+		if (head->key == key_)
+		{
 			head->value = value_;
 			return;
 		}
@@ -122,6 +123,9 @@ void HashMap<T>::insert(string key_, T value_)
 	MapNode<T> *node = new MapNode<T>(key_, value_);
 	node->next = this->buckets[bucketIndex];
 	this->buckets[bucketIndex] = node;
+
+	// Update the number of <key, value> pairs inside the map
+	this->count++;
 }
 
 /**
@@ -131,8 +135,56 @@ void HashMap<T>::insert(string key_, T value_)
  * space complexity: O(1)
  */
 template <typename T>
-void HashMap<T>::remove(string key_)
+T HashMap<T>::remove(string key_)
 {
+	// Get the unique index
+	int bucketIndex = this->hashFunction(key_);
+
+	// Point to the bucket list item LL head
+	MapNode<T> *head = this->buckets[bucketIndex];
+	MapNode<T> *prev = nullptr;
+	T value;
+
+	// Loop over the linked list
+	while (head != nullptr)
+	{
+		// Check if it already exists a node with the same key
+		if (head->key == key_)
+		{
+			// Check if the key is on the LL head
+			if (prev == nullptr)
+			{
+				// Unlink the head node
+				this->buckets[bucketIndex] = head->next;
+			}
+			else
+			{
+				// Unlink the node
+				prev->next = head->next;
+			}
+
+			// Store the node value before deleting it
+			value = head->value;
+
+			// Isolate the node to be deleted, since the destructor is recursive
+			head->next = nullptr;
+
+			// Now delete the node without destroying the rest of the LL
+			delete head;
+
+			// Update the number of <key, value> pairs inside the map
+			this->count--;
+
+			return value;
+		}
+
+		// Goto the next node
+		prev = head;
+		head = head->next;
+	}
+
+	// Given key is not present
+	return T();
 }
 
 // ***************************************************

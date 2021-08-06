@@ -58,7 +58,7 @@ private:
     // ***************************************************
     MapNode<T> **buckets; // Bucket array
     int numBuckets;       // Bucket array size
-    int count;            // Number of entries
+    int count;            // Number of <key, value> pairs inside the map
 
     int hashFunction(string key_) const; // Function to generate a index according to the key
 
@@ -71,7 +71,7 @@ public:
     int size() const;                   // Function to return the bucket array size
     T getValue(string key_) const;      // Function to get the value by its key
     void insert(string key_, T value_); // Method to insert a <K, V> pair into the map
-    void remove(string key_);           // Method to remove a pair from the map
+    T remove(string key_);              // Function to remove a pair from the map
 
     // ***************************************************
     // ** Overload operators
